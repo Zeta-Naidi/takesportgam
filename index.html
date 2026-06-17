@@ -131,13 +131,13 @@
     /* STATS STRIP */
     .stats-strip {
       background: var(--card-bg); border-top: 1px solid rgba(0,180,216,0.12); border-bottom: 1px solid rgba(0,180,216,0.12);
-      padding: 28px 4%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+      padding: 16px 4%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
     }
-    .stat-item { text-align: center; }
-    .stat-item .val { font-family: 'Sora', sans-serif; font-size: 30px; font-weight: 800; color: var(--blue-light); display: block; }
-    .stat-item .desc { font-size: 12px; color: var(--gray); letter-spacing: 0.5px; text-transform: uppercase; margin-top: 4px; line-height: 1.2; }
+    .stat-item { text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .stat-item .val { font-family: 'Sora', sans-serif; font-size: 30px; font-weight: 800; color: var(--blue-light); display: block; line-height: 1; }
+    .stat-item .desc { font-size: 11px; color: var(--gray); letter-spacing: 0; text-transform: uppercase; margin-top: 2px; line-height: 1.1; max-width: 90px; }
     @media (max-width: 600px) {
-      .stats-strip { padding: 18px 3%; gap: 4px; }
+      .stats-strip { padding: 12px 3%; gap: 4px; }
       .stat-item .val { font-size: 18px; }
       .stat-item .desc { font-size: 9px; letter-spacing: 0; }
     }
@@ -158,11 +158,10 @@
     .showcase-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
     .showcase-img {
       background: #0a0a12; overflow: hidden; position: relative;
-      border: 1px solid rgba(0,180,216,0.1); display: flex; align-items: center; justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       min-height: 280px;
     }
-    .showcase-img img { width: 100%; height: auto; display: block; transition: transform 0.5s;
-      filter: drop-shadow(0 4px 32px rgba(0,180,216,0.12)); padding: 20px; }
+    .showcase-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
     .showcase-img:hover img { transform: scale(1.04); }
     .showcase-img .img-label {
       position: absolute; bottom: 0; left: 0; right: 0;
@@ -202,12 +201,13 @@
     .compare-table-mobile th, .compare-table-mobile td { padding: 10px 8px; font-size: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: center; vertical-align: middle; }
     .compare-table-mobile th { font-family: 'Sora', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding-bottom: 14px; }
     .compare-table-mobile th.col-feature { text-align: left; color: var(--gray); }
-    .compare-table-mobile th.col-airleg { color: var(--blue-light); }
+    .compare-table-mobile th.col-airleg { color: var(--blue-light); background: rgba(0,180,216,0.10); border-left: 2px solid rgba(0,180,216,0.5); border-right: 2px solid rgba(0,180,216,0.5); border-top: 2px solid rgba(0,180,216,0.5); border-radius: 6px 6px 0 0; }
     .compare-table-mobile th.col-comp { color: var(--gray); }
     .compare-table-mobile td.col-feature { text-align: left; color: var(--gray); font-size: 11px; }
-    .compare-table-mobile td.col-airleg { font-family: 'Sora', sans-serif; font-weight: 700; color: var(--white); font-size: 11px; }
+    .compare-table-mobile td.col-airleg { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 11px; background: rgba(0,180,216,0.07); border-left: 2px solid rgba(0,180,216,0.4); border-right: 2px solid rgba(0,180,216,0.4); }
     .compare-table-mobile td.col-comp { color: var(--gray); font-size: 11px; }
     .compare-table-mobile tr:last-child td { border-bottom: none; }
+    .compare-table-mobile tr:last-child td.col-airleg { border-bottom: 2px solid rgba(0,180,216,0.5); border-radius: 0 0 6px 6px; }
     .compare-table-mobile thead tr th { border-bottom: 1px solid rgba(0,180,216,0.2); }
 
     /* FEATURES GRID */
@@ -317,9 +317,7 @@
     .testimonial-author { display: flex; align-items: center; gap: 12px; }
     .author-avatar {
       width: 42px; height: 42px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--blue-mid), var(--blue-light));
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 16px; color: var(--black); flex-shrink: 0;
+      object-fit: cover; flex-shrink: 0;
     }
     .author-name { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 14px; }
     .author-role { font-size: 12px; color: var(--gray); }
@@ -494,7 +492,7 @@
   <div class="stat-item"><span class="val">30→240</span><span class="desc">mmHg range pressione</span></div>
   <div class="stat-item"><span class="val">2×</span><span class="desc">compressori integrati</span></div>
   <div class="stat-item"><span class="val">4</span><span class="desc">zone di compressione</span></div>
-  <div class="stat-item"><span class="val">0</span><span class="desc">Zero cavi</span></div>
+  <div class="stat-item"><span class="val">5</span><span class="desc">programmi preimpostati</span></div>
 </div>
 
 <!-- PRODUCT SHOWCASE -->
@@ -503,15 +501,15 @@
   <h2 class="section-title">Costruito per<br>chi esige di più</h2>
   <div class="showcase-grid" style="margin-top:48px;">
     <div class="showcase-img tall">
-      <img src="img_product2_opt.png" alt="AIRLEG gambali vista frontale" />
+      <img src="img_product_front.jpeg" alt="AIRLEG gambali vista frontale" />
       <div class="img-label">Vista frontale — coppia gambali</div>
     </div>
     <div class="showcase-img">
-      <img src="img_product1_opt.png" alt="AIRLEG gambali vista prospettica" />
+      <img src="img_product_side.jpeg" alt="AIRLEG gambali vista prospettica" />
       <div class="img-label">Design compatto — nessun apparecchio esterno</div>
     </div>
     <div class="showcase-img">
-      <img src="img_display_opt.png" alt="AIRLEG display — 240 mmHg" />
+      <img src="img_product_scheme.jpeg" alt="AIRLEG schema tecnico" />
       <div class="img-label">Display LCD — 240 mmHg in tempo reale</div>
     </div>
   </div>
@@ -581,7 +579,7 @@
 <section class="display-section reveal">
   <div class="display-inner">
     <div class="display-img">
-      <img src="img_display_opt.png" alt="AIRLEG controller display 240 mmHg" />
+      <img src="img_product_scheme.jpeg" alt="AIRLEG schema tecnico" />
     </div>
     <div class="display-specs">
       <div class="section-eyebrow">Specifiche tecniche</div>
@@ -655,44 +653,7 @@
   </div>
 </section>
 
-<!-- PROGRAMS DETAIL -->
-<section class="programs-section reveal" style="background: var(--card-bg);">
-  <div class="section-eyebrow">I 5 programmi</div>
-  <h2 class="section-title">Cinque modalità.<br>Tre durate. Tu scegli.</h2>
-  <p class="section-lead">Ogni programma è ottimizzato per un obiettivo diverso. La durata si imposta a ogni utilizzo.</p>
-  <div class="programs-grid">
-    <div class="program-card">
-      <div class="prog-num">01</div>
-      <div class="prog-name">Sequenziale</div>
-      <div class="prog-desc">Massaggio automatico circolare dal basso verso l'alto</div>
-    </div>
-    <div class="program-card">
-      <div class="prog-num">02</div>
-      <div class="prog-name">Circolazione</div>
-      <div class="prog-desc">Area di massaggio opzionale per massaggi individuali per zona</div>
-    </div>
-    <div class="program-card">
-      <div class="prog-num">03</div>
-      <div class="prog-name">Effetto onda</div>
-      <div class="prog-desc">Massaggio progressivo con doppio impulso ad onda</div>
-    </div>
-    <div class="program-card">
-      <div class="prog-num">04</div>
-      <div class="prog-name">Doppia onda</div>
-      <div class="prog-desc">Compressione completa con effetto doppia onda sequenziale</div>
-    </div>
-    <div class="program-card">
-      <div class="prog-num">05</div>
-      <div class="prog-name">Combinato</div>
-      <div class="prog-desc">Compressione sequenziale + effetto doppia onda unificati</div>
-    </div>
-  </div>
-  <div class="duration-row">
-    <div class="duration-pill">15 min</div>
-    <div class="duration-pill">30 min</div>
-    <div class="duration-pill">45 min</div>
-  </div>
-</section>
+
 
 <!-- BENEFITS -->
 <section class="benefits-section reveal">
@@ -772,28 +733,7 @@
   </div>
 </section>
 
-<!-- SIZES -->
-<section class="sizes-section reveal">
-  <div class="section-eyebrow">Taglie disponibili</div>
-  <h2 class="section-title">Trova la taglia<br>giusta per te</h2>
-  <p class="section-lead">AIRLEG è disponibile in due taglie per adattarsi alla lunghezza della tua gamba. In caso di dubbio, contattaci prima di ordinare.</p>
-  <div class="sizes-grid">
-    <div class="size-card">
-      <span class="size-letter">M</span>
-      <h3>Taglia M</h3>
-      <p>Altezza consigliata</p>
-      <div class="range">160 – 175 cm</div>
-      <p style="margin-top:10px; font-size:13px; color:var(--gray);">Lunghezza gamba: indicativamente fino a 88 cm</p>
-    </div>
-    <div class="size-card">
-      <span class="size-letter">L</span>
-      <h3>Taglia L</h3>
-      <p>Altezza consigliata</p>
-      <div class="range">175 – 195 cm</div>
-      <p style="margin-top:10px; font-size:13px; color:var(--gray);">Lunghezza gamba: indicativamente oltre 88 cm</p>
-    </div>
-  </div>
-</section>
+
 
 <!-- TESTIMONIALS -->
 <section class="testimonials-section reveal" style="background: var(--card-bg);">
@@ -805,7 +745,7 @@
       <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
       <p class="testimonial-text">Dopo ogni allenamento uso AIRLEG per 30 minuti. Il giorno dopo mi sento come se avessi dormito due giorni. La differenza rispetto a quello che usavo prima è enorme, soprattutto per la pressione che riesce a esprimere.</p>
       <div class="testimonial-author">
-        <div class="author-avatar">M</div>
+        <img class="author-avatar" src="https://i.pravatar.cc/84?img=12" alt="Marco R.">
         <div><div class="author-name">Marco R.</div><div class="author-role">Triatleta, categoria age group</div></div>
       </div>
     </div>
@@ -813,7 +753,7 @@
       <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
       <p class="testimonial-text">Lo uso in studio mentre lavoro sui miei atleti. La comodità di non avere cavi in mezzo è impagabile. I ragazzi adorano farlo subito dopo la seduta e tornano la settimana dopo in condizioni molto migliori.</p>
       <div class="testimonial-author">
-        <div class="author-avatar">S</div>
+        <img class="author-avatar" src="https://i.pravatar.cc/84?img=47" alt="Sara B.">
         <div><div class="author-name">Sara B.</div><div class="author-role">Massaggiatrice sportiva professionista</div></div>
       </div>
     </div>
@@ -821,37 +761,14 @@
       <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
       <p class="testimonial-text">Lavoro in sala operatoria e a fine turno le gambe erano un problema serio. Da quando ho AIRLEG, 20 minuti dopo cena e il gonfiore sparisce. Non pensavo potesse fare così effetto.</p>
       <div class="testimonial-author">
-        <div class="author-avatar">L</div>
+        <img class="author-avatar" src="https://i.pravatar.cc/84?img=32" alt="Laura F.">
         <div><div class="author-name">Laura F.</div><div class="author-role">Chirurga ortopedica</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- WHAT'S IN THE BOX -->
-<section class="box-section reveal">
-  <div class="section-eyebrow">Nella confezione</div>
-  <h2 class="section-title">Tutto quello che ti serve,<br>incluso lo zaino.</h2>
-  <p class="section-lead">AIRLEG arriva pronto all'uso con tutto il necessario — e con uno zaino premium in omaggio per portarlo ovunque.</p>
-  <div class="box-items">
-    <div class="box-item">
-      <div class="box-num">1</div>
-      <div><div class="box-label">Gambali AIRLEG</div><div class="box-sub">Coppia, taglia M o L</div></div>
-    </div>
-    <div class="box-item">
-      <div class="box-num">2</div>
-      <div><div class="box-label">Cavo di ricarica</div><div class="box-sub">Input DC 5V–2A</div></div>
-    </div>
-    <div class="box-item">
-      <div class="box-num">3</div>
-      <div><div class="box-label">Manuale d'uso</div><div class="box-sub">Italiano, con QR video</div></div>
-    </div>
-    <div class="box-item" style="border-color: rgba(0,180,216,0.35); background: rgba(0,180,216,0.04);">
-      <div class="box-num" style="color:var(--blue-light);">🎒</div>
-      <div><div class="box-label" style="color:var(--blue-light);">Zaino premium</div><div class="box-sub">In omaggio — per il trasporto</div></div>
-    </div>
-  </div>
-</section>
+
 
 
 <!-- FAQ -->
@@ -1033,4 +950,5 @@
 
 </body>
 </html>
+
 
