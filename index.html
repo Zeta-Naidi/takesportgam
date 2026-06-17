@@ -576,6 +576,28 @@
   </table>
 </section>
 
+<!-- PROMO STRIP -->
+<div style="background:var(--card-bg); border-top:1px solid rgba(0,180,216,0.15); border-bottom:1px solid rgba(0,180,216,0.15); padding:32px 6%; display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:32px;">
+  <div style="text-align:center;">
+    <div style="font-family:'Sora',sans-serif; font-size:10px; font-weight:600; letter-spacing:4px; color:var(--blue-light); text-transform:uppercase; margin-bottom:8px;">Offerta termina tra</div>
+    <div style="display:flex; align-items:flex-start; gap:10px; justify-content:center;">
+      <div style="text-align:center;"><span id="cd2-days" style="font-family:'Sora',sans-serif; font-size:32px; font-weight:800; color:var(--white);">00</span><div style="font-size:9px; color:var(--gray); letter-spacing:2px; text-transform:uppercase; margin-top:3px;">giorni</div></div>
+      <span style="font-family:'Sora',sans-serif; font-size:32px; font-weight:800; color:var(--blue-light); margin-top:2px;">:</span>
+      <div style="text-align:center;"><span id="cd2-hours" style="font-family:'Sora',sans-serif; font-size:32px; font-weight:800; color:var(--white);">00</span><div style="font-size:9px; color:var(--gray); letter-spacing:2px; text-transform:uppercase; margin-top:3px;">ore</div></div>
+      <span style="font-family:'Sora',sans-serif; font-size:32px; font-weight:800; color:var(--blue-light); margin-top:2px;">:</span>
+      <div style="text-align:center;"><span id="cd2-mins" style="font-family:'Sora',sans-serif; font-size:32px; font-weight:800; color:var(--white);">00</span><div style="font-size:9px; color:var(--gray); letter-spacing:2px; text-transform:uppercase; margin-top:3px;">minuti</div></div>
+      <span style="font-family:'Sora',sans-serif; font-size:32px; font-weight:800; color:var(--blue-light); margin-top:2px;">:</span>
+      <div style="text-align:center;"><span id="cd2-secs" style="font-family:'Sora',sans-serif; font-size:32px; font-weight:800; color:var(--white);">00</span><div style="font-size:9px; color:var(--gray); letter-spacing:2px; text-transform:uppercase; margin-top:3px;">secondi</div></div>
+    </div>
+  </div>
+  <div style="text-align:center; border-left:1px solid rgba(0,180,216,0.2); padding-left:32px;">
+    <div style="font-family:'Sora',sans-serif; font-size:10px; font-weight:600; letter-spacing:4px; color:var(--blue-light); text-transform:uppercase; margin-bottom:6px;">Preordine speciale</div>
+    <div style="font-family:'Sora',sans-serif; font-size:48px; font-weight:800; color:var(--white); line-height:1;">€329</div>
+    <div style="font-size:13px; color:var(--gray); text-decoration:line-through; margin-top:4px;">€429 a partire da agosto</div>
+    <a href="https://tapesportivo.it/" target="_blank" style="display:inline-block; margin-top:14px; background:var(--blue-light); color:#000; font-family:'Sora',sans-serif; font-weight:700; font-size:13px; letter-spacing:1px; padding:10px 24px; text-decoration:none;">Preordina ORA →</a>
+  </div>
+</div>
+
 <!-- DISPLAY & SPECS -->
 <section class="display-section reveal">
   <div class="display-inner">
@@ -886,21 +908,30 @@
 <section id="preordine" class="cta-section reveal">
   <div class="section-eyebrow" style="justify-content:center;">Preordine luglio 2025</div>
   <h2 class="section-title">Prenota il tuo AIRLEG<br>prima che arrivi sul mercato</h2>
-  <p class="section-lead" style="margin: 0 auto; max-width:520px; text-align:center;">Disponibile da fine luglio a €429. Per tutto luglio, preordina a €329 e risparmi €100.</p>
+  <p class="section-lead" style="margin: 0 auto; max-width:520px; text-align:center;">Disponibile da agosto a €429. Per tutto luglio, preordina a €329 e risparmi €100.</p>
   <div style="display:flex; justify-content:center;">
     <div class="cta-box">
       <div class="cta-label">⬡ Preordine Speciale</div>
       <div class="cta-price-big">€<span>329</span></div>
       <div class="cta-was">Prezzo di listino: €429</div>
-      <div class="cta-deadline">Offerta valida <strong>solo per tutto luglio 2025</strong>.<br>Consegna a partire da fine luglio.</div>
+      <div class="cta-deadline">Offerta valida <strong>solo per tutto luglio 2025</strong>.<br>Consegna a partire da agosto.</div>
       <a href="https://tapesportivo.it/" target="_blank" class="btn-primary" style="display:block; text-align:center; font-size:16px; padding:18px 40px;">Preordina ORA</a>
       <p class="cta-include" style="margin-top:20px;">
         <strong>Incluso:</strong> gambali AIRLEG + zaino premium + cavo di ricarica + manuale d'uso.
       </p>
+      <div id="countdown" style="display:flex; justify-content:center; gap:16px; margin-top:24px; padding-top:20px; border-top:1px solid rgba(0,180,216,0.15);">
+        <div style="text-align:center;"><span id="cd-days" style="font-family:'Sora',sans-serif; font-size:28px; font-weight:800; color:var(--blue-light);">00</span><div style="font-size:10px; color:var(--gray); letter-spacing:2px; text-transform:uppercase; margin-top:4px;">giorni</div></div>
+        <div style="font-family:'Sora',sans-serif; font-size:28px; font-weight:800; color:var(--blue-light); align-self:flex-start; margin-top:2px;">:</div>
+        <div style="text-align:center;"><span id="cd-hours" style="font-family:'Sora',sans-serif; font-size:28px; font-weight:800; color:var(--blue-light);">00</span><div style="font-size:10px; color:var(--gray); letter-spacing:2px; text-transform:uppercase; margin-top:4px;">ore</div></div>
+        <div style="font-family:'Sora',sans-serif; font-size:28px; font-weight:800; color:var(--blue-light); align-self:flex-start; margin-top:2px;">:</div>
+        <div style="text-align:center;"><span id="cd-mins" style="font-family:'Sora',sans-serif; font-size:28px; font-weight:800; color:var(--blue-light);">00</span><div style="font-size:10px; color:var(--gray); letter-spacing:2px; text-transform:uppercase; margin-top:4px;">minuti</div></div>
+        <div style="font-family:'Sora',sans-serif; font-size:28px; font-weight:800; color:var(--blue-light); align-self:flex-start; margin-top:2px;">:</div>
+        <div style="text-align:center;"><span id="cd-secs" style="font-family:'Sora',sans-serif; font-size:28px; font-weight:800; color:var(--blue-light);">00</span><div style="font-size:10px; color:var(--gray); letter-spacing:2px; text-transform:uppercase; margin-top:4px;">secondi</div></div>
+      </div>
     </div>
   </div>
-  <p style="margin-top:32px; font-size:13px; color:var(--gray); max-width:480px; margin-left:auto; margin-right:auto; text-align:center;">
-    Dubbi sulla taglia o sul prodotto? Scrivici — rispondiamo entro poche ore.
+  <p style="margin-top:24px; font-size:13px; color:var(--gray); max-width:480px; margin-left:auto; margin-right:auto; text-align:center;">
+    Dubbi sul prodotto? <a href="https://wa.me/393XXXXXXXXX" target="_blank" style="color:var(--blue-light); text-decoration:none; font-weight:600;">Scrivici su WhatsApp</a> — rispondiamo entro poche ore.
   </p>
 </section>
 
@@ -930,6 +961,29 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
   }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
   reveals.forEach(r => observer.observe(r));
+
+  // Countdown: 1 Aug 2026 00:00 UTC+2 = 2026-07-31T22:00:00Z
+  var dl = Date.UTC(2026, 6, 31, 22, 0, 0);
+  function startCountdown(deadline, prefix) {
+    function pad(n) { return String(n).padStart(2,'0'); }
+    function update() {
+      var diff = deadline - Date.now();
+      if (diff < 0) diff = 0;
+      var d = Math.floor(diff / 86400000);
+      var h = Math.floor((diff % 86400000) / 3600000);
+      var m = Math.floor((diff % 3600000) / 60000);
+      var s = Math.floor((diff % 60000) / 1000);
+      ['days','hours','mins','secs'].forEach(function(k, i) {
+        var el = document.getElementById(prefix + k);
+        if (el) el.textContent = pad([d,h,m,s][i]);
+      });
+    }
+    update();
+    setInterval(update, 1000);
+  }
+  startCountdown(dl, 'cd-');
+  startCountdown(dl, 'cd2-');
+
 
   function toggleFaq(btn) {
     const item = btn.parentElement;
