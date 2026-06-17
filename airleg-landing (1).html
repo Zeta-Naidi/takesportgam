@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AIRLEG — TAKE SPORT | Recupero Sportivo Avanzato</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #0A0A0F;
+      --blue-deep: #1A1A2E;
+      --blue-mid: #0077A8;
+      --blue-light: #00B4D8;
+      --blue-glow: rgba(0,180,216,0.15);
+      --white: #FFFFFF;
+      --gray: #8A8A9A;
+      --gray-light: #C8C8D8;
+      --card-bg: #0E0E16;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--white); font-family: 'Inter', sans-serif; line-height: 1.6; overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 6%;
+      background: rgba(10,10,15,0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,180,216,0.1);
+    }
+    .nav-logo img { height: 32px; width: auto; display: block; }
+    .nav-logo-text {
+      font-family: 'Sora', sans-serif; font-size: 22px; font-weight: 800;
+      letter-spacing: 2px; color: var(--white);
+    }
+    .nav-logo-text span { color: var(--blue-light); }
+    .nav-logo { display: flex; align-items: center; gap: 14px; }
+    .nav-cta {
+      background: var(--blue-light); color: var(--black);
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 1px;
+      padding: 11px 26px; border: none; cursor: pointer; text-decoration: none; display: inline-block;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+      transition: background 0.2s, transform 0.2s;
+    }
+    .nav-cta:hover { background: #fff; transform: translateY(-1px); }
+
+    /* HERO */
+    .hero {
+      height: 100vh; min-height: 600px; display: flex; align-items: stretch;
+      padding: 0 6%; padding-top: 72px; position: relative; overflow: hidden;
+    }
+    .hero-bg-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(0,180,216,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,180,216,0.04) 1px, transparent 1px);
+      background-size: 60px 60px; pointer-events: none;
+    }
+    .hero-bg-radial {
+      position: absolute; top: -10%; right: -5%;
+      width: 70vw; height: 70vw; max-width: 800px; max-height: 800px;
+      background: radial-gradient(ellipse at center, rgba(0,119,168,0.2) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-content { flex: 1; max-width: 520px; position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center; padding: 40px 0; }
+    .hero-eyebrow {
+      font-family: 'Sora', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 5px;
+      color: var(--blue-light); text-transform: uppercase; margin-bottom: 20px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--blue-light); }
+    .hero-title {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(46px, 6.5vw, 82px); font-weight: 800; line-height: 0.95; letter-spacing: -2px;
+      margin-bottom: 28px;
+    }
+    .hero-title .accent { color: var(--blue-light); }
+    .hero-subtitle { font-size: 17px; font-weight: 300; color: var(--gray-light); max-width: 460px; margin-bottom: 40px; line-height: 1.7; }
+    .preorder-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(0,180,216,0.1); border: 1px solid rgba(0,180,216,0.3);
+      padding: 6px 14px; font-family: 'Sora', sans-serif; font-size: 11px; font-weight: 600;
+      letter-spacing: 3px; text-transform: uppercase; color: var(--blue-light); margin-bottom: 16px;
+    }
+    .preorder-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue-light); animation: pulse-dot 1.5s infinite; }
+    @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.7)} }
+    .price-row { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
+    .price-promo { font-family: 'Sora', sans-serif; font-size: 54px; font-weight: 800; color: var(--blue-light); line-height: 1; }
+    .price-full { font-family: 'Sora', sans-serif; font-size: 22px; font-weight: 400; color: var(--gray); text-decoration: line-through; }
+    .price-note { font-size: 13px; color: var(--gray); margin-bottom: 32px; }
+    .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+    .btn-primary {
+      background: var(--blue-light); color: var(--black);
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: 0.5px;
+      padding: 16px 36px; border: none; cursor: pointer; text-decoration: none; display: inline-block;
+      clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%); transition: all 0.2s;
+    }
+    .btn-primary:hover { background: #fff; transform: translateY(-2px); }
+    .btn-secondary {
+      color: var(--white); font-family: 'Sora', sans-serif; font-weight: 500; font-size: 14px;
+      padding: 16px 0; border: none; background: none; cursor: pointer; text-decoration: none;
+      display: inline-block; border-bottom: 1px solid rgba(255,255,255,0.3); transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--blue-light); color: var(--blue-light); }
+
+    /* HERO VISUAL */
+    .hero-visual {
+      flex: 1; display: flex; justify-content: center; align-items: center;
+      position: relative; z-index: 2; padding: 40px 0 40px 48px;
+    }
+    .hero-video-wrap {
+      width: 100%; height: 100%; max-height: calc(100vh - 152px);
+      position: relative;
+      aspect-ratio: 4 / 3;
+      border: 1px solid rgba(0,180,216,0.18);
+      box-shadow: 0 0 80px rgba(0,119,168,0.35), 0 0 30px rgba(0,180,216,0.12);
+      overflow: hidden;
+    }
+    .hero-video-wrap video {
+      width: 100%; height: 100%; display: block;
+      object-fit: cover; object-position: center center;
+    }
+    .mmhg-badge {
+      position: absolute; top: 10%; right: 5%;
+      background: rgba(10,10,15,0.9); border: 1px solid rgba(0,180,216,0.4);
+      padding: 14px 20px; text-align: center;
+    }
+    .mmhg-badge .val { font-family: 'Sora', sans-serif; font-size: 36px; font-weight: 800; color: var(--blue-light); line-height: 1; }
+    .mmhg-badge .unit { font-family: 'Sora', sans-serif; font-size: 11px; color: var(--gray); letter-spacing: 2px; }
+
+    /* STATS STRIP */
+    .stats-strip {
+      background: var(--card-bg); border-top: 1px solid rgba(0,180,216,0.12); border-bottom: 1px solid rgba(0,180,216,0.12);
+      padding: 28px 4%; display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px;
+    }
+    .stat-item { text-align: center; }
+    .stat-item .val { font-family: 'Sora', sans-serif; font-size: 30px; font-weight: 800; color: var(--blue-light); display: block; }
+    .stat-item .desc { font-size: 12px; color: var(--gray); letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
+    @media (max-width: 600px) {
+      .stats-strip { padding: 18px 3%; gap: 4px; }
+      .stat-item .val { font-size: 18px; }
+      .stat-item .desc { font-size: 9px; letter-spacing: 0; }
+    }
+
+    /* SECTIONS */
+    section { padding: 100px 6%; }
+    .section-eyebrow {
+      font-family: 'Sora', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 5px;
+      color: var(--blue-light); text-transform: uppercase; margin-bottom: 14px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--blue-light); }
+    .section-title { font-family: 'Sora', sans-serif; font-size: clamp(28px, 4vw, 48px); font-weight: 800; line-height: 1.1; letter-spacing: -1px; margin-bottom: 18px; }
+    .section-lead { font-size: 17px; color: var(--gray-light); font-weight: 300; max-width: 540px; line-height: 1.7; margin-bottom: 36px; }
+
+    /* PRODUCT SHOWCASE */
+    .showcase-section { background: var(--card-bg); }
+    .showcase-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .showcase-img {
+      background: #0a0a12; overflow: hidden; position: relative;
+      border: 1px solid rgba(0,180,216,0.1); display: flex; align-items: center; justify-content: center;
+      min-height: 280px;
+    }
+    .showcase-img img { width: 100%; height: auto; display: block; transition: transform 0.5s;
+      filter: drop-shadow(0 4px 32px rgba(0,180,216,0.12)); padding: 20px; }
+    .showcase-img:hover img { transform: scale(1.04); }
+    .showcase-img .img-label {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(10,10,15,0.9));
+      padding: 24px 20px 16px;
+      font-family: 'Sora', sans-serif; font-size: 12px; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase; color: var(--blue-light);
+    }
+    .showcase-img.tall { grid-row: span 2; }
+
+    /* COMPARE */
+    .compare-section { }
+    .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; max-width: 820px; margin: 0 auto; }
+    .compare-col { padding: 36px 32px; background: var(--black); }
+    .compare-col.airleg {
+      background: linear-gradient(135deg, #0a1628 0%, #0c1b35 100%);
+      border: 1px solid rgba(0,180,216,0.3); position: relative; overflow: hidden;
+    }
+    .compare-col.airleg::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--blue-mid), var(--blue-light));
+    }
+    .compare-col-label { font-family: 'Sora', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 22px; }
+    .airleg .compare-col-label { color: var(--blue-light); }
+    .competitor .compare-col-label { color: var(--gray); }
+    .compare-row { display: flex; justify-content: space-between; align-items: center; padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px; }
+    .compare-row:last-child { border-bottom: none; }
+    .compare-key { color: var(--gray); font-weight: 400; }
+    .compare-val { font-family: 'Sora', sans-serif; font-weight: 700; }
+    .airleg .compare-val { color: var(--white); }
+    .competitor .compare-val { color: var(--gray); }
+    .check { color: var(--blue-light); }
+    .cross { color: #444; }
+
+    /* COMPARE TABLE MOBILE */
+    .compare-table-mobile { display: none; width: 100%; border-collapse: collapse; margin-top: 8px; }
+    .compare-table-mobile th, .compare-table-mobile td { padding: 10px 8px; font-size: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: center; vertical-align: middle; }
+    .compare-table-mobile th { font-family: 'Sora', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding-bottom: 14px; }
+    .compare-table-mobile th.col-feature { text-align: left; color: var(--gray); }
+    .compare-table-mobile th.col-airleg { color: var(--blue-light); }
+    .compare-table-mobile th.col-comp { color: var(--gray); }
+    .compare-table-mobile td.col-feature { text-align: left; color: var(--gray); font-size: 11px; }
+    .compare-table-mobile td.col-airleg { font-family: 'Sora', sans-serif; font-weight: 700; color: var(--white); font-size: 11px; }
+    .compare-table-mobile td.col-comp { color: var(--gray); font-size: 11px; }
+    .compare-table-mobile tr:last-child td { border-bottom: none; }
+    .compare-table-mobile thead tr th { border-bottom: 1px solid rgba(0,180,216,0.2); }
+
+    /* FEATURES GRID */
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(0,180,216,0.07); }
+    .feature-card {
+      background: var(--black); padding: 36px 32px; transition: background 0.25s; position: relative; overflow: hidden;
+    }
+    .feature-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0,180,216,0.15), transparent);
+    }
+    .feature-card:hover { background: #0d0d18; }
+    .feature-icon {
+      width: 46px; height: 46px; background: rgba(0,180,216,0.1); display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px; clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+    }
+    .feature-icon svg { width: 22px; height: 22px; }
+    .feature-card h3 { font-family: 'Sora', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+    .feature-card p { font-size: 14px; color: var(--gray); line-height: 1.65; }
+
+    /* DISPLAY SECTION */
+    .display-section { background: var(--card-bg); }
+    .display-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .display-img { position: relative; }
+    .display-img img {
+      width: 100%; max-width: 340px; height: auto; display: block; margin: 0 auto;
+      filter: drop-shadow(0 0 50px rgba(0,180,216,0.35)) drop-shadow(0 0 20px rgba(0,180,216,0.15));
+    }
+    .display-specs { }
+    .spec-list { list-style: none; margin-top: 32px; }
+    .spec-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-size: 14px;
+    }
+    .spec-item:last-child { border-bottom: none; }
+    .spec-key { color: var(--gray); }
+    .spec-val { font-family: 'Sora', sans-serif; font-weight: 700; color: var(--white); }
+    .spec-val.accent { color: var(--blue-light); }
+
+    /* PROGRAMS */
+    .programs-section { }
+    .programs-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 32px; }
+    .program-card {
+      border: 1px solid rgba(0,180,216,0.15); padding: 22px 14px; text-align: center; transition: all 0.25s;
+    }
+    .program-card:hover { border-color: var(--blue-light); background: rgba(0,180,216,0.05); }
+    .prog-num { font-family: 'Sora', sans-serif; font-size: 26px; font-weight: 800; color: var(--blue-light); line-height: 1; }
+    .prog-name { font-family: 'Sora', sans-serif; font-size: 12px; font-weight: 700; color: var(--white); margin-top: 6px; margin-bottom: 4px; }
+    .prog-desc { font-size: 11px; color: var(--gray); line-height: 1.4; }
+    .duration-row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+    .duration-pill {
+      padding: 10px 26px; border: 1px solid rgba(0,180,216,0.25);
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 15px; color: var(--blue-light);
+      clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+    }
+
+    /* BENEFITS */
+    .benefits-section { background: var(--card-bg); }
+    .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .benefit-card {
+      border: 1px solid rgba(0,180,216,0.1); padding: 28px 24px;
+      transition: border-color 0.25s, background 0.25s;
+    }
+    .benefit-card:hover { border-color: rgba(0,180,216,0.3); background: rgba(0,180,216,0.03); }
+    .benefit-icon { font-size: 28px; margin-bottom: 14px; display: block; }
+    .benefit-card h4 { font-family: 'Sora', sans-serif; font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+    .benefit-card p { font-size: 13px; color: var(--gray); line-height: 1.6; }
+
+    /* FOR WHO */
+    .forwho-section { }
+    .forwho-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .forwho-card {
+      border: 1px solid rgba(0,180,216,0.12); padding: 28px 22px; text-align: center;
+      transition: border-color 0.25s, background 0.25s;
+    }
+    .forwho-card:hover { border-color: var(--blue-light); background: rgba(0,180,216,0.04); }
+    .forwho-card .ico { font-size: 30px; margin-bottom: 12px; display: block; }
+    .forwho-card h3 { font-family: 'Sora', sans-serif; font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+    .forwho-card p { font-size: 13px; color: var(--gray); line-height: 1.5; }
+
+    /* SIZES */
+    .sizes-section { background: var(--card-bg); }
+    .sizes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 600px; margin: 0 auto; }
+    .size-card { border: 1px solid rgba(0,180,216,0.2); padding: 32px 28px; position: relative; overflow: hidden; }
+    .size-card .size-letter {
+      font-family: 'Sora', sans-serif; font-size: 80px; font-weight: 800;
+      color: rgba(0,180,216,0.07); position: absolute; top: 8px; right: 14px; line-height: 1;
+    }
+    .size-card h3 { font-family: 'Sora', sans-serif; font-size: 20px; font-weight: 800; color: var(--blue-light); margin-bottom: 6px; }
+    .size-card p { font-size: 14px; color: var(--gray-light); }
+    .size-card .range { font-family: 'Sora', sans-serif; font-size: 26px; font-weight: 700; color: var(--white); margin-top: 6px; }
+
+    /* TESTIMONIALS */
+    .testimonials-section { }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+    .testimonial-card {
+      background: var(--card-bg); border: 1px solid rgba(0,180,216,0.1); padding: 32px 28px; position: relative;
+    }
+    .testimonial-card::before {
+      content: '\201C'; font-family: 'Sora', sans-serif; font-size: 80px; font-weight: 800;
+      color: rgba(0,180,216,0.1); position: absolute; top: 8px; left: 18px; line-height: 1;
+    }
+    .stars { display: flex; gap: 3px; margin-bottom: 14px; }
+    .star { color: var(--blue-light); font-size: 14px; }
+    .testimonial-text { font-size: 15px; color: var(--gray-light); line-height: 1.7; margin-bottom: 22px; font-style: italic; position: relative; z-index: 1; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .author-avatar {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue-mid), var(--blue-light));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 16px; color: var(--black); flex-shrink: 0;
+    }
+    .author-name { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 14px; }
+    .author-role { font-size: 12px; color: var(--gray); }
+
+    /* WHAT'S IN THE BOX */
+    .box-section { background: var(--card-bg); }
+    .box-items { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 40px; justify-content: center; }
+    .box-item {
+      display: flex; align-items: center; gap: 14px;
+      border: 1px solid rgba(0,180,216,0.15); padding: 18px 22px;
+      min-width: 200px;
+    }
+    .box-num { font-family: 'Sora', sans-serif; font-size: 32px; font-weight: 800; color: rgba(0,180,216,0.3); line-height: 1; }
+    .box-label { font-family: 'Sora', sans-serif; font-size: 14px; font-weight: 700; }
+    .box-sub { font-size: 12px; color: var(--gray); }
+
+    /* CTA FINAL */
+    .cta-section {
+      text-align: center;
+      background: linear-gradient(180deg, var(--black) 0%, #040810 100%);
+      position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: ''; position: absolute; top: -40%; left: 50%; transform: translateX(-50%);
+      width: 700px; height: 700px;
+      background: radial-gradient(ellipse, rgba(0,100,160,0.18) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .cta-section .section-title { max-width: 660px; margin: 0 auto 18px; }
+    .cta-box {
+      display: inline-block; border: 1px solid rgba(0,180,216,0.25); padding: 48px 56px;
+      position: relative; max-width: 540px; width: 100%; margin-top: 40px;
+    }
+    .cta-box::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--blue-light), transparent);
+    }
+    .cta-label { font-family: 'Sora', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--blue-light); margin-bottom: 20px; }
+    .cta-price-big { font-family: 'Sora', sans-serif; font-size: 72px; font-weight: 800; line-height: 1; color: var(--white); margin-bottom: 4px; }
+    .cta-price-big span { color: var(--blue-light); }
+    .cta-was { font-size: 17px; color: var(--gray); text-decoration: line-through; margin-bottom: 18px; }
+    .cta-deadline { font-size: 13px; color: var(--gray-light); margin-bottom: 32px; }
+    .cta-deadline strong { color: var(--blue-light); }
+    .cta-include { font-size: 13px; color: var(--gray); margin-top: 20px; }
+    .cta-include strong { color: var(--gray-light); }
+
+    /* FOOTER */
+    footer {
+      background: #050508; border-top: 1px solid rgba(0,180,216,0.08);
+      padding: 40px 6%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;
+    }
+    .footer-logo img { height: 28px; width: auto; opacity: 0.7; }
+    .footer-note { font-size: 12px; color: var(--gray); max-width: 500px; text-align: center; line-height: 1.6; }
+    .footer-right { font-size: 12px; color: var(--gray); text-align: right; }
+    .footer-product { font-family: 'Sora', sans-serif; font-size: 18px; font-weight: 800; letter-spacing: 2px; color: rgba(255,255,255,0.2); }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* RESPONSIVE */
+    @media (max-width: 960px) {
+      .hero { flex-direction: column; height: auto; min-height: 100svh; text-align: center; padding: 0 0 48px 0; gap: 0; padding-top: 58px; }
+      .hero-visual { order: -1; width: 100vw; margin-left: 0; padding: 0; margin-top: 0; }
+      .hero-video-wrap { width: 100%; max-height: none; aspect-ratio: 4 / 3; border: none; box-shadow: none; }
+      .hero-content { max-width: 100%; order: 1; padding: 32px 5% 0; justify-content: flex-start; }
+      .hero-subtitle { margin: 0 auto 32px; }
+      .hero-cta { justify-content: center; }
+      .hero-eyebrow { justify-content: center; }
+      .hero-eyebrow::before { display: none; }
+      .mmhg-badge { right: 5%; }
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+      .forwho-grid { grid-template-columns: repeat(2, 1fr); }
+      .display-inner { grid-template-columns: 1fr; }
+      .compare-grid { display: none; }
+      .compare-table-mobile { display: table; }
+      .programs-grid { grid-template-columns: repeat(3, 1fr); }
+      .showcase-grid { grid-template-columns: 1fr; }
+      .showcase-img.tall { grid-row: span 1; }
+    }
+    @media (max-width: 600px) {
+      section { padding: 70px 5%; }
+      .features-grid { grid-template-columns: 1fr; }
+      .benefits-grid { grid-template-columns: 1fr; }
+      .forwho-grid { grid-template-columns: 1fr; }
+      .sizes-grid { grid-template-columns: 1fr; }
+      .programs-grid { grid-template-columns: repeat(2, 1fr); }
+      .cta-box { padding: 32px 22px; }
+      .cta-price-big { font-size: 52px; }
+      nav { padding: 16px 5%; }
+    }
+
+    /* FAQ */
+    .faq-list { max-width: 800px; }
+    .faq-item { border-bottom: 1px solid rgba(0,180,216,0.12); }
+    .faq-item:first-child { border-top: 1px solid rgba(0,180,216,0.12); }
+    .faq-q {
+      width: 100%; display: flex; justify-content: space-between; align-items: center;
+      gap: 20px; padding: 22px 0; background: none; border: none; cursor: pointer;
+      text-align: left; color: var(--white);
+      font-family: 'Sora', sans-serif; font-size: 16px; font-weight: 600;
+      transition: color 0.2s;
+    }
+    .faq-q:hover { color: var(--blue-light); }
+    .faq-q.open { color: var(--blue-light); }
+    .faq-icon {
+      flex-shrink: 0; width: 28px; height: 28px;
+      border: 1px solid rgba(0,180,216,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; font-weight: 300; color: var(--blue-light);
+      transition: transform 0.3s, background 0.2s;
+      clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+    }
+    .faq-q.open .faq-icon {
+      transform: rotate(45deg);
+      background: rgba(0,180,216,0.1);
+    }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+    }
+    .faq-a.open {
+      max-height: 400px;
+      padding-bottom: 20px;
+    }
+    .faq-a p { font-size: 15px; color: var(--gray-light); line-height: 1.75; }
+    .faq-a strong { color: var(--white); }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <!-- SVG logo inline, scaled white -->
+    <svg width="120" height="58" viewBox="0 0 4026 1947" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:36px;width:auto;">
+      <path d="M567.957 1895L512.419 1742.38H547.395L580.676 1833.31L613.956 1742.38H644.268L677.761 1833.31L711.041 1742.38H745.805L690.267 1895H665.042L629.006 1796.85L593.182 1895H567.957ZM817.816 1895L762.278 1742.38H797.254L830.534 1833.31L863.815 1742.38H894.127L927.62 1833.31L960.9 1742.38H995.664L940.126 1895H914.901L878.865 1796.85L843.041 1895H817.816ZM1067.67 1895L1012.14 1742.38H1047.11L1080.39 1833.31L1113.67 1742.38H1143.99L1177.48 1833.31L1210.76 1742.38H1245.52L1189.99 1895H1164.76L1128.72 1796.85L1092.9 1895H1067.67ZM1266.02 1895V1862.57H1298.46V1895H1266.02ZM1368.07 1895V1775.45H1308.29V1742.38H1460.91V1775.45H1401.14V1895H1368.07ZM1477.19 1895V1773.75C1477.19 1767.96 1478.6 1762.73 1481.43 1758.06C1484.26 1753.26 1488.07 1749.44 1492.88 1746.62C1497.68 1743.79 1502.91 1742.38 1508.56 1742.38H1598.23C1604.02 1742.38 1609.25 1743.79 1613.92 1746.62C1618.72 1749.44 1622.54 1753.26 1625.36 1758.06C1628.33 1762.73 1629.81 1767.96 1629.81 1773.75V1895H1596.53V1845.82H1510.05V1895H1477.19ZM1510.05 1812.75H1596.53V1775.45H1510.05V1812.75ZM1653.97 1895V1742.59H1775.01C1780.8 1742.59 1786.03 1744 1790.69 1746.83C1795.5 1749.65 1799.31 1753.47 1802.14 1758.28C1805.11 1763.08 1806.59 1768.31 1806.59 1773.96V1813.39C1806.59 1819.04 1805.11 1824.27 1802.14 1829.08C1799.31 1833.88 1795.5 1837.7 1790.69 1840.52C1786.03 1843.35 1780.8 1844.76 1775.01 1844.76L1686.82 1844.97V1895H1653.97ZM1686.82 1811.69H1773.31V1775.45H1686.82V1811.69ZM1822.07 1895V1742.38H1963.03V1775.45H1855.35V1802.15H1942.05V1835.22H1855.35V1861.93H1963.03V1895H1822.07ZM2014.89 1895C2009.23 1895 2004 1893.59 1999.2 1890.76C1994.4 1887.93 1990.58 1884.12 1987.75 1879.31C1984.93 1874.51 1983.51 1869.28 1983.51 1863.63V1849.43H2016.37V1861.93H2102.86V1835.22H2014.89C2009.23 1835.22 2004 1833.81 1999.2 1830.98C1994.4 1828.16 1990.58 1824.41 1987.75 1819.75C1984.93 1814.94 1983.51 1809.64 1983.51 1803.85V1773.75C1983.51 1767.96 1984.93 1762.73 1987.75 1758.06C1990.58 1753.26 1994.4 1749.44 1999.2 1746.62C2004 1743.79 2009.23 1742.38 2014.89 1742.38H2104.76C2110.42 1742.38 2115.57 1743.79 2120.24 1746.62C2125.04 1749.44 2128.86 1753.26 2131.69 1758.06C2134.65 1762.73 2136.14 1767.96 2136.14 1773.75V1787.95H2102.86V1775.45H2016.37V1802.15H2104.76C2110.42 1802.15 2115.57 1803.57 2120.24 1806.39C2125.04 1809.22 2128.86 1813.04 2131.69 1817.84C2134.65 1822.5 2136.14 1827.73 2136.14 1833.53V1863.63C2136.14 1869.28 2134.65 1874.51 2131.69 1879.31C2128.86 1884.12 2125.04 1887.93 2120.24 1890.76C2115.57 1893.59 2110.42 1895 2104.76 1895H2014.89ZM2159.48 1895V1742.59H2280.52C2286.31 1742.59 2291.54 1744 2296.21 1746.83C2301.01 1749.65 2304.83 1753.47 2307.65 1758.28C2310.62 1763.08 2312.1 1768.31 2312.1 1773.96V1813.39C2312.1 1819.04 2310.62 1824.27 2307.65 1829.08C2304.83 1833.88 2301.01 1837.7 2296.21 1840.52C2291.54 1843.35 2286.31 1844.76 2280.52 1844.76L2192.34 1844.97V1895H2159.48ZM2192.34 1811.69H2278.82V1775.45H2192.34V1811.69ZM2358.11 1895C2352.45 1895 2347.22 1893.59 2342.42 1890.76C2337.61 1887.93 2333.8 1884.12 2330.97 1879.31C2328.15 1874.51 2326.73 1869.28 2326.73 1863.63V1773.75C2326.73 1767.96 2328.15 1762.73 2330.97 1758.06C2333.8 1753.26 2337.61 1749.44 2342.42 1746.62C2347.22 1743.79 2352.45 1742.38 2358.11 1742.38H2447.98C2453.64 1742.38 2458.79 1743.79 2463.46 1746.62C2468.26 1749.44 2472.08 1753.26 2474.9 1758.06C2477.87 1762.73 2479.36 1767.96 2479.36 1773.75V1863.63C2479.36 1869.28 2477.87 1874.51 2474.9 1879.31C2472.08 1884.12 2468.26 1887.93 2463.46 1890.76C2458.79 1893.59 2453.64 1895 2447.98 1895H2358.11ZM2359.59 1861.93H2446.08V1775.45H2359.59V1861.93ZM2621.19 1895L2576.89 1842.22H2619.92L2655.11 1883.77V1895H2621.19ZM2502.7 1895V1742.59H2623.74C2629.53 1742.59 2634.76 1744 2639.42 1746.83C2644.23 1749.65 2648.05 1753.47 2650.87 1758.28C2653.84 1763.08 2655.32 1768.31 2655.32 1773.96V1813.39C2655.32 1819.04 2653.84 1824.27 2650.87 1829.08C2648.05 1833.88 2644.23 1837.7 2639.42 1840.52C2634.76 1843.35 2629.53 1844.76 2623.74 1844.76L2535.56 1844.97V1895H2502.7ZM2535.56 1811.69H2622.04V1775.45H2535.56V1811.69ZM2729.77 1895V1775.45H2669.99V1742.38H2822.61V1775.45H2762.84V1895H2729.77ZM2833.17 1895V1742.38H2865.6V1895H2833.17ZM2967.74 1895L2879.35 1742.38H2917.51L2981.52 1853.24L3045.54 1742.38H3083.48L2995.09 1895H2967.74ZM3127.35 1895C3121.7 1895 3116.47 1893.59 3111.66 1890.76C3106.86 1887.93 3103.04 1884.12 3100.22 1879.31C3097.39 1874.51 3095.98 1869.28 3095.98 1863.63V1773.75C3095.98 1767.96 3097.39 1762.73 3100.22 1758.06C3103.04 1753.26 3106.86 1749.44 3111.66 1746.62C3116.47 1743.79 3121.7 1742.38 3127.35 1742.38H3217.23C3222.88 1742.38 3228.04 1743.79 3232.7 1746.62C3237.51 1749.44 3241.32 1753.26 3244.15 1758.06C3247.11 1762.73 3248.6 1767.96 3248.6 1773.75V1863.63C3248.6 1869.28 3247.11 1874.51 3244.15 1879.31C3241.32 1884.12 3237.51 1887.93 3232.7 1890.76C3228.04 1893.59 3222.88 1895 3217.23 1895H3127.35ZM3128.83 1861.93H3215.32V1775.45H3128.83V1861.93ZM3271.52 1895V1862.57H3303.95V1895H3271.52ZM3316.12 1895V1742.38H3348.55V1895H3316.12ZM3423.04 1895V1775.45H3363.26V1742.38H3515.88V1775.45H3456.11V1895H3423.04Z" fill="white"/>
+      <path d="M151 1541V1259H10V1181H370V1259H229V1541H151ZM438.395 1541V1255C438.395 1241.33 441.728 1229 448.395 1218C455.061 1206.67 464.061 1197.67 475.395 1191C486.728 1184.33 499.061 1181 512.395 1181H723.895C737.561 1181 749.895 1184.33 760.895 1191C772.228 1197.67 781.228 1206.67 787.895 1218C794.895 1229 798.395 1241.33 798.395 1255V1541H719.895V1425H515.895V1541H438.395ZM515.895 1347H719.895V1259H515.895V1347ZM885.863 1541V1181H963.863V1322H1034.36L1152.36 1181H1233.36V1208L1104.86 1361L1233.36 1514V1541H1152.36L1034.36 1400H963.863V1541H885.863ZM1314.8 1541V1181H1647.3V1259H1393.3V1322H1597.8V1400H1393.3V1463H1647.3V1541H1314.8ZM1990.75 1541C1977.41 1541 1965.08 1537.67 1953.75 1531C1942.41 1524.33 1933.41 1515.33 1926.75 1504C1920.08 1492.67 1916.75 1480.33 1916.75 1467V1433.5H1994.25V1463H2198.25V1400H1990.75C1977.41 1400 1965.08 1396.67 1953.75 1390C1942.41 1383.33 1933.41 1374.5 1926.75 1363.5C1920.08 1352.17 1916.75 1339.67 1916.75 1326V1255C1916.75 1241.33 1920.08 1229 1926.75 1218C1933.41 1206.67 1942.41 1197.67 1953.75 1191C1965.08 1184.33 1977.41 1181 1990.75 1181H2202.75C2216.08 1181 2228.25 1184.33 2239.25 1191C2250.58 1197.67 2259.58 1206.67 2266.25 1218C2273.25 1229 2276.75 1241.33 2276.75 1255V1288.5H2198.25V1259H1994.25V1322H2202.75C2216.08 1322 2228.25 1325.33 2239.25 1332C2250.58 1338.67 2259.58 1347.67 2266.25 1359C2273.25 1370 2276.75 1382.33 2276.75 1396V1467C2276.75 1480.33 2273.25 1492.67 2266.25 1504C2259.58 1515.33 2250.58 1524.33 2239.25 1531C2228.25 1537.67 2216.08 1541 2202.75 1541H1990.75ZM2361.81 1541V1181.5H2647.31C2660.98 1181.5 2673.31 1184.83 2684.31 1191.5C2695.64 1198.17 2704.64 1207.17 2711.31 1218.5C2718.31 1229.83 2721.81 1242.17 2721.81 1255.5V1348.5C2721.81 1361.83 2718.31 1374.17 2711.31 1385.5C2704.64 1396.83 2695.64 1405.83 2684.31 1412.5C2673.31 1419.17 2660.98 1422.5 2647.31 1422.5L2439.31 1423V1541H2361.81ZM2439.31 1344.5H2643.31V1259H2439.31V1344.5ZM2860.32 1541C2846.98 1541 2834.65 1537.67 2823.32 1531C2811.98 1524.33 2802.98 1515.33 2796.32 1504C2789.65 1492.67 2786.32 1480.33 2786.32 1467V1255C2786.32 1241.33 2789.65 1229 2796.32 1218C2802.98 1206.67 2811.98 1197.67 2823.32 1191C2834.65 1184.33 2846.98 1181 2860.32 1181H3072.32C3085.65 1181 3097.82 1184.33 3108.82 1191C3120.15 1197.67 3129.15 1206.67 3135.82 1218C3142.82 1229 3146.32 1241.33 3146.32 1255V1467C3146.32 1480.33 3142.82 1492.67 3135.82 1504C3129.15 1515.33 3120.15 1524.33 3108.82 1531C3097.82 1537.67 3085.65 1541 3072.32 1541H2860.32ZM2863.82 1463H3067.82V1259H2863.82V1463ZM3510.88 1541L3406.38 1416.5H3507.88L3590.88 1514.5V1541H3510.88ZM3231.38 1541V1181.5H3516.88C3530.55 1181.5 3542.88 1184.83 3553.88 1191.5C3565.21 1198.17 3574.21 1207.17 3580.88 1218.5C3587.88 1229.83 3591.38 1242.17 3591.38 1255.5V1348.5C3591.38 1361.83 3587.88 1374.17 3580.88 1385.5C3574.21 1396.83 3565.21 1405.83 3553.88 1412.5C3542.88 1419.17 3530.55 1422.5 3516.88 1422.5L3308.88 1423V1541H3231.38ZM3308.88 1344.5H3512.88V1259H3308.88V1344.5ZM3796.98 1541V1259H3655.98V1181H4015.98V1259H3874.98V1541H3796.98Z" fill="white"/>
+      <path d="M1920.66 222.226L1743.96 980H1345.87C1185.41 980 1263.1 769.563 1362.12 769.563H1476.87C1600.26 769.563 1589.09 593.116 1516.99 593.116H1249.39C1054.41 593.116 1153.42 385.178 1249.39 385.178H1557.1C1647.3 385.178 1655.43 206.231 1589.09 206.231H1086.4C897 206.231 1022.42 0.792252 1100.11 0.792252C1672.03 4.45782 2853.84 9.58965 3005.77 0.792252C3195.67 -10.2045 3185.01 95.7639 3134.23 164.243C3099.02 211.729 3056.55 222.226 3005.77 222.226H1920.66Z" fill="white"/>
+      <path d="M2920.46 385.178H2139.51C2081.12 543.131 2206.54 604.779 2262.9 609.111H2834.65L2797.08 769.563H2155.76C1979.56 769.563 1979.56 980 2094.32 980H2781.33C3037.58 980 3005.77 827.046 3056.55 593.116C3091.3 432.996 2975.64 391.343 2920.46 385.178Z" fill="white"/>
+    </svg>
+    <div style="width:1px; height:28px; background:rgba(0,180,216,0.3);"></div>
+    <span class="nav-logo-text">AIR<span>LEG</span></span>
+  </div>
+  <a href="https://tapesportivo.it/" target="_blank" class="nav-cta">Preordina ORA</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-bg-radial"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Gambali a Pressione Graduale</div>
+    <h1 class="hero-title">
+      Recupera<br>
+      più <span class="accent">veloce.</span><br>
+      Vai oltre.
+    </h1>
+    <p class="hero-subtitle">
+      I nuovi <span style="color: rgb(0 180 216);font-weight: bold;">AIRLEG Take Sport</span> portano la compressione graduata fino a 
+      <strong>240 mmHg</strong> — il range più ampio della categoria — 
+      direttamente integrate nelle gambe. 
+      Senza cavi. 
+      Senza apparecchi esterni.
+    </p>
+    <div class="hero-cta">
+      <a href="https://tapesportivo.it/" target="_blank" class="btn-primary">Preordina ORA</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-video-wrap">
+      <video autoplay muted loop playsinline preload="auto">
+        <source src="0615-copia.mov" type="video/mp4" />
+        <source src="0615-copia.mov" type="video/quicktime" />
+      </video>
+    </div>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stat-item"><span class="val">30→240</span><span class="desc">mmHg range pressione</span></div>
+  <div class="stat-item"><span class="val">2×</span><span class="desc">compressori integrati</span></div>
+  <div class="stat-item"><span class="val">4</span><span class="desc">zone di compressione</span></div>
+  <div class="stat-item"><span class="val">5</span><span class="desc">programmi preimpostati</span></div>
+  <div class="stat-item"><span class="val">0</span><span class="desc">Zero cavi</span></div>
+</div>
+
+<!-- PRODUCT SHOWCASE -->
+<section class="showcase-section reveal">
+  <div class="section-eyebrow">Il prodotto</div>
+  <h2 class="section-title">Costruito per<br>chi esige di più</h2>
+  <div class="showcase-grid" style="margin-top:48px;">
+    <div class="showcase-img tall">
+      <img src="img_product2_opt.png" alt="AIRLEG gambali vista frontale" />
+      <div class="img-label">Vista frontale — coppia gambali</div>
+    </div>
+    <div class="showcase-img">
+      <img src="img_product1_opt.png" alt="AIRLEG gambali vista prospettica" />
+      <div class="img-label">Design compatto — nessun apparecchio esterno</div>
+    </div>
+    <div class="showcase-img">
+      <img src="img_display_opt.png" alt="AIRLEG display — 240 mmHg" />
+      <div class="img-label">Display LCD — 240 mmHg in tempo reale</div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE -->
+<section id="features" class="reveal">
+  <div class="section-eyebrow">Il confronto</div>
+  <h2 class="section-title">AIRLEG vs<br>il resto del mercato</h2>
+  <p class="section-lead">
+    I gambali tradizionali si fermano a 150 mmHg di pressione, con un solo compressore e richiedono apparecchi esterni. 
+    <br><span style="color: rgb(0 180 216);font-weight: bold;">Gli AIRLEG Take Sport</span> rivoluzionano il settore del recupero sportivo.</p>
+  <div class="compare-grid">
+    <div class="compare-col airleg">
+      <div class="compare-col-label">AIRLEG — Take Sport</div>
+      <div class="compare-row"><span class="compare-key">Range pressione</span><span class="compare-val check">30 – 240 mmHg</span></div>
+      <div class="compare-row"><span class="compare-key">Livelli di pressione</span><span class="compare-val check">7 livelli</span></div>
+      <div class="compare-row"><span class="compare-key">Compressori integrati</span><span class="compare-val check">2 (doppia velocità)</span></div>
+      <div class="compare-row"><span class="compare-key">Cicli per sessione</span><span class="compare-val check">2× più cicli</span></div>
+      <div class="compare-row"><span class="compare-key">Cavi esterni</span><span class="compare-val check">✔ Zero cavi</span></div>
+      <div class="compare-row"><span class="compare-key">Apparecchio esterno</span><span class="compare-val check">✔ Non necessario</span></div>
+      <div class="compare-row"><span class="compare-key">Zone di compressione</span><span class="compare-val check">4 zone</span></div>
+      <div class="compare-row"><span class="compare-key">Programmi</span><span class="compare-val check">5 preimpostati</span></div>
+      <div class="compare-row"><span class="compare-key">Batteria</span><span class="compare-val check">1.5 – 2 ore autonomia</span></div>
+      <div class="compare-row"><span class="compare-key">Peso</span><span class="compare-val check">1.4 kg</span></div>
+      <div class="compare-row"><span class="compare-key">Zaino trasporto</span><span class="compare-val check">✔ Incluso in omaggio</span></div>
+    </div>
+    <div class="compare-col competitor">
+      <div class="compare-col-label">Competitor tipico</div>
+      <div class="compare-row"><span class="compare-key">Range pressione</span><span class="compare-val">70 – 150 mmHg</span></div>
+      <div class="compare-row"><span class="compare-key">Livelli di pressione</span><span class="compare-val">3 – 5 livelli</span></div>
+      <div class="compare-row"><span class="compare-key">Compressori integrati</span><span class="compare-val">1</span></div>
+      <div class="compare-row"><span class="compare-key">Cicli per sessione</span><span class="compare-val">Standard</span></div>
+      <div class="compare-row"><span class="compare-key">Cavi esterni</span><span class="compare-val cross">✖ Presenti</span></div>
+      <div class="compare-row"><span class="compare-key">Apparecchio esterno</span><span class="compare-val cross">✖ Richiesto</span></div>
+      <div class="compare-row"><span class="compare-key">Zone di compressione</span><span class="compare-val">2 – 4 zone</span></div>
+      <div class="compare-row"><span class="compare-key">Programmi</span><span class="compare-val">2 – 3</span></div>
+      <div class="compare-row"><span class="compare-key">Batteria</span><span class="compare-val">Limitata / assente</span></div>
+      <div class="compare-row"><span class="compare-key">Peso sistema</span><span class="compare-val"> > 3Kg</span></div>
+      <div class="compare-row"><span class="compare-key">Zaino trasporto</span><span class="compare-val cross">✖ Non incluso</span></div>
+    </div>
+  </div>
+  <table class="compare-table-mobile">
+    <thead>
+      <tr>
+        <th class="col-feature"></th>
+        <th class="col-airleg">AIRLEG<br>Take Sport</th>
+        <th class="col-comp">Competitor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="col-feature">Pressione</td><td class="col-airleg" style="color:var(--blue-light)">30–240 mmHg</td><td class="col-comp">70–150 mmHg</td></tr>
+      <tr><td class="col-feature">Livelli</td><td class="col-airleg" style="color:var(--blue-light)">7</td><td class="col-comp">3–5</td></tr>
+      <tr><td class="col-feature">Compressori</td><td class="col-airleg" style="color:var(--blue-light)">2 doppi</td><td class="col-comp">1</td></tr>
+      <tr><td class="col-feature">Cavi esterni</td><td class="col-airleg" style="color:var(--blue-light)">✔ Zero</td><td class="col-comp" style="color:#555">✖ Sì</td></tr>
+      <tr><td class="col-feature">App. esterno</td><td class="col-airleg" style="color:var(--blue-light)">✔ No</td><td class="col-comp" style="color:#555">✖ Sì</td></tr>
+      <tr><td class="col-feature">Zone di compressione</td><td class="col-airleg" style="color:var(--blue-light)">4</td><td class="col-comp">2–4</td></tr>
+      <tr><td class="col-feature">Programmi</td><td class="col-airleg" style="color:var(--blue-light)">5</td><td class="col-comp">2–3</td></tr>
+      <tr><td class="col-feature">Batteria</td><td class="col-airleg" style="color:var(--blue-light)">1.5–2 ore</td><td class="col-comp">Limitata</td></tr>
+      <tr><td class="col-feature">Peso</td><td class="col-airleg" style="color:var(--blue-light)">1.4 kg</td><td class="col-comp">> 3Kg</td></tr>
+      <tr><td class="col-feature">Zaino</td><td class="col-airleg" style="color:var(--blue-light)">✔ Incluso</td><td class="col-comp" style="color:#555">✖ No</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- DISPLAY & SPECS -->
+<section class="display-section reveal">
+  <div class="display-inner">
+    <div class="display-img">
+      <img src="img_display_opt.png" alt="AIRLEG controller display 240 mmHg" />
+    </div>
+    <div class="display-specs">
+      <div class="section-eyebrow">Specifiche tecniche</div>
+      <h2 class="section-title">Tutto<br>sotto controllo</h2>
+      <p style="font-size:15px; color:var(--gray-light); line-height:1.7; margin-bottom:8px;">
+        Il display LCD integrato mostra in tempo reale pressione, modalità, tempo e livello batteria. Cinque tasti fisici, zero complessità.
+      </p>
+      <ul class="spec-list">
+        <li class="spec-item"><span class="spec-key">Modello</span><span class="spec-val">AirLeg</span></li>
+        <li class="spec-item"><span class="spec-key">Livelli di pressione</span><span class="spec-val accent">30 / 50 / 80 / 120 / 160 / 200 / 240 mmHg</span></li>
+        <li class="spec-item"><span class="spec-key">Batteria</span><span class="spec-val">3200 mAh / 7.4V Li-Ion</span></li>
+        <li class="spec-item"><span class="spec-key">Tempo di funzionamento</span><span class="spec-val accent">1.5 – 2 ore</span></li>
+        <li class="spec-item"><span class="spec-key">Tempo di ricarica</span><span class="spec-val">2 ore</span></li>
+        <li class="spec-item"><span class="spec-key">Tensione di ingresso</span><span class="spec-val">100 – 240V AC (universale)</span></li>
+        <li class="spec-item"><span class="spec-key">Potenza</span><span class="spec-val">24W</span></li>
+        <li class="spec-item"><span class="spec-key">Livello di rumore</span><span class="spec-val">≤ 55 dB</span></li>
+        <li class="spec-item"><span class="spec-key">Peso</span><span class="spec-val">1.4 kg</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="reveal" style="background: var(--black);">
+  <div class="section-eyebrow">Tecnologia</div>
+  <h2 class="section-title">Progettato per<br>chi non si ferma</h2>
+  <p class="section-lead">Ogni dettaglio di AIRLEG nasce dall'esigenza reale dello sportivo. Nessun compromesso tecnico.</p>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#00B4D8" stroke-width="2" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <h3>30 → 240 mmHg in 7 step</h3>
+      <p>Range record per la categoria consumer. Puoi partire da 30 mmHg per benessere quotidiano e arrivare a 240 per un recupero intensivo da atleta evoluto. Il mercato si ferma a 150.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#00B4D8" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <h3>Doppio compressore = doppia efficienza</h3>
+      <p>Due compressori integrati anziché uno: il gonfiaggio si dimezza e nello stesso tempo ottieni il doppio dei cicli di compressione rispetto ai sistemi tradizionali.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#00B4D8" stroke-width="2" stroke-linecap="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+      </div>
+      <h3>Zero cavi, zero rotture</h3>
+      <p>Tutto integrato nel gambale. Nessun tubo, nessuna centralina, nessun collegamento da fare. Indossi, premi play, recuperi. Non serve altro.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#00B4D8" stroke-width="2" stroke-linecap="round"><rect x="1" y="6" width="18" height="12" rx="2"/><line x1="23" y1="13" x2="23" y2="11"/></svg>
+      </div>
+      <h3>Batteria da 2 ore</h3>
+      <p>Batteria Li-Ion da 3200 mAh con 1.5–2 ore di autonomia reale. Usalo a casa, in palestra, in hotel, in pullman — non cercare mai una presa.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#00B4D8" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3>4 zone di compressione</h3>
+      <p>Compressione sequenziale dal piede alla coscia su quattro zone distinte per una progressione ordinata e un'azione continua che coinvolge tutta la gamba.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#00B4D8" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+      </div>
+      <h3>5 programmi. Semplice.</h3>
+      <p>Compressione sequenziale, effetto onda, doppia onda, intera gamba, combinato. Scegli, premi, rilassati. Nessun manuale da leggere.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS DETAIL -->
+<section class="programs-section reveal" style="background: var(--card-bg);">
+  <div class="section-eyebrow">I 5 programmi</div>
+  <h2 class="section-title">Cinque modalità.<br>Tre durate. Tu scegli.</h2>
+  <p class="section-lead">Ogni programma è ottimizzato per un obiettivo diverso. La durata si imposta a ogni utilizzo.</p>
+  <div class="programs-grid">
+    <div class="program-card">
+      <div class="prog-num">01</div>
+      <div class="prog-name">Sequenziale</div>
+      <div class="prog-desc">Massaggio automatico circolare dal basso verso l'alto</div>
+    </div>
+    <div class="program-card">
+      <div class="prog-num">02</div>
+      <div class="prog-name">Circolazione</div>
+      <div class="prog-desc">Area di massaggio opzionale per massaggi individuali per zona</div>
+    </div>
+    <div class="program-card">
+      <div class="prog-num">03</div>
+      <div class="prog-name">Effetto onda</div>
+      <div class="prog-desc">Massaggio progressivo con doppio impulso ad onda</div>
+    </div>
+    <div class="program-card">
+      <div class="prog-num">04</div>
+      <div class="prog-name">Doppia onda</div>
+      <div class="prog-desc">Compressione completa con effetto doppia onda sequenziale</div>
+    </div>
+    <div class="program-card">
+      <div class="prog-num">05</div>
+      <div class="prog-name">Combinato</div>
+      <div class="prog-desc">Compressione sequenziale + effetto doppia onda unificati</div>
+    </div>
+  </div>
+  <div class="duration-row">
+    <div class="duration-pill">15 min</div>
+    <div class="duration-pill">30 min</div>
+    <div class="duration-pill">45 min</div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="benefits-section reveal">
+  <div class="section-eyebrow">Benefici</div>
+  <h2 class="section-title">Cosa fa AIRLEG<br>per le tue gambe</h2>
+  <p class="section-lead">La compressione sequenziale progressiva agisce sui muscoli e sul sistema linfatico con un'azione ritmica, ordinata e ripetibile.</p>
+  <div class="benefits-grid">
+    <div class="benefit-card">
+      <span class="benefit-icon">⚡</span>
+      <h4>Recupero muscolare più rapido</h4>
+      <p>Favorisce il flusso ematico per rimuovere le scorie metaboliche e portare nutrienti ai tessuti affaticati. Arrivi alla seduta successiva con più freschezza.</p>
+    </div>
+    <div class="benefit-card">
+      <span class="benefit-icon">💧</span>
+      <h4>Drenaggio linfatico a pressione</h4>
+      <p>La progressione dal basso verso l'alto richiama il principio del linfodrenaggio manuale: gambe meno gonfie, meno congestionate, più leggere.</p>
+    </div>
+    <div class="benefit-card">
+      <span class="benefit-icon">🔥</span>
+      <h4>Smaltimento dell'acido lattico</h4>
+      <p>La compressione ritmica aiuta l'organismo a eliminare più rapidamente l'acido lattico accumulato durante lo sforzo intenso.</p>
+    </div>
+    <div class="benefit-card">
+      <span class="benefit-icon">🛡️</span>
+      <h4>Riduzione dei DOMS</h4>
+      <p>Meno dolori muscolari nei giorni successivi ad allenamenti impegnativi. Nei periodi di carico elevato, AIRLEG aiuta a mantenere qualità e continuità.</p>
+    </div>
+    <div class="benefit-card">
+      <span class="benefit-icon">🌿</span>
+      <h4>Gambe leggere ogni sera</h4>
+      <p>Perfetto anche dopo lunghe giornate in piedi o seduti. 20–30 minuti a pressioni basse e la sensazione di pesantezza serale scompare.</p>
+    </div>
+    <div class="benefit-card">
+      <span class="benefit-icon">✈️</span>
+      <h4>Ovunque tu vada</h4>
+      <p>A batteria, senza cavi, con lo zaino incluso. Funziona in spogliatoio, in hotel, in pullman, in trasferta. Il recovery non si ferma quando viaggi.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOR WHO -->
+<section class="forwho-section reveal">
+  <div class="section-eyebrow">Per chi è</div>
+  <h2 class="section-title">AIRLEG funziona<br>per tutti</h2>
+  <p class="section-lead">Professionisti, amatori, massaggiatori, chi lavora in piedi: stesso prodotto, esigenze diverse, risultati su misura.</p>
+  <div class="forwho-grid">
+    <div class="forwho-card">
+      <span class="ico">🏃</span>
+      <h3>Atleti agonisti</h3>
+      <p>Recovery di livello professionale. Pressioni fino a 240 mmHg per chi cerca il massimo stimolo tra una seduta e l'altra.</p>
+    </div>
+    <div class="forwho-card">
+      <span class="ico">🚴</span>
+      <h3>Sportivi amatori</h3>
+      <p>Corsa, bici, padel, palestra: AIRLEG si adatta ai tuoi ritmi e ti aiuta a reggere la continuità degli allenamenti.</p>
+    </div>
+    <div class="forwho-card">
+      <span class="ico">💆</span>
+      <h3>Massaggiatori professionisti</h3>
+      <p>Tratta manualmente un atleta mentre AIRLEG lavora in autonomia sull'altro. Più clienti, meno fatica, più efficienza.</p>
+    </div>
+    <div class="forwho-card">
+      <span class="ico">👟</span>
+      <h3>Team e società sportive</h3>
+      <p>Più unità in spogliatoio = più atleti in recupero contemporaneamente. Portabile e pronto in pullman, in ritiro, in trasferta.</p>
+    </div>
+    <div class="forwho-card">
+      <span class="ico">👩‍⚕️</span>
+      <h3>Chi lavora in piedi</h3>
+      <p>Chirurghi, camerieri, negozianti: a fine turno le gambe ringraziano. Anche a pressioni basse l'effetto è immediato.</p>
+    </div>
+    <div class="forwho-card">
+      <span class="ico">🌙</span>
+      <h3>Routine serale</h3>
+      <p>Non solo sport. Chi percepisce gonfiore e pesantezza alle gambe trova in AIRLEG un alleato quotidiano semplice da usare.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SIZES -->
+<section class="sizes-section reveal">
+  <div class="section-eyebrow">Taglie disponibili</div>
+  <h2 class="section-title">Trova la taglia<br>giusta per te</h2>
+  <p class="section-lead">AIRLEG è disponibile in due taglie per adattarsi alla lunghezza della tua gamba. In caso di dubbio, contattaci prima di ordinare.</p>
+  <div class="sizes-grid">
+    <div class="size-card">
+      <span class="size-letter">M</span>
+      <h3>Taglia M</h3>
+      <p>Altezza consigliata</p>
+      <div class="range">160 – 175 cm</div>
+      <p style="margin-top:10px; font-size:13px; color:var(--gray);">Lunghezza gamba: indicativamente fino a 88 cm</p>
+    </div>
+    <div class="size-card">
+      <span class="size-letter">L</span>
+      <h3>Taglia L</h3>
+      <p>Altezza consigliata</p>
+      <div class="range">175 – 195 cm</div>
+      <p style="margin-top:10px; font-size:13px; color:var(--gray);">Lunghezza gamba: indicativamente oltre 88 cm</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section reveal" style="background: var(--card-bg);">
+  <div class="section-eyebrow">Testimonianze</div>
+  <h2 class="section-title">Chi l'ha provato<br>non torna indietro</h2>
+  <p class="section-lead">Le prime reaction da chi ha usato AIRLEG in anteprima.</p>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <p class="testimonial-text">Dopo ogni allenamento uso AIRLEG per 30 minuti. Il giorno dopo mi sento come se avessi dormito due giorni. La differenza rispetto a quello che usavo prima è enorme, soprattutto per la pressione che riesce a esprimere.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">M</div>
+        <div><div class="author-name">Marco R.</div><div class="author-role">Triatleta, categoria age group</div></div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <p class="testimonial-text">Lo uso in studio mentre lavoro sui miei atleti. La comodità di non avere cavi in mezzo è impagabile. I ragazzi adorano farlo subito dopo la seduta e tornano la settimana dopo in condizioni molto migliori.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">S</div>
+        <div><div class="author-name">Sara B.</div><div class="author-role">Massaggiatrice sportiva professionista</div></div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <p class="testimonial-text">Lavoro in sala operatoria e a fine turno le gambe erano un problema serio. Da quando ho AIRLEG, 20 minuti dopo cena e il gonfiore sparisce. Non pensavo potesse fare così effetto.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">L</div>
+        <div><div class="author-name">Laura F.</div><div class="author-role">Chirurga ortopedica</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S IN THE BOX -->
+<section class="box-section reveal">
+  <div class="section-eyebrow">Nella confezione</div>
+  <h2 class="section-title">Tutto quello che ti serve,<br>incluso lo zaino.</h2>
+  <p class="section-lead">AIRLEG arriva pronto all'uso con tutto il necessario — e con uno zaino premium in omaggio per portarlo ovunque.</p>
+  <div class="box-items">
+    <div class="box-item">
+      <div class="box-num">1</div>
+      <div><div class="box-label">Gambali AIRLEG</div><div class="box-sub">Coppia, taglia M o L</div></div>
+    </div>
+    <div class="box-item">
+      <div class="box-num">2</div>
+      <div><div class="box-label">Cavo di ricarica</div><div class="box-sub">Input DC 5V–2A</div></div>
+    </div>
+    <div class="box-item">
+      <div class="box-num">3</div>
+      <div><div class="box-label">Manuale d'uso</div><div class="box-sub">Italiano, con QR video</div></div>
+    </div>
+    <div class="box-item" style="border-color: rgba(0,180,216,0.35); background: rgba(0,180,216,0.04);">
+      <div class="box-num" style="color:var(--blue-light);">🎒</div>
+      <div><div class="box-label" style="color:var(--blue-light);">Zaino premium</div><div class="box-sub">In omaggio — per il trasporto</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FAQ -->
+<section class="faq-section reveal" style="background: var(--card-bg);">
+  <div class="section-eyebrow">Domande frequenti</div>
+  <h2 class="section-title">Tutto quello che<br>vuoi sapere su AIRLEG</h2>
+  <p class="section-lead">Le risposte alle domande più comuni prima dell'acquisto.</p>
+  <div class="faq-list">
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span>Cosa distingue AIRLEG dai gambali massaggianti tradizionali?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>AIRLEG combina tre elementi che raramente convivono in un solo prodotto: un range di pressione da 30 a 240 mmHg (il più ampio della categoria), due compressori integrati che raddoppiano i cicli per sessione, e la completa assenza di cavi o apparecchi esterni. Molti sistemi tradizionali si fermano a 150 mmHg, hanno un solo compressore e richiedono una centralina esterna ingombrante. AIRLEG è pensato per essere usato davvero — ogni giorno, ovunque.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span>I 240 mmHg vanno usati sempre? Da dove conviene partire?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>No — la pressione massima non è un obbligo né un indicatore automatico di efficacia. La regola corretta è partire basso (80–120 mmHg per i primi utilizzi), capire come risponde la tua gamba, e aumentare gradualmente di sessione in sessione. Le pressioni basse (30–80 mmHg) sono ottime per benessere quotidiano e uso serale. Le intermedie (120–160 mmHg) sono il punto di equilibrio ideale per il recovery dopo allenamento. I 200–240 mmHg sono riservati agli sportivi allenati che cercano uno stimolo più deciso.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span>Quanto dura la batteria? Si può usare mentre si carica?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>La batteria Li-Ion da 3200 mAh garantisce 1.5–2 ore di funzionamento continuo — sufficienti per 2–4 sessioni complete da 30 minuti. La ricarica completa richiede circa 2 ore tramite cavo DC incluso (compatibile con qualsiasi alimentatore da 5V–2A, come un caricatore USB-C standard). Il dispositivo non può essere utilizzato durante la ricarica.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span>Con quale frequenza si può usare AIRLEG?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>Anche tutti i giorni, soprattutto a pressioni basse o moderate. La logica migliore è ascoltare la risposta del corpo: nel recovery sportivo si usa idealmente dopo ogni allenamento intenso o nei giorni di scarico. Per il benessere generale (gambe gonfie, lavoro in piedi) può diventare una routine serale quotidiana. Non esiste una sola modalità d'uso: AIRLEG si adatta al tuo ritmo.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span>È adatto anche a chi non fa sport?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>Sì. Chi lavora molte ore in piedi (camerieri, chirurghi, commessi, insegnanti) o percepisce facilmente pesantezza e gonfiore alle gambe trova nelle pressioni più basse un utilizzo semplice e molto efficace. 20–30 minuti a 80–120 mmHg dopo una lunga giornata producono una sensazione immediata di leggerezza e scarico. AIRLEG non è solo per atleti.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span>Quale taglia devo scegliere tra M e L?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>La scelta si basa sulla lunghezza della gamba, non sul peso. La taglia <strong>M</strong> è consigliata per chi è alto tra 160 e 175 cm (lunghezza gamba indicativamente fino a 88 cm). La taglia <strong>L</strong> è per chi supera i 175 cm. In caso di dubbio — ad esempio se sei esattamente sulla soglia — scrivici prima di ordinare: ti aiutiamo a scegliere quella giusta senza rischi.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span>Può usarlo un massaggiatore in studio con più clienti?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>È uno degli scenari d'uso più apprezzati. Mentre il massaggiatore tratta manualmente un atleta, AIRLEG lavora in autonomia sull'altro senza richiedere alcuna supervisione. Non ci sono cavi da gestire, nessuna centralina da spostare: l'atleta indossa i gambali, il professionista imposta pressione e programma, e il dispositivo completa la seduta da solo. Ideale per ottimizzare tempi e spazi in studio o in spogliatoio.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span>Quanto è rumoroso durante il funzionamento?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>Il livello di rumore è certificato a ≤55 dB — paragonabile a una conversazione tranquilla in ambiente domestico. È possibile usarlo mentre si guarda la televisione, si lavora al computer o si riposa, senza che il rumore risulti fastidioso.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span>Ci sono controindicazioni? Chi non dovrebbe usarlo?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>AIRLEG non è indicato in caso di insufficienza cardiaca, arteriopatie, fragilità capillare, insufficienza renale, trombosi o in gravidanza. In caso di dubbi sulla propria condizione di salute, è sempre consigliabile consultare un medico prima dell'uso. AIRLEG non è un dispositivo medico.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span>Cosa è incluso nella confezione? Devo acquistare accessori separati?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>Nella confezione trovi tutto il necessario: la coppia di gambali AIRLEG (taglia M o L), il cavo di ricarica, il manuale d'uso con QR code per il video tutorial. In omaggio è incluso uno zaino premium per il trasporto — bello, comodo, pensato per portare AIRLEG ovunque senza problemi. Non sono necessari accessori aggiuntivi.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="preordine" class="cta-section reveal">
+  <div class="section-eyebrow" style="justify-content:center;">Preordine luglio 2025</div>
+  <h2 class="section-title">Prenota il tuo AIRLEG<br>prima che arrivi sul mercato</h2>
+  <p class="section-lead" style="margin: 0 auto; max-width:520px; text-align:center;">Disponibile da fine luglio a €429. Per tutto luglio, preordina a €329 e risparmi €100.</p>
+  <div style="display:flex; justify-content:center;">
+    <div class="cta-box">
+      <div class="cta-label">⬡ Preordine Speciale</div>
+      <div class="cta-price-big">€<span>329</span></div>
+      <div class="cta-was">Prezzo di listino: €429</div>
+      <div class="cta-deadline">Offerta valida <strong>solo per tutto luglio 2025</strong>.<br>Consegna a partire da fine luglio.</div>
+      <a href="https://tapesportivo.it/" target="_blank" class="btn-primary" style="display:block; text-align:center; font-size:16px; padding:18px 40px;">Preordina ORA</a>
+      <p class="cta-include" style="margin-top:20px;">
+        <strong>Incluso:</strong> gambali AIRLEG + zaino premium + cavo di ricarica + manuale d'uso.
+      </p>
+    </div>
+  </div>
+  <p style="margin-top:32px; font-size:13px; color:var(--gray); max-width:480px; margin-left:auto; margin-right:auto; text-align:center;">
+    Dubbi sulla taglia o sul prodotto? Scrivici — rispondiamo entro poche ore.
+  </p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <svg width="120" height="58" viewBox="0 0 4026 1947" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:28px;width:auto;opacity:0.5;">
+      <path d="M1920.66 222.226L1743.96 980H1345.87C1185.41 980 1263.1 769.563 1362.12 769.563H1476.87C1600.26 769.563 1589.09 593.116 1516.99 593.116H1249.39C1054.41 593.116 1153.42 385.178 1249.39 385.178H1557.1C1647.3 385.178 1655.43 206.231 1589.09 206.231H1086.4C897 206.231 1022.42 0.792252 1100.11 0.792252C1672.03 4.45782 2853.84 9.58965 3005.77 0.792252C3195.67 -10.2045 3185.01 95.7639 3134.23 164.243C3099.02 211.729 3056.55 222.226 3005.77 222.226H1920.66Z" fill="white"/>
+      <path d="M2920.46 385.178H2139.51C2081.12 543.131 2206.54 604.779 2262.9 609.111H2834.65L2797.08 769.563H2155.76C1979.56 769.563 1979.56 980 2094.32 980H2781.33C3037.58 980 3005.77 827.046 3056.55 593.116C3091.3 432.996 2975.64 391.343 2920.46 385.178Z" fill="white"/>
+      <path d="M151 1541V1259H10V1181H370V1259H229V1541H151ZM438.395 1541V1255C438.395 1241.33 441.728 1229 448.395 1218C455.061 1206.67 464.061 1197.67 475.395 1191C486.728 1184.33 499.061 1181 512.395 1181H723.895C737.561 1181 749.895 1184.33 760.895 1191C772.228 1197.67 781.228 1206.67 787.895 1218C794.895 1229 798.395 1241.33 798.395 1255V1541H719.895V1425H515.895V1541H438.395ZM515.895 1347H719.895V1259H515.895V1347ZM885.863 1541V1181H963.863V1322H1034.36L1152.36 1181H1233.36V1208L1104.86 1361L1233.36 1514V1541H1152.36L1034.36 1400H963.863V1541H885.863ZM1314.8 1541V1181H1647.3V1259H1393.3V1322H1597.8V1400H1393.3V1463H1647.3V1541H1314.8ZM1990.75 1541C1977.41 1541 1965.08 1537.67 1953.75 1531C1942.41 1524.33 1933.41 1515.33 1926.75 1504C1920.08 1492.67 1916.75 1480.33 1916.75 1467V1433.5H1994.25V1463H2198.25V1400H1990.75C1977.41 1400 1965.08 1396.67 1953.75 1390C1942.41 1383.33 1933.41 1374.5 1926.75 1363.5C1920.08 1352.17 1916.75 1339.67 1916.75 1326V1255C1916.75 1241.33 1920.08 1229 1926.75 1218C1933.41 1206.67 1942.41 1197.67 1953.75 1191C1965.08 1184.33 1977.41 1181 1990.75 1181H2202.75C2216.08 1181 2228.25 1184.33 2239.25 1191C2250.58 1197.67 2259.58 1206.67 2266.25 1218C2273.25 1229 2276.75 1241.33 2276.75 1255V1288.5H2198.25V1259H1994.25V1322H2202.75C2216.08 1322 2228.25 1325.33 2239.25 1332C2250.58 1338.67 2259.58 1347.67 2266.25 1359C2273.25 1370 2276.75 1382.33 2276.75 1396V1467C2276.75 1480.33 2273.25 1492.67 2266.25 1504C2259.58 1515.33 2250.58 1524.33 2239.25 1531C2228.25 1537.67 2216.08 1541 2202.75 1541H1990.75ZM2361.81 1541V1181.5H2647.31C2660.98 1181.5 2673.31 1184.83 2684.31 1191.5C2695.64 1198.17 2704.64 1207.17 2711.31 1218.5C2718.31 1229.83 2721.81 1242.17 2721.81 1255.5V1348.5C2721.81 1361.83 2718.31 1374.17 2711.31 1385.5C2704.64 1396.83 2695.64 1405.83 2684.31 1412.5C2673.31 1419.17 2660.98 1422.5 2647.31 1422.5L2439.31 1423V1541H2361.81ZM2439.31 1344.5H2643.31V1259H2439.31V1344.5ZM2860.32 1541C2846.98 1541 2834.65 1537.67 2823.32 1531C2811.98 1524.33 2802.98 1515.33 2796.32 1504C2789.65 1492.67 2786.32 1480.33 2786.32 1467V1255C2786.32 1241.33 2789.65 1229 2796.32 1218C2802.98 1206.67 2811.98 1197.67 2823.32 1191C2834.65 1184.33 2846.98 1181 2860.32 1181H3072.32C3085.65 1181 3097.82 1184.33 3108.82 1191C3120.15 1197.67 3129.15 1206.67 3135.82 1218C3142.82 1229 3146.32 1241.33 3146.32 1255V1467C3146.32 1480.33 3142.82 1492.67 3135.82 1504C3129.15 1515.33 3120.15 1524.33 3108.82 1531C3097.82 1537.67 3085.65 1541 3072.32 1541H2860.32ZM2863.82 1463H3067.82V1259H2863.82V1463ZM3510.88 1541L3406.38 1416.5H3507.88L3590.88 1514.5V1541H3510.88ZM3231.38 1541V1181.5H3516.88C3530.55 1181.5 3542.88 1184.83 3553.88 1191.5C3565.21 1198.17 3574.21 1207.17 3580.88 1218.5C3587.88 1229.83 3591.38 1242.17 3591.38 1255.5V1348.5C3591.38 1361.83 3587.88 1374.17 3580.88 1385.5C3574.21 1396.83 3565.21 1405.83 3553.88 1412.5C3542.88 1419.17 3530.55 1422.5 3516.88 1422.5L3308.88 1423V1541H3231.38ZM3308.88 1344.5H3512.88V1259H3308.88V1344.5ZM3796.98 1541V1259H3655.98V1181H4015.98V1259H3874.98V1541H3796.98Z" fill="white"/>
+      <path d="M567.957 1895L512.419 1742.38H547.395L580.676 1833.31L613.956 1742.38H644.268L677.761 1833.31L711.041 1742.38H745.805L690.267 1895H665.042L629.006 1796.85L593.182 1895H567.957ZM817.816 1895L762.278 1742.38H797.254L830.534 1833.31L863.815 1742.38H894.127L927.62 1833.31L960.9 1742.38H995.664L940.126 1895H914.901L878.865 1796.85L843.041 1895H817.816ZM1067.67 1895L1012.14 1742.38H1047.11L1080.39 1833.31L1113.67 1742.38H1143.99L1177.48 1833.31L1210.76 1742.38H1245.52L1189.99 1895H1164.76L1128.72 1796.85L1092.9 1895H1067.67ZM1266.02 1895V1862.57H1298.46V1895H1266.02ZM1368.07 1895V1775.45H1308.29V1742.38H1460.91V1775.45H1401.14V1895H1368.07ZM1477.19 1895V1773.75C1477.19 1767.96 1478.6 1762.73 1481.43 1758.06C1484.26 1753.26 1488.07 1749.44 1492.88 1746.62C1497.68 1743.79 1502.91 1742.38 1508.56 1742.38H1598.23C1604.02 1742.38 1609.25 1743.79 1613.92 1746.62C1618.72 1749.44 1622.54 1753.26 1625.36 1758.06C1628.33 1762.73 1629.81 1767.96 1629.81 1773.75V1895H1596.53V1845.82H1510.05V1895H1477.19ZM1510.05 1812.75H1596.53V1775.45H1510.05V1812.75ZM1653.97 1895V1742.59H1775.01C1780.8 1742.59 1786.03 1744 1790.69 1746.83C1795.5 1749.65 1799.31 1753.47 1802.14 1758.28C1805.11 1763.08 1806.59 1768.31 1806.59 1773.96V1813.39C1806.59 1819.04 1805.11 1824.27 1802.14 1829.08C1799.31 1833.88 1795.5 1837.7 1790.69 1840.52C1786.03 1843.35 1780.8 1844.76 1775.01 1844.76L1686.82 1844.97V1895H1653.97ZM1686.82 1811.69H1773.31V1775.45H1686.82V1811.69ZM1822.07 1895V1742.38H1963.03V1775.45H1855.35V1802.15H1942.05V1835.22H1855.35V1861.93H1963.03V1895H1822.07ZM2014.89 1895C2009.23 1895 2004 1893.59 1999.2 1890.76C1994.4 1887.93 1990.58 1884.12 1987.75 1879.31C1984.93 1874.51 1983.51 1869.28 1983.51 1863.63V1849.43H2016.37V1861.93H2102.86V1835.22H2014.89C2009.23 1835.22 2004 1833.81 1999.2 1830.98C1994.4 1828.16 1990.58 1824.41 1987.75 1819.75C1984.93 1814.94 1983.51 1809.64 1983.51 1803.85V1773.75C1983.51 1767.96 1984.93 1762.73 1987.75 1758.06C1990.58 1753.26 1994.4 1749.44 1999.2 1746.62C2004 1743.79 2009.23 1742.38 2014.89 1742.38H2104.76C2110.42 1742.38 2115.57 1743.79 2120.24 1746.62C2125.04 1749.44 2128.86 1753.26 2131.69 1758.06C2134.65 1762.73 2136.14 1767.96 2136.14 1773.75V1787.95H2102.86V1775.45H2016.37V1802.15H2104.76C2110.42 1802.15 2115.57 1803.57 2120.24 1806.39C2125.04 1809.22 2128.86 1813.04 2131.69 1817.84C2134.65 1822.5 2136.14 1827.73 2136.14 1833.53V1863.63C2136.14 1869.28 2134.65 1874.51 2131.69 1879.31C2128.86 1884.12 2125.04 1887.93 2120.24 1890.76C2115.57 1893.59 2110.42 1895 2104.76 1895H2014.89ZM2159.48 1895V1742.59H2280.52C2286.31 1742.59 2291.54 1744 2296.21 1746.83C2301.01 1749.65 2304.83 1753.47 2307.65 1758.28C2310.62 1763.08 2312.1 1768.31 2312.1 1773.96V1813.39C2312.1 1819.04 2310.62 1824.27 2307.65 1829.08C2304.83 1833.88 2301.01 1837.7 2296.21 1840.52C2291.54 1843.35 2286.31 1844.76 2280.52 1844.76L2192.34 1844.97V1895H2159.48ZM2192.34 1811.69H2278.82V1775.45H2192.34V1811.69ZM2358.11 1895C2352.45 1895 2347.22 1893.59 2342.42 1890.76C2337.61 1887.93 2333.8 1884.12 2330.97 1879.31C2328.15 1874.51 2326.73 1869.28 2326.73 1863.63V1773.75C2326.73 1767.96 2328.15 1762.73 2330.97 1758.06C2333.8 1753.26 2337.61 1749.44 2342.42 1746.62C2347.22 1743.79 2352.45 1742.38 2358.11 1742.38H2447.98C2453.64 1742.38 2458.79 1743.79 2463.46 1746.62C2468.26 1749.44 2472.08 1753.26 2474.9 1758.06C2477.87 1762.73 2479.36 1767.96 2479.36 1773.75V1863.63C2479.36 1869.28 2477.87 1874.51 2474.9 1879.31C2472.08 1884.12 2468.26 1887.93 2463.46 1890.76C2458.79 1893.59 2453.64 1895 2447.98 1895H2358.11ZM2359.59 1861.93H2446.08V1775.45H2359.59V1861.93Z" fill="white"/>
+    </svg>
+    <div class="footer-product">AIRLEG</div>
+  </div>
+  <p class="footer-note">
+    AIRLEG è un gambale a pressione graduale per il recupero sportivo e il benessere degli arti inferiori. Non è un dispositivo medico e non sostituisce il parere di un professionista della salute. Consultare il manuale per le controindicazioni.
+  </p>
+  <div class="footer-right">
+    <div>© 2025 Take Sport</div>
+    <div>Tutti i diritti riservati</div>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
+  reveals.forEach(r => observer.observe(r));
+
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const answer = item.querySelector('.faq-a');
+    const isOpen = btn.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.faq-q.open').forEach(b => {
+      b.classList.remove('open');
+      b.parentElement.querySelector('.faq-a').classList.remove('open');
+    });
+    // Open clicked if it was closed
+    if (!isOpen) {
+      btn.classList.add('open');
+      answer.classList.add('open');
+    }
+  }
+
+</script>
+
+</body>
+</html>
