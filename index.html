@@ -40,7 +40,7 @@
     .nav-cta {
       background: var(--blue-light); color: var(--black);
       font-family: 'Sora', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 1px;
-      padding: 11px 26px; border: none; cursor: pointer; text-decoration: none; display: inline-block;
+      padding: 11px 26px; border: none; cursor: pointer; text-decoration: none; display: inline-block; white-space: nowrap;
       clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
       transition: background 0.2s, transform 0.2s;
     }
@@ -131,11 +131,11 @@
     /* STATS STRIP */
     .stats-strip {
       background: var(--card-bg); border-top: 1px solid rgba(0,180,216,0.12); border-bottom: 1px solid rgba(0,180,216,0.12);
-      padding: 28px 4%; display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px;
+      padding: 28px 4%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
     }
     .stat-item { text-align: center; }
     .stat-item .val { font-family: 'Sora', sans-serif; font-size: 30px; font-weight: 800; color: var(--blue-light); display: block; }
-    .stat-item .desc { font-size: 12px; color: var(--gray); letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
+    .stat-item .desc { font-size: 12px; color: var(--gray); letter-spacing: 0.5px; text-transform: uppercase; margin-top: 4px; line-height: 1.2; }
     @media (max-width: 600px) {
       .stats-strip { padding: 18px 3%; gap: 4px; }
       .stat-item .val { font-size: 18px; }
@@ -509,7 +509,6 @@
   <div class="stat-item"><span class="val">30→240</span><span class="desc">mmHg range pressione</span></div>
   <div class="stat-item"><span class="val">2×</span><span class="desc">compressori integrati</span></div>
   <div class="stat-item"><span class="val">4</span><span class="desc">zone di compressione</span></div>
-  <div class="stat-item"><span class="val">5</span><span class="desc">programmi preimpostati</span></div>
   <div class="stat-item"><span class="val">0</span><span class="desc">Zero cavi</span></div>
 </div>
 
