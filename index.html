@@ -2,6 +2,23 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '2085537332043078');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=2085537332043078&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AIRLEG — TAKE SPORT | Recupero Sportivo Avanzato</title>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -160,7 +177,7 @@
     .showcase-img {
       background: #0a0a12; overflow: hidden; position: relative;
       display: flex; align-items: center; justify-content: center;
-      min-height: 280px;
+      min-height: 200px; max-height: 380px;
     }
     .showcase-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
     .showcase-img:hover img { transform: scale(1.04); }
@@ -172,6 +189,21 @@
       letter-spacing: 2px; text-transform: uppercase; color: var(--blue-light);
     }
     .showcase-img.tall { grid-row: span 2; }
+
+    /* CAROUSEL */
+    .carousel-section { background: var(--black); padding: 0; overflow: hidden; }
+    .carousel-track-wrap { overflow: hidden; cursor: grab; }
+    .carousel-track-wrap:active { cursor: grabbing; }
+    .carousel-track { display: flex; transition: transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94); will-change: transform; }
+    .carousel-slide { flex: 0 0 80%; max-width: 80%; padding: 0 8px; box-sizing: border-box; }
+    @media (min-width: 768px) { .carousel-slide { flex: 0 0 40%; max-width: 40%; } }
+    .carousel-slide img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; border-radius: 4px; }
+    .carousel-controls { display: flex; align-items: center; justify-content: center; gap: 16px; padding: 20px 0 28px; }
+    .carousel-btn { background: none; border: 1px solid rgba(0,180,216,0.4); color: var(--blue-light); width: 40px; height: 40px; border-radius: 50%; font-size: 18px; cursor: pointer; transition: background 0.2s; display: flex; align-items: center; justify-content: center; }
+    .carousel-btn:hover { background: rgba(0,180,216,0.15); }
+    .carousel-dots { display: flex; gap: 8px; }
+    .carousel-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.2); cursor: pointer; transition: background 0.2s; }
+    .carousel-dot.active { background: var(--blue-light); }
 
     /* COMPARE */
     .compare-section { }
@@ -234,7 +266,7 @@
     .display-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
     .display-img { position: relative; }
     .display-img img {
-      width: 100%; max-width: 340px; height: auto; display: block; margin: 0 auto;
+      width: 100%; max-width: 520px; height: auto; display: block; margin: 0 auto;
       filter: drop-shadow(0 0 50px rgba(0,180,216,0.35)) drop-shadow(0 0 20px rgba(0,180,216,0.15));
     }
     .display-specs { }
@@ -397,7 +429,10 @@
       .compare-grid { display: none; }
       .compare-table-mobile { display: table; }
       .programs-grid { grid-template-columns: repeat(3, 1fr); }
-      .showcase-grid { grid-template-columns: 1fr; }
+      .showcase-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; }
+      .showcase-img.showcase-front { grid-column: 1; grid-row: 2; }
+      .showcase-img.showcase-top { grid-column: 1 / -1; grid-row: 1; }
+      .showcase-img.showcase-monitor { grid-column: 2; grid-row: 2; }
       .showcase-img.tall { grid-row: span 1; }
     }
     @media (max-width: 600px) {
@@ -501,17 +536,17 @@
   <div class="section-eyebrow">Il prodotto</div>
   <h2 class="section-title">Costruito per<br>chi esige di più</h2>
   <div class="showcase-grid">
-    <div class="showcase-img tall">
+    <div class="showcase-img tall showcase-front">
       <img src="img_product_front.jpeg" alt="AIRLEG gambali vista frontale" />
       <div class="img-label">Vista frontale — coppia gambali</div>
     </div>
-    <div class="showcase-img">
+    <div class="showcase-img showcase-top">
       <img src="img_product_side.jpeg" alt="AIRLEG gambali vista prospettica" />
       <div class="img-label">Design compatto — nessun apparecchio esterno</div>
     </div>
-    <div class="showcase-img">
-      <img src="img_product_scheme.jpeg" alt="AIRLEG schema tecnico" />
-      <div class="img-label">Display LCD — 240 mmHg in tempo reale</div>
+    <div class="showcase-img showcase-monitor">
+      <img src="img_product_monitor.jpeg" alt="AIRLEG display controller" />
+      <div class="img-label">Display LCD — 240 mmHg</div>
     </div>
   </div>
 </section>
@@ -595,6 +630,27 @@
     <a href="https://tapesportivo.it/" target="_blank" style="display:inline-block; background:var(--blue-light); color:#000; font-family:'Sora',sans-serif; font-weight:700; font-size:14px; letter-spacing:1px; padding:12px 32px; text-decoration:none;">Preordina a prezzo di lancio →</a>
   </div>
 </div>
+
+<!-- IMAGE CAROUSEL -->
+<section class="carousel-section">
+  <div class="carousel-track-wrap">
+    <div class="carousel-track" id="carouselTrack">
+      <div class="carousel-slide"><img src="img_product_front.jpeg" alt="AIRLEG gambali frontale" /></div>
+      <div class="carousel-slide"><img src="img_product_side.jpeg" alt="AIRLEG gambali orizzontale" /></div>
+      <div class="carousel-slide"><img src="img_product_monitor.jpeg" alt="AIRLEG display 240 mmHg" /></div>
+      <div class="carousel-slide"><img src="img_product_scheme.jpeg" alt="AIRLEG schema tecnico" /></div>
+      <div class="carousel-slide"><img src="img_product_front.jpeg" alt="AIRLEG gambali frontale" /></div>
+      <div class="carousel-slide"><img src="img_product_side.jpeg" alt="AIRLEG gambali orizzontale" /></div>
+      <div class="carousel-slide"><img src="img_product_monitor.jpeg" alt="AIRLEG display 240 mmHg" /></div>
+      <div class="carousel-slide"><img src="img_product_scheme.jpeg" alt="AIRLEG schema tecnico" /></div>
+    </div>
+  </div>
+  <div class="carousel-controls">
+    <button class="carousel-btn" id="carouselPrev" aria-label="Precedente">&#8592;</button>
+    <div class="carousel-dots" id="carouselDots"></div>
+    <button class="carousel-btn" id="carouselNext" aria-label="Successivo">&#8594;</button>
+  </div>
+</section>
 
 <!-- DISPLAY & SPECS -->
 <section class="display-section reveal">
@@ -693,7 +749,7 @@
       <p>La progressione dal basso verso l'alto richiama il principio del linfodrenaggio manuale: gambe meno gonfie, meno congestionate, più leggere.</p>
     </div>
     <div class="benefit-card">
-      <span class="benefit-icon">🔥</span>
+      <span class="benefit-icon">⚡</span>
       <h4>Smaltimento dell'acido lattico</h4>
       <p>La compressione ritmica aiuta l'organismo a eliminare più rapidamente l'acido lattico accumulato durante lo sforzo intenso.</p>
     </div>
@@ -703,7 +759,7 @@
       <p>Meno dolori muscolari nei giorni successivi ad allenamenti impegnativi. Nei periodi di carico elevato, AIRLEG aiuta a mantenere qualità e continuità.</p>
     </div>
     <div class="benefit-card">
-      <span class="benefit-icon">🌿</span>
+      <span class="benefit-icon">🌙</span>
       <h4>Gambe leggere ogni sera</h4>
       <p>Perfetto anche dopo lunghe giornate in piedi o seduti. 20–30 minuti a pressioni basse e la sensazione di pesantezza serale scompare.</p>
     </div>
@@ -727,17 +783,17 @@
       <p>Recovery di livello professionale. Pressioni fino a 240 mmHg per chi cerca il massimo stimolo tra una seduta e l'altra.</p>
     </div>
     <div class="forwho-card">
-      <span class="ico">🚴</span>
+      <span class="ico">💪</span>
       <h3>Sportivi amatori</h3>
       <p>Corsa, bici, padel, palestra: AIRLEG si adatta ai tuoi ritmi e ti aiuta a reggere la continuità degli allenamenti.</p>
     </div>
     <div class="forwho-card">
-      <span class="ico">💆</span>
+      <span class="ico">👨‍⚕️</span>
       <h3>Massaggiatori professionisti</h3>
       <p>Tratta manualmente un atleta mentre AIRLEG lavora in autonomia sull'altro. Più clienti, meno fatica, più efficienza.</p>
     </div>
     <div class="forwho-card">
-      <span class="ico">👟</span>
+      <span class="ico">👥</span>
       <h3>Team e società sportive</h3>
       <p>Più unità in spogliatoio = più atleti in recupero contemporaneamente. Portabile e pronto in pullman, in ritiro, in trasferta.</p>
     </div>
@@ -747,7 +803,7 @@
       <p>Chirurghi, camerieri, negozianti: a fine turno le gambe ringraziano. Anche a pressioni basse l'effetto è immediato.</p>
     </div>
     <div class="forwho-card">
-      <span class="ico">🌙</span>
+      <span class="ico">😴</span>
       <h3>Routine serale</h3>
       <p>Non solo sport. Chi percepisce gonfiore e pesantezza alle gambe trova in AIRLEG un alleato quotidiano semplice da usare.</p>
     </div>
@@ -899,6 +955,16 @@
       </div>
     </div>
 
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span>Perché ogni tanto i due gambali non rimangono sincronizzati?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <p>È del tutto normale: piccole differenze anatomiche tra la gamba destra e la sinistra (circonferenza, tono muscolare, distribuzione del tessuto) possono far sì che i due gambali completino i cicli in tempi leggermente diversi. Non si tratta di un malfunzionamento. Se preferisci un ritmo perfettamente sincronizzato, metti in pausa la sessione con il tasto Play/Pausa e fai ripartire: i due gambali ripartiranno insieme dal punto zero del ciclo.</p>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -935,20 +1001,12 @@
 
 <!-- FOOTER -->
 <footer>
-  <div>
-    <svg width="120" height="58" viewBox="0 0 4026 1947" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:28px;width:auto;opacity:0.5;">
-      <path d="M1920.66 222.226L1743.96 980H1345.87C1185.41 980 1263.1 769.563 1362.12 769.563H1476.87C1600.26 769.563 1589.09 593.116 1516.99 593.116H1249.39C1054.41 593.116 1153.42 385.178 1249.39 385.178H1557.1C1647.3 385.178 1655.43 206.231 1589.09 206.231H1086.4C897 206.231 1022.42 0.792252 1100.11 0.792252C1672.03 4.45782 2853.84 9.58965 3005.77 0.792252C3195.67 -10.2045 3185.01 95.7639 3134.23 164.243C3099.02 211.729 3056.55 222.226 3005.77 222.226H1920.66Z" fill="white"/>
-      <path d="M2920.46 385.178H2139.51C2081.12 543.131 2206.54 604.779 2262.9 609.111H2834.65L2797.08 769.563H2155.76C1979.56 769.563 1979.56 980 2094.32 980H2781.33C3037.58 980 3005.77 827.046 3056.55 593.116C3091.3 432.996 2975.64 391.343 2920.46 385.178Z" fill="white"/>
-      <path d="M151 1541V1259H10V1181H370V1259H229V1541H151ZM438.395 1541V1255C438.395 1241.33 441.728 1229 448.395 1218C455.061 1206.67 464.061 1197.67 475.395 1191C486.728 1184.33 499.061 1181 512.395 1181H723.895C737.561 1181 749.895 1184.33 760.895 1191C772.228 1197.67 781.228 1206.67 787.895 1218C794.895 1229 798.395 1241.33 798.395 1255V1541H719.895V1425H515.895V1541H438.395ZM515.895 1347H719.895V1259H515.895V1347ZM885.863 1541V1181H963.863V1322H1034.36L1152.36 1181H1233.36V1208L1104.86 1361L1233.36 1514V1541H1152.36L1034.36 1400H963.863V1541H885.863ZM1314.8 1541V1181H1647.3V1259H1393.3V1322H1597.8V1400H1393.3V1463H1647.3V1541H1314.8ZM1990.75 1541C1977.41 1541 1965.08 1537.67 1953.75 1531C1942.41 1524.33 1933.41 1515.33 1926.75 1504C1920.08 1492.67 1916.75 1480.33 1916.75 1467V1433.5H1994.25V1463H2198.25V1400H1990.75C1977.41 1400 1965.08 1396.67 1953.75 1390C1942.41 1383.33 1933.41 1374.5 1926.75 1363.5C1920.08 1352.17 1916.75 1339.67 1916.75 1326V1255C1916.75 1241.33 1920.08 1229 1926.75 1218C1933.41 1206.67 1942.41 1197.67 1953.75 1191C1965.08 1184.33 1977.41 1181 1990.75 1181H2202.75C2216.08 1181 2228.25 1184.33 2239.25 1191C2250.58 1197.67 2259.58 1206.67 2266.25 1218C2273.25 1229 2276.75 1241.33 2276.75 1255V1288.5H2198.25V1259H1994.25V1322H2202.75C2216.08 1322 2228.25 1325.33 2239.25 1332C2250.58 1338.67 2259.58 1347.67 2266.25 1359C2273.25 1370 2276.75 1382.33 2276.75 1396V1467C2276.75 1480.33 2273.25 1492.67 2266.25 1504C2259.58 1515.33 2250.58 1524.33 2239.25 1531C2228.25 1537.67 2216.08 1541 2202.75 1541H1990.75ZM2361.81 1541V1181.5H2647.31C2660.98 1181.5 2673.31 1184.83 2684.31 1191.5C2695.64 1198.17 2704.64 1207.17 2711.31 1218.5C2718.31 1229.83 2721.81 1242.17 2721.81 1255.5V1348.5C2721.81 1361.83 2718.31 1374.17 2711.31 1385.5C2704.64 1396.83 2695.64 1405.83 2684.31 1412.5C2673.31 1419.17 2660.98 1422.5 2647.31 1422.5L2439.31 1423V1541H2361.81ZM2439.31 1344.5H2643.31V1259H2439.31V1344.5ZM2860.32 1541C2846.98 1541 2834.65 1537.67 2823.32 1531C2811.98 1524.33 2802.98 1515.33 2796.32 1504C2789.65 1492.67 2786.32 1480.33 2786.32 1467V1255C2786.32 1241.33 2789.65 1229 2796.32 1218C2802.98 1206.67 2811.98 1197.67 2823.32 1191C2834.65 1184.33 2846.98 1181 2860.32 1181H3072.32C3085.65 1181 3097.82 1184.33 3108.82 1191C3120.15 1197.67 3129.15 1206.67 3135.82 1218C3142.82 1229 3146.32 1241.33 3146.32 1255V1467C3146.32 1480.33 3142.82 1492.67 3135.82 1504C3129.15 1515.33 3120.15 1524.33 3108.82 1531C3097.82 1537.67 3085.65 1541 3072.32 1541H2860.32ZM2863.82 1463H3067.82V1259H2863.82V1463ZM3510.88 1541L3406.38 1416.5H3507.88L3590.88 1514.5V1541H3510.88ZM3231.38 1541V1181.5H3516.88C3530.55 1181.5 3542.88 1184.83 3553.88 1191.5C3565.21 1198.17 3574.21 1207.17 3580.88 1218.5C3587.88 1229.83 3591.38 1242.17 3591.38 1255.5V1348.5C3591.38 1361.83 3587.88 1374.17 3580.88 1385.5C3574.21 1396.83 3565.21 1405.83 3553.88 1412.5C3542.88 1419.17 3530.55 1422.5 3516.88 1422.5L3308.88 1423V1541H3231.38ZM3308.88 1344.5H3512.88V1259H3308.88V1344.5ZM3796.98 1541V1259H3655.98V1181H4015.98V1259H3874.98V1541H3796.98Z" fill="white"/>
-      <path d="M567.957 1895L512.419 1742.38H547.395L580.676 1833.31L613.956 1742.38H644.268L677.761 1833.31L711.041 1742.38H745.805L690.267 1895H665.042L629.006 1796.85L593.182 1895H567.957ZM817.816 1895L762.278 1742.38H797.254L830.534 1833.31L863.815 1742.38H894.127L927.62 1833.31L960.9 1742.38H995.664L940.126 1895H914.901L878.865 1796.85L843.041 1895H817.816ZM1067.67 1895L1012.14 1742.38H1047.11L1080.39 1833.31L1113.67 1742.38H1143.99L1177.48 1833.31L1210.76 1742.38H1245.52L1189.99 1895H1164.76L1128.72 1796.85L1092.9 1895H1067.67ZM1266.02 1895V1862.57H1298.46V1895H1266.02ZM1368.07 1895V1775.45H1308.29V1742.38H1460.91V1775.45H1401.14V1895H1368.07ZM1477.19 1895V1773.75C1477.19 1767.96 1478.6 1762.73 1481.43 1758.06C1484.26 1753.26 1488.07 1749.44 1492.88 1746.62C1497.68 1743.79 1502.91 1742.38 1508.56 1742.38H1598.23C1604.02 1742.38 1609.25 1743.79 1613.92 1746.62C1618.72 1749.44 1622.54 1753.26 1625.36 1758.06C1628.33 1762.73 1629.81 1767.96 1629.81 1773.75V1895H1596.53V1845.82H1510.05V1895H1477.19ZM1510.05 1812.75H1596.53V1775.45H1510.05V1812.75ZM1653.97 1895V1742.59H1775.01C1780.8 1742.59 1786.03 1744 1790.69 1746.83C1795.5 1749.65 1799.31 1753.47 1802.14 1758.28C1805.11 1763.08 1806.59 1768.31 1806.59 1773.96V1813.39C1806.59 1819.04 1805.11 1824.27 1802.14 1829.08C1799.31 1833.88 1795.5 1837.7 1790.69 1840.52C1786.03 1843.35 1780.8 1844.76 1775.01 1844.76L1686.82 1844.97V1895H1653.97ZM1686.82 1811.69H1773.31V1775.45H1686.82V1811.69ZM1822.07 1895V1742.38H1963.03V1775.45H1855.35V1802.15H1942.05V1835.22H1855.35V1861.93H1963.03V1895H1822.07ZM2014.89 1895C2009.23 1895 2004 1893.59 1999.2 1890.76C1994.4 1887.93 1990.58 1884.12 1987.75 1879.31C1984.93 1874.51 1983.51 1869.28 1983.51 1863.63V1849.43H2016.37V1861.93H2102.86V1835.22H2014.89C2009.23 1835.22 2004 1833.81 1999.2 1830.98C1994.4 1828.16 1990.58 1824.41 1987.75 1819.75C1984.93 1814.94 1983.51 1809.64 1983.51 1803.85V1773.75C1983.51 1767.96 1984.93 1762.73 1987.75 1758.06C1990.58 1753.26 1994.4 1749.44 1999.2 1746.62C2004 1743.79 2009.23 1742.38 2014.89 1742.38H2104.76C2110.42 1742.38 2115.57 1743.79 2120.24 1746.62C2125.04 1749.44 2128.86 1753.26 2131.69 1758.06C2134.65 1762.73 2136.14 1767.96 2136.14 1773.75V1787.95H2102.86V1775.45H2016.37V1802.15H2104.76C2110.42 1802.15 2115.57 1803.57 2120.24 1806.39C2125.04 1809.22 2128.86 1813.04 2131.69 1817.84C2134.65 1822.5 2136.14 1827.73 2136.14 1833.53V1863.63C2136.14 1869.28 2134.65 1874.51 2131.69 1879.31C2128.86 1884.12 2125.04 1887.93 2120.24 1890.76C2115.57 1893.59 2110.42 1895 2104.76 1895H2014.89ZM2159.48 1895V1742.59H2280.52C2286.31 1742.59 2291.54 1744 2296.21 1746.83C2301.01 1749.65 2304.83 1753.47 2307.65 1758.28C2310.62 1763.08 2312.1 1768.31 2312.1 1773.96V1813.39C2312.1 1819.04 2310.62 1824.27 2307.65 1829.08C2304.83 1833.88 2301.01 1837.7 2296.21 1840.52C2291.54 1843.35 2286.31 1844.76 2280.52 1844.76L2192.34 1844.97V1895H2159.48ZM2192.34 1811.69H2278.82V1775.45H2192.34V1811.69ZM2358.11 1895C2352.45 1895 2347.22 1893.59 2342.42 1890.76C2337.61 1887.93 2333.8 1884.12 2330.97 1879.31C2328.15 1874.51 2326.73 1869.28 2326.73 1863.63V1773.75C2326.73 1767.96 2328.15 1762.73 2330.97 1758.06C2333.8 1753.26 2337.61 1749.44 2342.42 1746.62C2347.22 1743.79 2352.45 1742.38 2358.11 1742.38H2447.98C2453.64 1742.38 2458.79 1743.79 2463.46 1746.62C2468.26 1749.44 2472.08 1753.26 2474.9 1758.06C2477.87 1762.73 2479.36 1767.96 2479.36 1773.75V1863.63C2479.36 1869.28 2477.87 1874.51 2474.9 1879.31C2472.08 1884.12 2468.26 1887.93 2463.46 1890.76C2458.79 1893.59 2453.64 1895 2447.98 1895H2358.11ZM2359.59 1861.93H2446.08V1775.45H2359.59V1861.93Z" fill="white"/>
-    </svg>
-    <div class="footer-product">AIRLEG</div>
-  </div>
+  <div><img src="LOGO  VETTORIALE BIANCO.svg" alt="Take Sport AIRLEG" style="height:32px;width:auto;opacity:0.7;"></div>
   <p class="footer-note">
     AIRLEG è un gambale a pressione graduale per il recupero sportivo e il benessere degli arti inferiori. Non è un dispositivo medico e non sostituisce il parere di un professionista della salute. Consultare il manuale per le controindicazioni.
   </p>
   <div class="footer-right">
-    <div>© 2025 Take Sport</div>
+    <div>© 2026 Take Sport</div>
     <div>Tutti i diritti riservati</div>
   </div>
 </footer>
@@ -982,6 +1040,39 @@
   startCountdown(dl, 'cd-');
   startCountdown(dl, 'cd2-');
 
+  // CAROUSEL
+  (function() {
+    var track = document.getElementById('carouselTrack');
+    var slides = track ? track.querySelectorAll('.carousel-slide') : [];
+    var total = slides.length / 2; // real slides (duped for loop feel)
+    var current = 0;
+    var dotsContainer = document.getElementById('carouselDots');
+    var slideWidth = function() { return slides[0] ? slides[0].offsetWidth + 16 : 0; };
+    // Build dots
+    for (var i = 0; i < total; i++) {
+      var d = document.createElement('div');
+      d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      d.dataset.i = i;
+      d.addEventListener('click', function() { goTo(parseInt(this.dataset.i)); });
+      dotsContainer.appendChild(d);
+    }
+    function goTo(n) {
+      current = (n + total) % total;
+      track.style.transform = 'translateX(-' + (current * slideWidth()) + 'px)';
+      document.querySelectorAll('.carousel-dot').forEach(function(d, i) {
+        d.classList.toggle('active', i === current);
+      });
+    }
+    document.getElementById('carouselNext') && document.getElementById('carouselNext').addEventListener('click', function() { goTo(current + 1); });
+    document.getElementById('carouselPrev') && document.getElementById('carouselPrev').addEventListener('click', function() { goTo(current - 1); });
+    // Drag/swipe
+    var startX = 0, isDragging = false;
+    track.addEventListener('mousedown', function(e) { startX = e.clientX; isDragging = true; });
+    window.addEventListener('mouseup', function(e) { if (!isDragging) return; isDragging = false; var dx = e.clientX - startX; if (Math.abs(dx) > 50) goTo(dx < 0 ? current + 1 : current - 1); });
+    track.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, {passive:true});
+    track.addEventListener('touchend', function(e) { var dx = e.changedTouches[0].clientX - startX; if (Math.abs(dx) > 40) goTo(dx < 0 ? current + 1 : current - 1); });
+  })();
+
 
   function toggleFaq(btn) {
     const item = btn.parentElement;
@@ -1003,5 +1094,3 @@
 
 </body>
 </html>
-
-
