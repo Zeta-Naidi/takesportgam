@@ -173,13 +173,15 @@
     /* PRODUCT SHOWCASE */
     .showcase-section { background: var(--card-bg); padding-left: 0; padding-right: 0; padding-bottom: 0; }
     .showcase-section .section-eyebrow, .showcase-section .section-title { padding-left: 6%; }
-    .showcase-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 0 !important; }
+    .showcase-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 2px; margin-top: 0 !important; }
     .showcase-img {
       background: #0a0a12; overflow: hidden; position: relative;
       display: flex; align-items: center; justify-content: center;
       min-height: 200px; max-height: 380px;
     }
     .showcase-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
+    .showcase-img.tall { max-height: none; grid-row: span 2; align-self: stretch; height: 100%; }
+    .showcase-img.tall img { object-fit: contain; }
     .showcase-img:hover img { transform: scale(1.04); }
     .showcase-img .img-label {
       position: absolute; bottom: 0; left: 0; right: 0;
@@ -188,7 +190,6 @@
       font-family: 'Sora', sans-serif; font-size: 12px; font-weight: 600;
       letter-spacing: 2px; text-transform: uppercase; color: var(--blue-light);
     }
-    .showcase-img.tall { grid-row: span 2; }
 
     /* CAROUSEL */
     .carousel-section { background: var(--black); padding: 60px 0 70px; overflow: hidden; }
@@ -435,7 +436,8 @@
       .showcase-img.showcase-front { grid-column: 1; grid-row: 2; }
       .showcase-img.showcase-top { grid-column: 1 / -1; grid-row: 1; }
       .showcase-img.showcase-monitor { grid-column: 2; grid-row: 2; }
-      .showcase-img.tall { grid-row: span 1; }
+      .showcase-img.tall { grid-row: span 1; max-height: 380px; }
+      .showcase-img.tall img { object-fit: cover; }
     }
     @media (max-width: 600px) {
       section { padding: 70px 5%; }
@@ -998,11 +1000,16 @@
       <div class="cta-deadline">Offerta valida per il mese di <strong style="font-size:1.15em; color:var(--blue-light);">Luglio</strong>.<br>Consegna a partire da agosto.</div>
       <a href="https://tapesportivo.it/" target="_blank" class="btn-primary" style="display:block; text-align:center; font-size:16px; padding:18px 40px;">Preordina ORA</a>
       <div id="form-email" style="margin-top:24px; padding-top:20px; border-top:1px solid rgba(0,180,216,0.15);">
-        <p style="font-family:'Sora',sans-serif; font-size:11px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--blue-light); text-align:center; margin-bottom:14px;">Inserisci la tua email per ricevere aggiornamenti</p>
-        <div style="position:relative; overflow:hidden; border-radius:4px; border:1px solid rgba(0,180,216,0.2);">
-          <div style="position:absolute; top:0; left:0; right:0; height:220px; background:var(--blue-deep); z-index:2; pointer-events:none;"></div>
-          <iframe width="540" height="430" src="https://4201266e.sibforms.com/v2/serve/MUIFAIDxPDXPiwoVJdSM5ikQmi2-qpgkVB2wqzfQakg_85MFmUT_-I8LFqYVro72VsM4nTmD5-vsD3S60QdlBGyDWVsJg3pbZR1dtekmD41r8aFWe7jRV4Gnu-bOWlquCw-vyBxhurRYap9rPktApXBepOtIdiAJxwQxAKKt2k_QN8ZvnJlcWaefL-9fJsQWGMRh_YRNLrIyoY1-" frameborder="0" scrolling="no" allowfullscreen style="display:block; margin-top:-220px; margin-left:auto; margin-right:auto; max-width:100%; border:none; background:transparent;"></iframe>
-        </div>
+        <p style="font-family:'Sora',sans-serif; font-size:11px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--blue-light); text-align:center; margin-bottom:16px;">Ricevi aggiornamenti sul lancio</p>
+        <form id="brevo-form" style="display:flex; flex-direction:column; gap:10px;">
+          <input type="email" id="brevo-email" placeholder="La tua email" required
+            style="background:#0a0a12; border:1px solid rgba(0,180,216,0.35); color:var(--white); font-family:'Inter',sans-serif; font-size:14px; padding:13px 16px; outline:none; width:100%; box-sizing:border-box;" />
+          <button type="submit"
+            style="background:transparent; border:1px solid var(--blue-light); color:var(--blue-light); font-family:'Sora',sans-serif; font-weight:700; font-size:13px; letter-spacing:2px; text-transform:uppercase; padding:13px 24px; cursor:pointer; transition:background 0.2s;">
+            Entra nella lista →
+          </button>
+          <div id="brevo-msg" style="font-size:12px; text-align:center; min-height:18px;"></div>
+        </form>
       </div>
       <p class="cta-include" style="margin-top:20px;">
         <strong>Incluso:</strong> gambali AIRLEG + zaino premium + cavo di ricarica + manuale d'uso.
@@ -1065,6 +1072,30 @@
   startCountdown(dl, 'cd-');
   startCountdown(dl, 'cd2-');
   startCountdown(dl, 'cd3-');
+
+  document.getElementById('brevo-form') && document.getElementById('brevo-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var email = document.getElementById('brevo-email').value;
+    var msg = document.getElementById('brevo-msg');
+    msg.style.color = 'var(--gray)';
+    msg.textContent = 'Invio in corso...';
+    fetch('https://api.brevo.com/v3/contacts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'api-key': 'YOUR_BREVO_API_KEY' },
+      body: JSON.stringify({ email: email, listIds: [2], updateEnabled: true })
+    }).then(function(r) {
+      if (r.ok || r.status === 204 || r.status === 201) {
+        msg.style.color = 'var(--blue-light)';
+        msg.textContent = '✓ Iscritto! Ti aggiorneremo sul lancio.';
+        document.getElementById('brevo-email').value = '';
+      } else {
+        return r.json().then(function(d) { throw d; });
+      }
+    }).catch(function() {
+      msg.style.color = '#ff6b6b';
+      msg.textContent = 'Errore. Riprova o scrivici su WhatsApp.';
+    });
+  });
 
   // CAROUSEL
   (function() {
