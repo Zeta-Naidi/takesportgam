@@ -173,15 +173,17 @@
     /* PRODUCT SHOWCASE */
     .showcase-section { background: var(--card-bg); padding-left: 0; padding-right: 0; padding-bottom: 0; }
     .showcase-section .section-eyebrow, .showcase-section .section-title { padding-left: 6%; }
-    .showcase-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 2px; margin-top: 0 !important; }
+    .showcase-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: 2px; margin-top: 0 !important; }
     .showcase-img {
       background: #0a0a12; overflow: hidden; position: relative;
       display: flex; align-items: center; justify-content: center;
-      min-height: 200px; max-height: 380px;
+      min-height: 340px; max-height: 420px;
     }
     .showcase-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
     .showcase-img.tall { max-height: none; grid-row: span 2; align-self: stretch; height: 100%; }
-    .showcase-img.tall img { object-fit: contain; }
+    .showcase-img.tall img { object-fit: cover; object-position: center top; }
+    .showcase-img.showcase-top img { object-fit: cover; object-position: center 40%; }
+    .showcase-img.showcase-monitor img { object-fit: cover; object-position: center center; }
     .showcase-img:hover img { transform: scale(1.04); }
     .showcase-img .img-label {
       position: absolute; bottom: 0; left: 0; right: 0;
@@ -194,9 +196,10 @@
     /* CAROUSEL */
     .carousel-section { background: var(--black); padding: 60px 0 70px; overflow: hidden; }
     .carousel-title { font-family: 'Sora', sans-serif; font-size: clamp(26px, 4vw, 40px); font-weight: 700; letter-spacing: -1px; text-align: center; margin-bottom: 32px; padding: 0 6%; }
-    .carousel-track-wrap { overflow: hidden; }
+    .carousel-track-wrap { overflow: hidden; cursor: grab; user-select: none; }
+    .carousel-track-wrap:active { cursor: grabbing; }
     .carousel-track { display: flex; width: max-content; animation: marquee 40s linear infinite; }
-    .carousel-track:hover { animation-play-state: paused; }
+    .carousel-track.is-dragging { animation: none; }
     .carousel-slide { flex: 0 0 auto; width: 220px; padding: 0 4px; box-sizing: border-box; }
     .carousel-slide img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; }
     .carousel-controls { display: none; }
@@ -436,8 +439,8 @@
       .showcase-img.showcase-front { grid-column: 1; grid-row: 2; }
       .showcase-img.showcase-top { grid-column: 1 / -1; grid-row: 1; }
       .showcase-img.showcase-monitor { grid-column: 2; grid-row: 2; }
-      .showcase-img.tall { grid-row: span 1; max-height: 380px; }
-      .showcase-img.tall img { object-fit: cover; }
+      .showcase-img.tall { grid-row: span 1; max-height: none; min-height: 300px; align-self: auto; height: auto; }
+      .showcase-img.tall img { object-fit: cover; object-position: center top; }
     }
     @media (max-width: 600px) {
       section { padding: 70px 5%; }
@@ -449,6 +452,9 @@
       .cta-box { padding: 32px 22px; }
       .cta-price-big { font-size: 52px; }
       nav { padding: 16px 5%; }
+      .showcase-grid { gap: 6px; }
+      .showcase-img { min-height: 200px; max-height: 260px; }
+      .showcase-img.tall { min-height: 220px; }
     }
 
     /* FAQ */
@@ -639,7 +645,7 @@
 
 <!-- IMAGE CAROUSEL -->
 <section class="carousel-section">
-  <h2 class="carousel-title">Professionals who trust us</h2>
+  <h2 class="carousel-title">Gli atleti che hanno scelto Take Sport</h2>
   <div class="carousel-track-wrap">
     <div class="carousel-track" id="carouselTrack"></div>
   </div>
@@ -1000,9 +1006,11 @@
       <div class="cta-deadline">Offerta valida per il mese di <strong style="font-size:1.15em; color:var(--blue-light);">Luglio</strong>.<br>Consegna a partire da agosto.</div>
       <a href="https://tapesportivo.it/" target="_blank" class="btn-primary" style="display:block; text-align:center; font-size:16px; padding:18px 40px;">Preordina ORA</a>
       <div id="form-email" style="margin-top:24px; padding-top:20px; border-top:1px solid rgba(0,180,216,0.15);">
-        <p style="font-family:'Sora',sans-serif; font-size:11px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--blue-light); text-align:center; margin-bottom:16px;">Ricevi aggiornamenti sul lancio</p>
+        <p style="font-family:'Sora',sans-serif; font-size:clamp(22px,3.5vw,30px); font-weight:800; color:var(--white); margin-bottom:10px; line-height:1.2;">Scopri <strong>AIRLEG Take Sport</strong><br>prima di tutti.</p>
+        <p style="font-size:13px; color:var(--gray); margin-bottom:18px; line-height:1.5;">Nessuno spam. Solo aggiornamenti su <strong style="color:var(--white);">AIRLEG Take Sport</strong>.<br>Potrai cancellarti in qualsiasi momento.</p>
         <form id="brevo-form" style="display:flex; flex-direction:column; gap:10px;">
-          <input type="email" id="brevo-email" placeholder="La tua email" required
+          <label style="font-family:'Sora',sans-serif; font-size:13px; font-weight:700; color:var(--white);">Inserisci il tuo indirizzo email per iscriverti</label>
+          <input type="email" id="brevo-email" placeholder="EMAIL" required
             style="background:#0a0a12; border:1px solid rgba(0,180,216,0.35); color:var(--white); font-family:'Inter',sans-serif; font-size:14px; padding:13px 16px; outline:none; width:100%; box-sizing:border-box;" />
           <button type="submit"
             style="background:transparent; border:1px solid var(--blue-light); color:var(--blue-light); font-family:'Sora',sans-serif; font-weight:700; font-size:13px; letter-spacing:2px; text-transform:uppercase; padding:13px 24px; cursor:pointer; transition:background 0.2s;">
@@ -1027,7 +1035,7 @@
     </div>
   </div>
   <p style="margin-top:24px; font-size:13px; color:var(--gray); max-width:480px; margin-left:auto; margin-right:auto; text-align:center;">
-    Dubbi sul prodotto? <a href="https://wa.me/393XXXXXXXXX" target="_blank" style="color:var(--blue-light); text-decoration:none; font-weight:600;">Scrivici su WhatsApp</a> — rispondiamo entro poche ore.
+    Dubbi sul prodotto? <a href="https://wa.me/393717944845" target="_blank" style="color:var(--blue-light); text-decoration:none; font-weight:600;">Scrivici su WhatsApp</a> — rispondiamo entro poche ore.
   </p>
 </section>
 
@@ -1103,10 +1111,11 @@
     var carouselImages = ['carosello1.jpeg', 'carosello2.jpg', 'carosello3.jpg'];
     var track = document.getElementById('carouselTrack');
     if (!track) return;
+    var wrap = track.parentElement;
     // Build one set of slides
     var set = '';
     carouselImages.forEach(function(src, i) {
-      set += '<div class="carousel-slide"><img src="' + src + '" alt="Professionista ' + (i + 1) + '" /></div>';
+      set += '<div class="carousel-slide"><img src="' + src + '" alt="Professionista ' + (i + 1) + '" draggable="false" /></div>';
     });
     // Duplicate the set enough times to cover the viewport for a seamless loop
     track.innerHTML = set;
@@ -1116,6 +1125,59 @@
     // Ensure we have an even number of full sets so the -50% loop aligns perfectly
     var sets = Math.ceil(track.innerHTML.split('carousel-slide').length / carouselImages.length);
     if (sets % 2 !== 0) track.innerHTML += set;
+
+    // Drag-to-scroll
+    var isDragging = false;
+    var startX = 0;
+    var dragOriginX = 0; // track translateX at the moment drag starts
+    var lastX = 0;       // last known translateX during drag
+
+    function getTranslateX(el) {
+      var mat = window.getComputedStyle(el).transform;
+      if (!mat || mat === 'none') return 0;
+      var m = mat.match(/matrix.*\((.+)\)/);
+      return m ? parseFloat(m[1].split(', ')[4]) : 0;
+    }
+
+    function onDragStart(clientX) {
+      // Capture current animation position BEFORE adding is-dragging (which sets animation:none)
+      dragOriginX = getTranslateX(track);
+      isDragging = true;
+      startX = clientX;
+      lastX = dragOriginX;
+      track.classList.add('is-dragging');
+      track.style.transform = 'translateX(' + dragOriginX + 'px)';
+    }
+
+    function onDragMove(clientX) {
+      if (!isDragging) return;
+      var delta = clientX - startX;
+      lastX = dragOriginX + delta;
+      track.style.transform = 'translateX(' + lastX + 'px)';
+    }
+
+    function onDragEnd() {
+      if (!isDragging) return;
+      isDragging = false;
+      track.classList.remove('is-dragging');
+      // Resume animation from the pixel position where user let go
+      var halfWidth = track.scrollWidth / 2;
+      var norm = ((lastX % halfWidth) + halfWidth) % halfWidth - halfWidth; // keep in [-halfWidth, 0]
+      var speed = halfWidth / 40; // px/s
+      var delay = norm / speed;   // negative = already elapsed
+      track.style.transform = '';
+      track.style.animationDelay = delay + 's';
+    }
+
+    // Mouse events
+    wrap.addEventListener('mousedown', function(e) { e.preventDefault(); onDragStart(e.clientX); });
+    window.addEventListener('mousemove', function(e) { if (isDragging) onDragMove(e.clientX); });
+    window.addEventListener('mouseup', function() { onDragEnd(); });
+
+    // Touch events
+    wrap.addEventListener('touchstart', function(e) { onDragStart(e.touches[0].clientX); }, { passive: true });
+    wrap.addEventListener('touchmove', function(e) { if (isDragging) onDragMove(e.touches[0].clientX); }, { passive: true });
+    wrap.addEventListener('touchend', function() { onDragEnd(); });
   })();
 
 
