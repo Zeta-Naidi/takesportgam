@@ -1104,7 +1104,7 @@
     msg.textContent = 'Invio in corso...';
     fetch('https://api.brevo.com/v3/contacts', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'api-key': 'YOUR_BREVO_API_KEY' },
+      headers: { 'Content-Type': 'application/json', 'api-key': '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' },
       body: JSON.stringify({ email: email, listIds: [2], updateEnabled: true })
     }).then(function(r) {
       if (r.ok || r.status === 204 || r.status === 201) {
