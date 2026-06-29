@@ -1117,8 +1117,8 @@
       }
     }).catch(function() {
       msg.style.color = '#ff6b6b';
-      msg.textContent = 'Errore. Riprova o scrivici su WhatsApp.';
-    });
+  msg.textContent = 'Errore: ' + (err && err.message ? err.message : JSON.stringify(err));
+});
   });
 
   // CAROUSEL
