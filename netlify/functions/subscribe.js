@@ -25,11 +25,15 @@ exports.handler = async (event) => {
         'Content-Length': Buffer.byteLength(payload)
       }
     }, (res) => {
-      const ok = res.statusCode === 200 || res.statusCode === 201 || res.statusCode === 204;
-      resolve({
-        statusCode: ok ? 200 : 400,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ success: ok, status: res.statusCode })
+      let body = '';
+      res.on('data', (chunk) => { body += chunk; });
+      res.on('end', () => {
+        const ok = res.statusCode === 200 || res.statusCode === 201 || res.statusCode === 204;
+        resolve({
+          statusCode: ok ? 200 : 400,
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ success: ok, status: res.statusCode, brevo: body })
+        });
       });
     });
 
