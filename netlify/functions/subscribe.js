@@ -1,3 +1,5 @@
+const https = require('https');
+
 exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method Not Allowed' };
@@ -10,30 +12,32 @@ exports.handler = async (event) => {
     return { statusCode: 400, body: JSON.stringify({ error: 'Invalid body' }) };
   }
 
-  if (!email) {
-    return { statusCode: 400, body: JSON.stringify({ error: 'Email required' }) };
-  }
+  const payload = JSON.stringify({ email, listIds: [2], updateEnabled: true });
 
-  try {
-    const res = await fetch('https://api.brevo.com/v3/contacts', {
+  return new Promise((resolve) => {
+    const req = https.request({
+      hostname: 'api.brevo.com',
+      path: '/v3/contacts',
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'api-key': process.env.BREVO_API_KEY
-      },
-      body: JSON.stringify({ email, listIds: [2], updateEnabled: true })
+        'api-key': process.env.BREVO_API_KEY,
+        'Content-Length': Buffer.byteLength(payload)
+      }
+    }, (res) => {
+      const ok = res.statusCode === 200 || res.statusCode === 201 || res.statusCode === 204;
+      resolve({
+        statusCode: ok ? 200 : 400,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ success: ok, status: res.statusCode })
+      });
     });
 
-    const ok = res.ok || res.status === 201 || res.status === 204;
-    return {
-      statusCode: ok ? 200 : 400,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ success: ok })
-    };
-  } catch (err) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ success: false, error: err.message })
-    };
-  }
+    req.on('error', (e) => {
+      resolve({ statusCode: 500, body: JSON.stringify({ error: e.message }) });
+    });
+
+    req.write(payload);
+    req.end();
+  });
 };
