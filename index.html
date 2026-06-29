@@ -1103,22 +1103,19 @@
     msg.style.color = 'var(--gray)';
     msg.textContent = 'Invio in corso...';
     fetch('/.netlify/functions/subscribe', {
-       method: 'POST',
-       headers: { 'Content-Type': 'application/json' },
-       body: JSON.stringify({ email: email })
-     })
-     .then(function(r) {
-      if (r.ok || r.status === 204 || r.status === 201) {
-        msg.style.color = 'var(--blue-light)';
-        msg.textContent = '✓ Iscritto! Ti aggiorneremo sul lancio.';
-        document.getElementById('brevo-email').value = '';
-      } else {
-        return r.json().then(function(d) { throw d; });
-      }
-    }).catch(function() {
-      msg.style.color = '#ff6b6b';
-  msg.textContent = 'Errore: ' + (err && err.message ? err.message : JSON.stringify(err));
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ email: email })
+}).then(function(r) {
+  return r.json().then(function(data) {
+    msg.style.color = '#ff6b6b';
+    msg.textContent = 'Status: ' + r.status + ' — ' + JSON.stringify(data);
+  });
+}).catch(function(err) {
+  msg.style.color = '#ff6b6b';
+  msg.textContent = 'Catch: ' + err.message;
 });
+
   });
 
   // CAROUSEL
