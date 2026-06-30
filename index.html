@@ -1102,18 +1102,24 @@
     var msg = document.getElementById('brevo-msg');
     msg.style.color = 'var(--gray)';
     msg.textContent = 'Invio in corso...';
-    fetch('/.netlify/functions/subscribe', {
+fetch('/.netlify/functions/subscribe', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({ email: email })
 }).then(function(r) {
   return r.json().then(function(data) {
-    msg.style.color = '#ff6b6b';
-    msg.textContent = 'Status: ' + r.status + ' — ' + JSON.stringify(data);
+    if (data.success) {
+      msg.style.color = 'var(--blue-light)';
+      msg.textContent = '✓ Iscritto! Ti aggiorneremo sul lancio.';
+      document.getElementById('brevo-email').value = '';
+    } else {
+      msg.style.color = '#ff6b6b';
+      msg.textContent = 'Errore. Riprova o scrivici su WhatsApp.';
+    }
   });
-}).catch(function(err) {
+}).catch(function() {
   msg.style.color = '#ff6b6b';
-  msg.textContent = 'Catch: ' + err.message;
+  msg.textContent = 'Errore. Riprova o scrivici su WhatsApp.';
 });
 
   });
