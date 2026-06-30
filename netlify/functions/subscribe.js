@@ -12,7 +12,7 @@ exports.handler = async (event) => {
     return { statusCode: 400, body: JSON.stringify({ error: 'Invalid body' }) };
   }
 
-  const payload = JSON.stringify({ email, listIds: [2], updateEnabled: true });
+  const payload = JSON.stringify({ email, listIds: [28], updateEnabled: true });
 
   return new Promise((resolve) => {
     const req = https.request({
