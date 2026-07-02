@@ -198,16 +198,11 @@
     .carousel-title { font-family: 'Sora', sans-serif; font-size: clamp(26px, 4vw, 40px); font-weight: 700; letter-spacing: -1px; text-align: center; margin-bottom: 32px; padding: 0 6%; }
     .carousel-track-wrap { overflow: hidden; cursor: grab; user-select: none; }
     .carousel-track-wrap:active { cursor: grabbing; }
-    .carousel-track { display: flex; width: max-content; animation: marquee 40s linear infinite; }
-    .carousel-track.is-dragging { animation: none; }
+    .carousel-track { display: flex; width: max-content; will-change: transform; }
     .carousel-slide { flex: 0 0 auto; width: 220px; padding: 0 4px; box-sizing: border-box; }
     .carousel-slide img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; }
     .carousel-controls { display: none; }
     .carousel-btn { display: none; }
-    @keyframes marquee {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
     @media (max-width: 960px) { .carousel-slide { width: 180px; } }
     @media (max-width: 600px) { .carousel-slide { width: 150px; } }
 
@@ -700,7 +695,7 @@
   <div class="section-eyebrow">Tecnologia</div>
   <h2 class="section-title">Progettato per<br>chi non si ferma</h2>
   <p class="section-lead">Ogni dettaglio di AIRLEG nasce dall'esigenza reale dello sportivo. Nessun compromesso tecnico.</p>
-   <div style="max-width:560px; margin:36px auto 48px; aspect-ratio:1/1; border:1px solid rgba(0,180,216,0.18); box-shadow:0 0 60px rgba(0,119,168,0.3); overflow:hidden;">
+  <div style="max-width:560px; margin:36px auto 48px; aspect-ratio:1/1; border:1px solid rgba(0,180,216,0.18); box-shadow:0 0 60px rgba(0,119,168,0.3); overflow:hidden;">
     <video autoplay muted loop playsinline preload="metadata" poster="img_product_front.jpeg" style="width:100%; height:100%; display:block; object-fit:cover;">
       <source src="feedback.mp4" type="video/mp4" />
     </video>
@@ -1143,79 +1138,88 @@ fetch('/.netlify/functions/subscribe', {
 
   });
 
-  // CAROUSEL
+  // CAROUSEL — motore a requestAnimationFrame: loop infinito fluido, nessuno scatto al rilascio del drag
   (function() {
     // Aggiungi qui le nuove foto caroselloXXXX.jpeg per farle apparire nel carosello
     var carouselImages = ['carosello1.jpeg', 'carosello11.jpg', 'carosello2.jpg', 'carosello7.jpg', 'carosello8.jpg', 'carosello3.jpg', 'carosello4.jpg', 'carosello9.jpg', 'carosello5.jpg', 'carosello10.jpg', 'carosello6.jpg'];
     var track = document.getElementById('carouselTrack');
     if (!track) return;
     var wrap = track.parentElement;
-    // Build one set of slides
-    var set = '';
-    carouselImages.forEach(function(src, i) {
-      set += '<div class="carousel-slide"><img src="' + src + '" alt="Professionista ' + (i + 1) + '" draggable="false" /></div>';
+
+    var oneSet = carouselImages.map(function(src, i) {
+      return '<div class="carousel-slide"><img src="' + src + '" alt="Professionista ' + (i + 1) + '" draggable="false" /></div>';
+    }).join('');
+
+    // Copie sufficienti a coprire ampiamente il viewport, così il loop è sempre pieno
+    var COPIES = 6;
+    track.innerHTML = oneSet.repeat(COPIES);
+
+    var setWidth = 0;
+    function measure() {
+      var w = track.scrollWidth / COPIES;
+      if (w > 0) setWidth = w;
+    }
+    measure();
+
+    var imgs = track.querySelectorAll('img');
+    imgs.forEach(function(img) {
+      if (!img.complete) img.addEventListener('load', measure, { once: true });
     });
-    // Duplicate the set enough times to cover the viewport for a seamless loop
-    track.innerHTML = set;
-    while (track.scrollWidth < window.innerWidth * 2) {
-      track.innerHTML += set;
-    }
-    // Ensure we have an even number of full sets so the -50% loop aligns perfectly
-    var sets = Math.ceil(track.innerHTML.split('carousel-slide').length / carouselImages.length);
-    if (sets % 2 !== 0) track.innerHTML += set;
+    window.addEventListener('resize', measure);
 
-    // Drag-to-scroll
+    var position = 0;
+    var speed = 90; // px al secondo — aumenta questo valore per uno scroll ancora più veloce
     var isDragging = false;
-    var startX = 0;
-    var dragOriginX = 0; // track translateX at the moment drag starts
-    var lastX = 0;       // last known translateX during drag
+    var dragStartX = 0;
+    var dragStartPos = 0;
+    var lastTs = null;
 
-    function getTranslateX(el) {
-      var mat = window.getComputedStyle(el).transform;
-      if (!mat || mat === 'none') return 0;
-      var m = mat.match(/matrix.*\((.+)\)/);
-      return m ? parseFloat(m[1].split(', ')[4]) : 0;
+    function normalize() {
+      if (setWidth <= 0) return;
+      while (position <= -setWidth) position += setWidth;
+      while (position > 0) position -= setWidth;
     }
+
+    function frame(ts) {
+      if (lastTs === null) lastTs = ts;
+      var dt = Math.min((ts - lastTs) / 1000, 0.05); // clamp per evitare salti dopo un tab in background
+      lastTs = ts;
+      if (!isDragging && setWidth > 0) {
+        position -= speed * dt;
+        normalize();
+      }
+      track.style.transform = 'translateX(' + position + 'px)';
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
 
     function onDragStart(clientX) {
-      // Capture current animation position BEFORE adding is-dragging (which sets animation:none)
-      dragOriginX = getTranslateX(track);
       isDragging = true;
-      startX = clientX;
-      lastX = dragOriginX;
-      track.classList.add('is-dragging');
-      track.style.transform = 'translateX(' + dragOriginX + 'px)';
+      dragStartX = clientX;
+      dragStartPos = position;
+      wrap.style.cursor = 'grabbing';
     }
-
     function onDragMove(clientX) {
       if (!isDragging) return;
-      var delta = clientX - startX;
-      lastX = dragOriginX + delta;
-      track.style.transform = 'translateX(' + lastX + 'px)';
+      position = dragStartPos + (clientX - dragStartX);
+      normalize();
     }
-
     function onDragEnd() {
       if (!isDragging) return;
       isDragging = false;
-      track.classList.remove('is-dragging');
-      // Resume animation from the pixel position where user let go
-      var halfWidth = track.scrollWidth / 2;
-      var norm = ((lastX % halfWidth) + halfWidth) % halfWidth - halfWidth; // keep in [-halfWidth, 0]
-      var speed = halfWidth / 40; // px/s
-      var delay = norm / speed;   // negative = already elapsed
-      track.style.transform = '';
-      track.style.animationDelay = delay + 's';
+      wrap.style.cursor = 'grab';
+      lastTs = null; // riparte pulito, senza salti dovuti a un dt enorme
     }
 
     // Mouse events
     wrap.addEventListener('mousedown', function(e) { e.preventDefault(); onDragStart(e.clientX); });
     window.addEventListener('mousemove', function(e) { if (isDragging) onDragMove(e.clientX); });
-    window.addEventListener('mouseup', function() { onDragEnd(); });
+    window.addEventListener('mouseup', onDragEnd);
 
     // Touch events
     wrap.addEventListener('touchstart', function(e) { onDragStart(e.touches[0].clientX); }, { passive: true });
     wrap.addEventListener('touchmove', function(e) { if (isDragging) onDragMove(e.touches[0].clientX); }, { passive: true });
-    wrap.addEventListener('touchend', function() { onDragEnd(); });
+    wrap.addEventListener('touchend', onDragEnd);
   })();
 
 
@@ -1236,6 +1240,9 @@ fetch('/.netlify/functions/subscribe', {
   }
 
 </script>
+
+</body>
+</html>
 
 </body>
 </html>
