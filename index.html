@@ -900,6 +900,150 @@
 </section>
 
 
+<!-- VIDEO REACTIONS -->
+<section class="reveal" style="background:var(--black); padding:60px 6%;">
+  <div class="section-eyebrow">Video</div>
+  <h2 class="section-title">AIRLEG funziona.<br>Lo dicono loro.</h2>
+  <p class="section-lead">Reazioni reali. Storie vere. Scopri cosa dicono chi ha già provato AIRLEG.</p>
+
+  <!-- Filtri -->
+  <div id="video-filters" style="display:flex; justify-content:center; gap:10px; margin:32px 0 40px; flex-wrap:wrap;">
+    <button onclick="filterVideos('all')" class="vf-btn vf-active" data-filter="all">Tutti</button>
+    <button onclick="filterVideos('reazione')" class="vf-btn" data-filter="reazione">Reazioni</button>
+    <button onclick="filterVideos('intervista')" class="vf-btn" data-filter="intervista">Interviste</button>
+  </div>
+
+  <!-- Griglia video -->
+  <div id="video-grid" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:12px; max-width:720px; margin:0 auto;">
+
+    <!-- Video 1 -->
+    <div class="vc-card" data-cat="reazione">
+      <div class="vc-thumb" onclick="openYT('OmW8svu2WMU',this)">
+        <img src="https://i.ytimg.com/vi/OmW8svu2WMU/hqdefault.jpg" alt="Gambe affaticate?" loading="lazy" />
+        <div class="vc-play">&#9654;</div>
+      </div>
+      <div class="vc-info">
+        <span class="vc-tag">Reazione</span>
+        <h4 class="vc-title">Gambe affaticate?</h4>
+        <p class="vc-desc">Scopri la prima reazione di un atleta che prova AIRLEG per la prima volta.</p>
+      </div>
+    </div>
+
+    <!-- Video 2 -->
+    <div class="vc-card" data-cat="reazione">
+      <div class="vc-thumb" onclick="openYT('4hP38b2sB-Q',this)">
+        <img src="https://i.ytimg.com/vi/4hP38b2sB-Q/hqdefault.jpg" alt="Sembra che le gambe volino" loading="lazy" />
+        <div class="vc-play">&#9654;</div>
+      </div>
+      <div class="vc-info">
+        <span class="vc-tag">Reazione</span>
+        <h4 class="vc-title">"Sembra che le gambe volino"</h4>
+        <p class="vc-desc">Una reazione spontanea dopo la prima sessione con AIRLEG.</p>
+      </div>
+    </div>
+
+    <!-- Video 3 -->
+    <div class="vc-card" data-cat="reazione">
+      <div class="vc-thumb" onclick="openYT('TafmBZ4DyeQ',this)">
+        <img src="https://i.ytimg.com/vi/TafmBZ4DyeQ/hqdefault.jpg" alt="È una sensazione gonfiante" loading="lazy" />
+        <div class="vc-play">&#9654;</div>
+      </div>
+      <div class="vc-info">
+        <span class="vc-tag">Reazione</span>
+        <h4 class="vc-title">"È una sensazione gonfiante"</h4>
+        <p class="vc-desc">La compressione progressiva raccontata da chi la sente per la prima volta.</p>
+      </div>
+    </div>
+
+    <!-- Video 4 -->
+    <div class="vc-card" data-cat="reazione">
+      <div class="vc-thumb" onclick="openYT('HZoAU5z_w54',this)">
+        <img src="https://i.ytimg.com/vi/HZoAU5z_w54/hqdefault.jpg" alt="Dopo ti senti leggerissimo" loading="lazy" />
+        <div class="vc-play">&#9654;</div>
+      </div>
+      <div class="vc-info">
+        <span class="vc-tag">Reazione</span>
+        <h4 class="vc-title">"Dopo ti senti leggerissimo"</h4>
+        <p class="vc-desc">La sensazione di leggerezza post-sessione raccontata in diretta.</p>
+      </div>
+    </div>
+
+    <!-- Video 5 -->
+    <div class="vc-card" data-cat="intervista">
+      <div class="vc-thumb" onclick="openYT('Sj73o9kLxZI',this)">
+        <img src="https://i.ytimg.com/vi/Sj73o9kLxZI/hqdefault.jpg" alt="Un nuovo modo di concepire il recupero" loading="lazy" />
+        <div class="vc-play">&#9654;</div>
+      </div>
+      <div class="vc-info">
+        <span class="vc-tag">Intervista</span>
+        <h4 class="vc-title">Un nuovo modo di concepire il recupero</h4>
+        <p class="vc-desc">Come AIRLEG sta cambiando l'approccio al recupero sportivo.</p>
+      </div>
+    </div>
+
+    <!-- Video 6 -->
+    <div class="vc-card" data-cat="intervista">
+      <div class="vc-thumb" onclick="openYT('0FRMEL5ApvA',this)">
+        <img src="https://i.ytimg.com/vi/0FRMEL5ApvA/hqdefault.jpg" alt="Come è nato AIRLEG" loading="lazy" />
+        <div class="vc-play">&#9654;</div>
+      </div>
+      <div class="vc-info">
+        <span class="vc-tag">Intervista</span>
+        <h4 class="vc-title">Come è nato AIRLEG</h4>
+        <p class="vc-desc">Fabio Bedin racconta la storia e la visione dietro AIRLEG Take Sport.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<style>
+  .vf-btn { background:transparent; border:1px solid rgba(0,180,216,0.4); color:var(--gray-light); font-family:'Sora',sans-serif; font-size:12px; font-weight:600; letter-spacing:2px; text-transform:uppercase; padding:9px 22px; cursor:pointer; transition:all 0.2s; }
+  .vf-btn:hover, .vf-btn.vf-active { background:var(--blue-light); border-color:var(--blue-light); color:#000; }
+  .vc-card { background:var(--card-bg); border:1px solid rgba(0,180,216,0.12); overflow:hidden; transition:transform 0.2s, border-color 0.2s; }
+  .vc-card:hover { transform:translateY(-4px); border-color:rgba(0,180,216,0.4); }
+  .vc-card[style*="display:none"] { display:none !important; }
+  .vc-thumb { position:relative; cursor:pointer; aspect-ratio:9/16; overflow:hidden; }
+  .vc-thumb img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s; }
+  .vc-thumb:hover img { transform:scale(1.04); }
+  .vc-play { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:28px; color:#fff; text-shadow:0 2px 16px rgba(0,0,0,0.7); background:rgba(0,0,0,0.25); transition:background 0.2s; }
+  .vc-thumb:hover .vc-play { background:rgba(0,180,216,0.3); }
+  .vc-thumb iframe { position:absolute; inset:0; width:100%; height:100%; border:none; }
+  .vc-info { padding:9px 11px; }
+  .vc-tag { display:inline-block; font-family:'Sora',sans-serif; font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#000; background:var(--blue-light); padding:2px 8px; margin-bottom:7px; }
+  .vc-title { font-family:'Sora',sans-serif; font-size:12px; font-weight:700; color:var(--white); margin-bottom:4px; line-height:1.3; }
+  .vc-desc { font-size:11px; color:var(--gray); line-height:1.4; }
+  @media(max-width:600px) {
+    #video-grid { grid-template-columns:repeat(3,1fr) !important; gap:8px !important; max-width:100% !important; }
+    .vc-info { padding:7px 8px; }
+    .vc-title { font-size:11px; }
+    .vc-desc { display:none; }
+    .vc-tag { font-size:8px; padding:2px 6px; margin-bottom:4px; }
+  }
+</style>
+
+<script>
+  function filterVideos(cat) {
+    document.querySelectorAll('.vf-btn').forEach(function(b){ b.classList.toggle('vf-active', b.dataset.filter===cat); });
+    document.querySelectorAll('.vc-card').forEach(function(c){ c.style.display=(cat==='all'||c.dataset.cat===cat)?'':'none'; });
+  }
+  function openYT(id, thumbEl) {
+    var iframe = document.createElement('iframe');
+    iframe.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0&playsinline=1';
+    iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
+    iframe.allowFullscreen = true;
+    iframe.style.position = 'absolute';
+    iframe.style.inset = '0';
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.border = 'none';
+    thumbEl.innerHTML = '';
+    thumbEl.appendChild(iframe);
+    thumbEl.style.cursor = 'default';
+    thumbEl.onclick = null;
+  }
+</script>
 
 
 <!-- FAQ -->
