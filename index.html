@@ -663,6 +663,130 @@
   </div>
 </section>
 
+<!-- VIDEO REACTIONS -->
+<section class="reveal" style="background:var(--black); padding:60px 6%;">
+  <div class="section-eyebrow">Video</div>
+  <h2 class="section-title">AIRLEG funziona.<br>Lo dicono loro.</h2>
+  <p class="section-lead">Reazioni reali. Storie vere. Scopri cosa dicono chi ha già provato AIRLEG.</p>
+
+  <!-- Filtri -->
+  <div id="video-filters" style="display:flex; justify-content:center; gap:10px; margin:32px 0 36px; flex-wrap:wrap;">
+    <button onclick="filterVideos('all')" class="vf-btn vf-active" data-filter="all">Tutto</button>
+    <button onclick="filterVideos('vantaggi')" class="vf-btn" data-filter="vantaggi">Vantaggi</button>
+    <button onclick="filterVideos('feedback')" class="vf-btn" data-filter="feedback">Feedback</button>
+    <button onclick="filterVideos('creazione')" class="vf-btn" data-filter="creazione">Creazione</button>
+  </div>
+
+  <!-- Griglia video — ordine: Vantaggi → Feedback → Creazione -->
+  <div id="video-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; max-width:780px; margin:0 auto;">
+
+    <!-- VANTAGGI 1 -->
+    <div class="vc-card" data-cat="vantaggi">
+      <div class="vc-thumb" onclick="openYT('OmW8svu2WMU',this)">
+        <img src="https://i.ytimg.com/vi/OmW8svu2WMU/hqdefault.jpg" alt="Gambe affaticate?" loading="lazy" />
+        <div class="vc-play">&#9654;</div>
+      </div>
+      <div class="vc-info">
+        <span class="vc-tag">Vantaggi</span>
+        <h4 class="vc-title">Gambe affaticate?</h4>
+        <p class="vc-desc">Scopri la prima reazione di un atleta che prova AIRLEG per la prima volta.</p>
+      </div>
+    </div>
+
+    <!-- VANTAGGI 2 -->
+    <div class="vc-card" data-cat="vantaggi">
+      <div class="vc-thumb" onclick="openYT('5FJXfsP-lbw',this)">
+        <img src="https://i.ytimg.com/vi/5FJXfsP-lbw/hqdefault.jpg" alt="I vantaggi di AIRLEG" loading="lazy" />
+        <div class="vc-play">&#9654;</div>
+      </div>
+      <div class="vc-info">
+        <span class="vc-tag">Vantaggi</span>
+        <h4 class="vc-title">I vantaggi di AIRLEG</h4>
+        <p class="vc-desc">Tutto quello che AIRLEG può fare per il tuo recupero sportivo.</p>
+      </div>
+    </div>
+
+    <!-- FEEDBACK 1 -->
+    <div class="vc-card" data-cat="feedback">
+      <div class="vc-thumb" onclick="openYT('4hP38b2sB-Q',this)">
+        <img src="https://i.ytimg.com/vi/4hP38b2sB-Q/hqdefault.jpg" alt="Sembra che le gambe volino" loading="lazy" />
+        <div class="vc-play">&#9654;</div>
+      </div>
+      <div class="vc-info">
+        <span class="vc-tag">Feedback</span>
+        <h4 class="vc-title">"Sembra che le gambe volino"</h4>
+        <p class="vc-desc">Una reazione spontanea dopo la prima sessione con AIRLEG.</p>
+      </div>
+    </div>
+
+    <!-- FEEDBACK 2 -->
+    <div class="vc-card" data-cat="feedback">
+      <div class="vc-thumb" onclick="openYT('TafmBZ4DyeQ',this)">
+        <img src="https://i.ytimg.com/vi/TafmBZ4DyeQ/hqdefault.jpg" alt="È una sensazione gonfiante" loading="lazy" />
+        <div class="vc-play">&#9654;</div>
+      </div>
+      <div class="vc-info">
+        <span class="vc-tag">Feedback</span>
+        <h4 class="vc-title">"È una sensazione gonfiante"</h4>
+        <p class="vc-desc">La compressione progressiva raccontata da chi la sente per la prima volta.</p>
+      </div>
+    </div>
+
+    <!-- FEEDBACK 3 -->
+    <div class="vc-card" data-cat="feedback">
+      <div class="vc-thumb" onclick="openYT('HZoAU5z_w54',this)">
+        <img src="https://i.ytimg.com/vi/HZoAU5z_w54/hqdefault.jpg" alt="Dopo ti senti leggerissimo" loading="lazy" />
+        <div class="vc-play">&#9654;</div>
+      </div>
+      <div class="vc-info">
+        <span class="vc-tag">Feedback</span>
+        <h4 class="vc-title">"Dopo ti senti leggerissimo"</h4>
+        <p class="vc-desc">La sensazione di leggerezza post-sessione raccontata in diretta.</p>
+      </div>
+    </div>
+
+    <!-- CREAZIONE 1 -->
+    <div class="vc-card" data-cat="creazione">
+      <div class="vc-thumb" onclick="openYT('0FRMEL5ApvA',this)">
+        <img src="https://i.ytimg.com/vi/0FRMEL5ApvA/hqdefault.jpg" alt="Come è nato AIRLEG" loading="lazy" />
+        <div class="vc-play">&#9654;</div>
+      </div>
+      <div class="vc-info">
+        <span class="vc-tag">Creazione</span>
+        <h4 class="vc-title">Come è nato AIRLEG</h4>
+        <p class="vc-desc">Fabio Bedin racconta la storia e la visione dietro AIRLEG Take Sport.</p>
+      </div>
+    </div>
+
+    <!-- CREAZIONE 2 -->
+    <div class="vc-card" data-cat="creazione">
+      <div class="vc-thumb" onclick="openYT('Sj73o9kLxZI',this)">
+        <img src="https://i.ytimg.com/vi/Sj73o9kLxZI/hqdefault.jpg" alt="Un nuovo modo di concepire il recupero" loading="lazy" />
+        <div class="vc-play">&#9654;</div>
+      </div>
+      <div class="vc-info">
+        <span class="vc-tag">Creazione</span>
+        <h4 class="vc-title">Un nuovo modo di concepire il recupero</h4>
+        <p class="vc-desc">Come AIRLEG sta cambiando l'approccio al recupero sportivo.</p>
+      </div>
+    </div>
+
+    <!-- CREAZIONE 3 -->
+    <div class="vc-card" data-cat="creazione">
+      <div class="vc-thumb" onclick="openYT('41_JZj-NAmc',this)">
+        <img src="https://i.ytimg.com/vi/41_JZj-NAmc/hqdefault.jpg" alt="AIRLEG Game Changer" loading="lazy" />
+        <div class="vc-play">&#9654;</div>
+      </div>
+      <div class="vc-info">
+        <span class="vc-tag">Creazione</span>
+        <h4 class="vc-title">AIRLEG Game Changer</h4>
+        <p class="vc-desc">Il prodotto che sta cambiando il recupero sportivo in Italia.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- DISPLAY & SPECS -->
 <section class="display-section reveal">
   <div class="display-inner">
@@ -896,104 +1020,6 @@
         <div><div class="author-name">Laura F.</div><div class="author-role">Chirurga ortopedica</div></div>
       </div>
     </div>
-  </div>
-</section>
-
-
-<!-- VIDEO REACTIONS -->
-<section class="reveal" style="background:var(--black); padding:60px 6%;">
-  <div class="section-eyebrow">Video</div>
-  <h2 class="section-title">AIRLEG funziona.<br>Lo dicono loro.</h2>
-  <p class="section-lead">Reazioni reali. Storie vere. Scopri cosa dicono chi ha già provato AIRLEG.</p>
-
-  <!-- Filtri -->
-  <div id="video-filters" style="display:flex; justify-content:center; gap:10px; margin:32px 0 36px; flex-wrap:nowrap;">
-    <button onclick="filterVideos('all')" class="vf-btn vf-active" data-filter="all">Tutti</button>
-    <button onclick="filterVideos('reazione')" class="vf-btn" data-filter="reazione">Reazioni</button>
-    <button onclick="filterVideos('intervista')" class="vf-btn" data-filter="intervista">Interviste</button>
-  </div>
-
-  <!-- Griglia video -->
-  <div id="video-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; max-width:780px; margin:0 auto;">
-
-    <!-- Video 1 -->
-    <div class="vc-card" data-cat="reazione">
-      <div class="vc-thumb" onclick="openYT('OmW8svu2WMU',this)">
-        <img src="https://i.ytimg.com/vi/OmW8svu2WMU/hqdefault.jpg" alt="Gambe affaticate?" loading="lazy" />
-        <div class="vc-play">&#9654;</div>
-      </div>
-      <div class="vc-info">
-        <span class="vc-tag">Reazione</span>
-        <h4 class="vc-title">Gambe affaticate?</h4>
-        <p class="vc-desc">Scopri la prima reazione di un atleta che prova AIRLEG per la prima volta.</p>
-      </div>
-    </div>
-
-    <!-- Video 2 -->
-    <div class="vc-card" data-cat="reazione">
-      <div class="vc-thumb" onclick="openYT('4hP38b2sB-Q',this)">
-        <img src="https://i.ytimg.com/vi/4hP38b2sB-Q/hqdefault.jpg" alt="Sembra che le gambe volino" loading="lazy" />
-        <div class="vc-play">&#9654;</div>
-      </div>
-      <div class="vc-info">
-        <span class="vc-tag">Reazione</span>
-        <h4 class="vc-title">"Sembra che le gambe volino"</h4>
-        <p class="vc-desc">Una reazione spontanea dopo la prima sessione con AIRLEG.</p>
-      </div>
-    </div>
-
-    <!-- Video 3 -->
-    <div class="vc-card" data-cat="reazione">
-      <div class="vc-thumb" onclick="openYT('TafmBZ4DyeQ',this)">
-        <img src="https://i.ytimg.com/vi/TafmBZ4DyeQ/hqdefault.jpg" alt="È una sensazione gonfiante" loading="lazy" />
-        <div class="vc-play">&#9654;</div>
-      </div>
-      <div class="vc-info">
-        <span class="vc-tag">Reazione</span>
-        <h4 class="vc-title">"È una sensazione gonfiante"</h4>
-        <p class="vc-desc">La compressione progressiva raccontata da chi la sente per la prima volta.</p>
-      </div>
-    </div>
-
-    <!-- Video 4 -->
-    <div class="vc-card" data-cat="reazione">
-      <div class="vc-thumb" onclick="openYT('HZoAU5z_w54',this)">
-        <img src="https://i.ytimg.com/vi/HZoAU5z_w54/hqdefault.jpg" alt="Dopo ti senti leggerissimo" loading="lazy" />
-        <div class="vc-play">&#9654;</div>
-      </div>
-      <div class="vc-info">
-        <span class="vc-tag">Reazione</span>
-        <h4 class="vc-title">"Dopo ti senti leggerissimo"</h4>
-        <p class="vc-desc">La sensazione di leggerezza post-sessione raccontata in diretta.</p>
-      </div>
-    </div>
-
-    <!-- Video 5 -->
-    <div class="vc-card" data-cat="intervista">
-      <div class="vc-thumb" onclick="openYT('Sj73o9kLxZI',this)">
-        <img src="https://i.ytimg.com/vi/Sj73o9kLxZI/hqdefault.jpg" alt="Un nuovo modo di concepire il recupero" loading="lazy" />
-        <div class="vc-play">&#9654;</div>
-      </div>
-      <div class="vc-info">
-        <span class="vc-tag">Intervista</span>
-        <h4 class="vc-title">Un nuovo modo di concepire il recupero</h4>
-        <p class="vc-desc">Come AIRLEG sta cambiando l'approccio al recupero sportivo.</p>
-      </div>
-    </div>
-
-    <!-- Video 6 -->
-    <div class="vc-card" data-cat="intervista">
-      <div class="vc-thumb" onclick="openYT('0FRMEL5ApvA',this)">
-        <img src="https://i.ytimg.com/vi/0FRMEL5ApvA/hqdefault.jpg" alt="Come è nato AIRLEG" loading="lazy" />
-        <div class="vc-play">&#9654;</div>
-      </div>
-      <div class="vc-info">
-        <span class="vc-tag">Intervista</span>
-        <h4 class="vc-title">Come è nato AIRLEG</h4>
-        <p class="vc-desc">Fabio Bedin racconta la storia e la visione dietro AIRLEG Take Sport.</p>
-      </div>
-    </div>
-
   </div>
 </section>
 
