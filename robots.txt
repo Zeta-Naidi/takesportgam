@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://airleg.takesport.it/sitemap.xml
