@@ -224,6 +224,78 @@
       .stat-item .desc { font-size: 9px; letter-spacing: 0; }
     }
 
+    /* RED URGENCY TIMER */
+    .red-timer-wrap {
+      background: linear-gradient(180deg, #1a0505 0%, #0d0a0f 100%);
+      border-top: 1px solid rgba(255, 50, 50, 0.35);
+      border-bottom: 1px solid rgba(255, 50, 50, 0.35);
+      padding: 26px 6% 28px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .red-timer-wrap::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 80%; height: 2px;
+      background: linear-gradient(90deg, transparent, #ff2a2a, transparent);
+      box-shadow: 0 0 40px rgba(255, 42, 42, 0.8);
+    }
+    .red-timer-label {
+      font-family: 'Sora', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #ff2a2a;
+      margin-bottom: 12px;
+      text-shadow: 0 0 18px rgba(255, 42, 42, 0.6);
+    }
+    .red-timer-grid {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: nowrap;
+    }
+    .red-timer-unit {
+      text-align: center;
+      min-width: 48px;
+    }
+    .red-timer-unit .num {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(28px, 4.5vw, 44px);
+      font-weight: 800;
+      color: #ff2a2a;
+      line-height: 1;
+      text-shadow: 0 0 24px rgba(255, 42, 42, 0.45);
+    }
+    .red-timer-unit .lbl {
+      font-size: 9px;
+      color: #ff9999;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+    .red-timer-sep {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(28px, 4.5vw, 44px);
+      font-weight: 800;
+      color: #ff2a2a;
+      line-height: 1;
+      margin-top: 2px;
+      text-shadow: 0 0 14px rgba(255, 42, 42, 0.5);
+    }
+    @media (max-width: 600px) {
+      .red-timer-wrap { padding: 18px 4% 20px; }
+      .red-timer-label { font-size: 10px; letter-spacing: 1.5px; margin-bottom: 10px; }
+      .red-timer-grid { gap: 5px; }
+      .red-timer-unit { min-width: 40px; }
+      .red-timer-unit .num, .red-timer-sep { font-size: 28px; }
+      .red-timer-unit .lbl { font-size: 8px; letter-spacing: 1px; }
+    }
+
     /* SECTIONS */
     section { padding: 100px 6%; }
     .section-eyebrow {
@@ -619,116 +691,19 @@
   <div class="stat-item"><span class="val">5</span><span class="desc">programmi preimpostati</span></div>
 </div>
 
-<!-- PRODUCT SHOWCASE -->
-<section class="showcase-section reveal">
-  <div class="section-eyebrow">Il prodotto</div>
-  <h2 class="section-title">Costruito per<br>chi esige di più</h2>
-  <div class="showcase-grid">
-    <div class="showcase-img tall showcase-front">
-      <img src="img_product_front.jpeg" alt="AIRLEG gambali vista frontale" />
-      <div class="img-label">Vista frontale — coppia gambali</div>
-    </div>
-    <div class="showcase-img showcase-top">
-      <img src="img_product_side.jpeg" alt="AIRLEG gambali vista prospettica" />
-      <div class="img-label">Design compatto — nessun apparecchio esterno</div>
-    </div>
-    <div class="showcase-img showcase-monitor">
-      <img src="img_product_monitor.jpeg" alt="AIRLEG display controller" />
-      <div class="img-label">Display LCD — 240 mmHg</div>
-    </div>
-  </div>
-</section>
-
-<!-- COMPARE -->
-<section id="features" class="reveal">
-  <div class="section-eyebrow">Il confronto</div>
-  <h2 class="section-title">AIRLEG vs<br>il resto del mercato</h2>
-  <p class="section-lead">
-    I gambali tradizionali si fermano a 150 mmHg di pressione, con un solo compressore e richiedono apparecchi esterni. 
-    <br><span style="color: rgb(0 180 216);font-weight: bold;">Gli AIRLEG Take Sport</span> rivoluzionano il settore del recupero sportivo.</p>
-  <div class="compare-grid">
-    <div class="compare-col airleg">
-      <div class="compare-col-label">AIRLEG — Take Sport</div>
-      <div class="compare-row"><span class="compare-key">Range pressione</span><span class="compare-val check">30 – 240 mmHg</span></div>
-      <div class="compare-row"><span class="compare-key">Livelli di pressione</span><span class="compare-val check">7 livelli</span></div>
-      <div class="compare-row"><span class="compare-key">Compressori integrati</span><span class="compare-val check">2 (doppia velocità)</span></div>
-      <div class="compare-row"><span class="compare-key">Cicli per sessione</span><span class="compare-val check">2× più cicli</span></div>
-      <div class="compare-row"><span class="compare-key">Cavi esterni</span><span class="compare-val check">✔ Zero cavi</span></div>
-      <div class="compare-row"><span class="compare-key">Apparecchio esterno</span><span class="compare-val check">✔ Non necessario</span></div>
-      <div class="compare-row"><span class="compare-key">Zone di compressione</span><span class="compare-val check">4 zone</span></div>
-      <div class="compare-row"><span class="compare-key">Programmi</span><span class="compare-val check">5 preimpostati</span></div>
-      <div class="compare-row"><span class="compare-key">Batteria</span><span class="compare-val check">1.5 – 2 ore autonomia</span></div>
-      <div class="compare-row"><span class="compare-key">Peso</span><span class="compare-val check">1.4 kg</span></div>
-      <div class="compare-row"><span class="compare-key">Zaino trasporto</span><span class="compare-val check">✔ Incluso in omaggio</span></div>
-    </div>
-    <div class="compare-col competitor">
-      <div class="compare-col-label">Competitor tipico</div>
-      <div class="compare-row"><span class="compare-key">Range pressione</span><span class="compare-val">70 – 150 mmHg</span></div>
-      <div class="compare-row"><span class="compare-key">Livelli di pressione</span><span class="compare-val">3 – 5 livelli</span></div>
-      <div class="compare-row"><span class="compare-key">Compressori integrati</span><span class="compare-val">1</span></div>
-      <div class="compare-row"><span class="compare-key">Cicli per sessione</span><span class="compare-val">Standard</span></div>
-      <div class="compare-row"><span class="compare-key">Cavi esterni</span><span class="compare-val cross">✖ Presenti</span></div>
-      <div class="compare-row"><span class="compare-key">Apparecchio esterno</span><span class="compare-val cross">✖ Richiesto</span></div>
-      <div class="compare-row"><span class="compare-key">Zone di compressione</span><span class="compare-val">2 – 4 zone</span></div>
-      <div class="compare-row"><span class="compare-key">Programmi</span><span class="compare-val">2 – 3</span></div>
-      <div class="compare-row"><span class="compare-key">Batteria</span><span class="compare-val">Limitata / assente</span></div>
-      <div class="compare-row"><span class="compare-key">Peso sistema</span><span class="compare-val"> > 3Kg</span></div>
-      <div class="compare-row"><span class="compare-key">Zaino trasporto</span><span class="compare-val cross">✖ Non incluso</span></div>
-    </div>
-  </div>
-  <table class="compare-table-mobile">
-    <thead>
-      <tr>
-        <th class="col-feature"></th>
-        <th class="col-airleg">AIRLEG<br>Take Sport</th>
-        <th class="col-comp">Competitor</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td class="col-feature">Pressione</td><td class="col-airleg" style="color:var(--blue-light)">30–240 mmHg</td><td class="col-comp">70–150 mmHg</td></tr>
-      <tr><td class="col-feature">Livelli</td><td class="col-airleg" style="color:var(--blue-light)">7</td><td class="col-comp">3–5</td></tr>
-      <tr><td class="col-feature">Compressori</td><td class="col-airleg" style="color:var(--blue-light)">2 doppi</td><td class="col-comp">1</td></tr>
-      <tr><td class="col-feature">Cavi esterni</td><td class="col-airleg" style="color:var(--blue-light)">✔ Zero</td><td class="col-comp" style="color:#555">✖ Sì</td></tr>
-      <tr><td class="col-feature">App. esterno</td><td class="col-airleg" style="color:var(--blue-light)">✔ No</td><td class="col-comp" style="color:#555">✖ Sì</td></tr>
-      <tr><td class="col-feature">Zone di compressione</td><td class="col-airleg" style="color:var(--blue-light)">4</td><td class="col-comp">2–4</td></tr>
-      <tr><td class="col-feature">Programmi</td><td class="col-airleg" style="color:var(--blue-light)">5</td><td class="col-comp">2–3</td></tr>
-      <tr><td class="col-feature">Batteria</td><td class="col-airleg" style="color:var(--blue-light)">1.5–2 ore</td><td class="col-comp">Limitata</td></tr>
-      <tr><td class="col-feature">Peso</td><td class="col-airleg" style="color:var(--blue-light)">1.4 kg</td><td class="col-comp">> 3Kg</td></tr>
-      <tr><td class="col-feature">Zaino</td><td class="col-airleg" style="color:var(--blue-light)">✔ Incluso</td><td class="col-comp" style="color:#555">✖ No</td></tr>
-    </tbody>
-  </table>
-</section>
-
-<!-- PROMO STRIP -->
-<div style="background:var(--card-bg); border-top:1px solid rgba(0,180,216,0.15); border-bottom:1px solid rgba(0,180,216,0.15); padding:32px 6%; display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:32px;">
-  <div style="text-align:center;">
-    <div style="font-family:'Sora',sans-serif; font-size:10px; font-weight:600; letter-spacing:4px; color:var(--blue-light); text-transform:uppercase; margin-bottom:8px;">Offerta termina tra</div>
-    <div style="display:flex; align-items:flex-start; gap:10px; justify-content:center;">
-      <div style="text-align:center;"><span id="cd2-days" style="font-family:'Sora',sans-serif; font-size:32px; font-weight:800; color:var(--white);">00</span><div style="font-size:9px; color:var(--gray); letter-spacing:2px; text-transform:uppercase; margin-top:3px;">giorni</div></div>
-      <span style="font-family:'Sora',sans-serif; font-size:32px; font-weight:800; color:var(--blue-light); margin-top:2px;">:</span>
-      <div style="text-align:center;"><span id="cd2-hours" style="font-family:'Sora',sans-serif; font-size:32px; font-weight:800; color:var(--white);">00</span><div style="font-size:9px; color:var(--gray); letter-spacing:2px; text-transform:uppercase; margin-top:3px;">ore</div></div>
-      <span style="font-family:'Sora',sans-serif; font-size:32px; font-weight:800; color:var(--blue-light); margin-top:2px;">:</span>
-      <div style="text-align:center;"><span id="cd2-mins" style="font-family:'Sora',sans-serif; font-size:32px; font-weight:800; color:var(--white);">00</span><div style="font-size:9px; color:var(--gray); letter-spacing:2px; text-transform:uppercase; margin-top:3px;">minuti</div></div>
-      <span style="font-family:'Sora',sans-serif; font-size:32px; font-weight:800; color:var(--blue-light); margin-top:2px;">:</span>
-      <div style="text-align:center;"><span id="cd2-secs" style="font-family:'Sora',sans-serif; font-size:32px; font-weight:800; color:var(--white);">00</span><div style="font-size:9px; color:var(--gray); letter-spacing:2px; text-transform:uppercase; margin-top:3px;">secondi</div></div>
-    </div>
-  </div>
-  <div style="text-align:center;">
-    <div style="font-size:13px; color:var(--gray); margin-bottom:14px;">Offerta valida solo per <strong style="color:var(--white); font-size:1.1em;">Luglio</strong> — poi €429</div>
-    <a href="https://tapesportivo.it/shop/bestseller/airleg-take-sport/" target="_blank" style="display:inline-block; background:var(--blue-light); color:#000; font-family:'Sora',sans-serif; font-weight:700; font-size:14px; letter-spacing:1px; padding:12px 32px; text-decoration:none;">Preordina a prezzo di lancio →</a>
-    <a href="https://wa.me/393717944845" target="_blank" class="btn-whatsapp">Chiedi all'esperto</a>
-    <div class="promo-note center"><span class="promo-l1">Preordina ora e riserva i tuoi gambali in anteprima.</span><span class="promo-l2">⚡ Promozione valida fino ad esaurimento scorte</span></div>
-    <a href="#form-email" style="display:inline-block; margin-top:10px; border:1px solid rgba(0,180,216,0.5); color:var(--blue-light); font-family:'Sora',sans-serif; font-weight:600; font-size:13px; letter-spacing:1px; padding:10px 24px; text-decoration:none;">Ricevi aggiornamenti →</a>
+<!-- RED URGENCY TIMER -->
+<div class="red-timer-wrap">
+  <div class="red-timer-label">L'OFFERTA TERMINA VENERDÌ</div>
+  <div class="red-timer-grid">
+    <div class="red-timer-unit"><span id="cd-top-days" class="num">00</span><div class="lbl">giorni</div></div>
+    <span class="red-timer-sep">:</span>
+    <div class="red-timer-unit"><span id="cd-top-hours" class="num">00</span><div class="lbl">ore</div></div>
+    <span class="red-timer-sep">:</span>
+    <div class="red-timer-unit"><span id="cd-top-mins" class="num">00</span><div class="lbl">minuti</div></div>
+    <span class="red-timer-sep">:</span>
+    <div class="red-timer-unit"><span id="cd-top-secs" class="num">00</span><div class="lbl">secondi</div></div>
   </div>
 </div>
-
-<!-- IMAGE CAROUSEL -->
-<section class="carousel-section">
-  <h2 class="carousel-title">Gli atleti che hanno scelto Take Sport</h2>
-  <div class="carousel-track-wrap">
-    <div class="carousel-track" id="carouselTrack"></div>
-  </div>
-</section>
 
 <!-- VIDEO REACTIONS -->
 <section class="reveal" style="background:var(--black); padding:60px 6%;">
@@ -851,6 +826,121 @@
       </div>
     </div>
 
+  </div>
+
+  <div style="text-align:center; margin-top:34px;">
+    <a href="/video" style="display:inline-block; border:1px solid var(--blue-light); color:var(--blue-light); font-family:'Sora',sans-serif; font-weight:700; font-size:13px; letter-spacing:2px; text-transform:uppercase; padding:13px 32px; text-decoration:none; transition:all 0.2s;" onmouseover="this.style.background='var(--blue-light)';this.style.color='#000';" onmouseout="this.style.background='transparent';this.style.color='var(--blue-light)';">Guarda tutti i video →</a>
+  </div>
+</section>
+
+<!-- PRODUCT SHOWCASE -->
+<section class="showcase-section reveal">
+  <div class="section-eyebrow">Il prodotto</div>
+  <h2 class="section-title">Costruito per<br>chi esige di più</h2>
+  <div class="showcase-grid">
+    <div class="showcase-img tall showcase-front">
+      <img src="img_product_front.jpeg" alt="AIRLEG gambali vista frontale" />
+      <div class="img-label">Vista frontale — coppia gambali</div>
+    </div>
+    <div class="showcase-img showcase-top">
+      <img src="img_product_side.jpeg" alt="AIRLEG gambali vista prospettica" />
+      <div class="img-label">Design compatto — nessun apparecchio esterno</div>
+    </div>
+    <div class="showcase-img showcase-monitor">
+      <img src="img_product_monitor.jpeg" alt="AIRLEG display controller" />
+      <div class="img-label">Display LCD — 240 mmHg</div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE -->
+<section id="features" class="reveal">
+  <div class="section-eyebrow">Il confronto</div>
+  <h2 class="section-title">AIRLEG vs<br>il resto del mercato</h2>
+  <p class="section-lead">
+    I gambali tradizionali si fermano a 150 mmHg di pressione, con un solo compressore e richiedono apparecchi esterni. 
+    <br><span style="color: rgb(0 180 216);font-weight: bold;">Gli AIRLEG Take Sport</span> rivoluzionano il settore del recupero sportivo.</p>
+  <div class="compare-grid">
+    <div class="compare-col airleg">
+      <div class="compare-col-label">AIRLEG — Take Sport</div>
+      <div class="compare-row"><span class="compare-key">Range pressione</span><span class="compare-val check">30 – 240 mmHg</span></div>
+      <div class="compare-row"><span class="compare-key">Livelli di pressione</span><span class="compare-val check">7 livelli</span></div>
+      <div class="compare-row"><span class="compare-key">Compressori integrati</span><span class="compare-val check">2 (doppia velocità)</span></div>
+      <div class="compare-row"><span class="compare-key">Cicli per sessione</span><span class="compare-val check">2× più cicli</span></div>
+      <div class="compare-row"><span class="compare-key">Cavi esterni</span><span class="compare-val check">✔ Zero cavi</span></div>
+      <div class="compare-row"><span class="compare-key">Apparecchio esterno</span><span class="compare-val check">✔ Non necessario</span></div>
+      <div class="compare-row"><span class="compare-key">Zone di compressione</span><span class="compare-val check">4 zone</span></div>
+      <div class="compare-row"><span class="compare-key">Programmi</span><span class="compare-val check">5 preimpostati</span></div>
+      <div class="compare-row"><span class="compare-key">Batteria</span><span class="compare-val check">1.5 – 2 ore autonomia</span></div>
+      <div class="compare-row"><span class="compare-key">Peso</span><span class="compare-val check">1.4 kg</span></div>
+      <div class="compare-row"><span class="compare-key">Zaino trasporto</span><span class="compare-val check">✔ Incluso in omaggio</span></div>
+    </div>
+    <div class="compare-col competitor">
+      <div class="compare-col-label">Competitor tipico</div>
+      <div class="compare-row"><span class="compare-key">Range pressione</span><span class="compare-val">70 – 150 mmHg</span></div>
+      <div class="compare-row"><span class="compare-key">Livelli di pressione</span><span class="compare-val">3 – 5 livelli</span></div>
+      <div class="compare-row"><span class="compare-key">Compressori integrati</span><span class="compare-val">1</span></div>
+      <div class="compare-row"><span class="compare-key">Cicli per sessione</span><span class="compare-val">Standard</span></div>
+      <div class="compare-row"><span class="compare-key">Cavi esterni</span><span class="compare-val cross">✖ Presenti</span></div>
+      <div class="compare-row"><span class="compare-key">Apparecchio esterno</span><span class="compare-val cross">✖ Richiesto</span></div>
+      <div class="compare-row"><span class="compare-key">Zone di compressione</span><span class="compare-val">2 – 4 zone</span></div>
+      <div class="compare-row"><span class="compare-key">Programmi</span><span class="compare-val">2 – 3</span></div>
+      <div class="compare-row"><span class="compare-key">Batteria</span><span class="compare-val">Limitata / assente</span></div>
+      <div class="compare-row"><span class="compare-key">Peso sistema</span><span class="compare-val"> > 3Kg</span></div>
+      <div class="compare-row"><span class="compare-key">Zaino trasporto</span><span class="compare-val cross">✖ Non incluso</span></div>
+    </div>
+  </div>
+  <table class="compare-table-mobile">
+    <thead>
+      <tr>
+        <th class="col-feature"></th>
+        <th class="col-airleg">AIRLEG<br>Take Sport</th>
+        <th class="col-comp">Competitor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="col-feature">Pressione</td><td class="col-airleg" style="color:var(--blue-light)">30–240 mmHg</td><td class="col-comp">70–150 mmHg</td></tr>
+      <tr><td class="col-feature">Livelli</td><td class="col-airleg" style="color:var(--blue-light)">7</td><td class="col-comp">3–5</td></tr>
+      <tr><td class="col-feature">Compressori</td><td class="col-airleg" style="color:var(--blue-light)">2 doppi</td><td class="col-comp">1</td></tr>
+      <tr><td class="col-feature">Cavi esterni</td><td class="col-airleg" style="color:var(--blue-light)">✔ Zero</td><td class="col-comp" style="color:#555">✖ Sì</td></tr>
+      <tr><td class="col-feature">App. esterno</td><td class="col-airleg" style="color:var(--blue-light)">✔ No</td><td class="col-comp" style="color:#555">✖ Sì</td></tr>
+      <tr><td class="col-feature">Zone di compressione</td><td class="col-airleg" style="color:var(--blue-light)">4</td><td class="col-comp">2–4</td></tr>
+      <tr><td class="col-feature">Programmi</td><td class="col-airleg" style="color:var(--blue-light)">5</td><td class="col-comp">2–3</td></tr>
+      <tr><td class="col-feature">Batteria</td><td class="col-airleg" style="color:var(--blue-light)">1.5–2 ore</td><td class="col-comp">Limitata</td></tr>
+      <tr><td class="col-feature">Peso</td><td class="col-airleg" style="color:var(--blue-light)">1.4 kg</td><td class="col-comp">> 3Kg</td></tr>
+      <tr><td class="col-feature">Zaino</td><td class="col-airleg" style="color:var(--blue-light)">✔ Incluso</td><td class="col-comp" style="color:#555">✖ No</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- PROMO STRIP -->
+<div style="background:var(--card-bg); border-top:1px solid rgba(0,180,216,0.15); border-bottom:1px solid rgba(0,180,216,0.15); padding:32px 6%; display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:32px;">
+  <div style="text-align:center;">
+    <div style="font-family:'Sora',sans-serif; font-size:10px; font-weight:600; letter-spacing:4px; color:var(--blue-light); text-transform:uppercase; margin-bottom:8px;">Offerta termina tra</div>
+    <div style="display:flex; align-items:flex-start; gap:10px; justify-content:center;">
+      <div style="text-align:center;"><span id="cd2-days" style="font-family:'Sora',sans-serif; font-size:32px; font-weight:800; color:var(--white);">00</span><div style="font-size:9px; color:var(--gray); letter-spacing:2px; text-transform:uppercase; margin-top:3px;">giorni</div></div>
+      <span style="font-family:'Sora',sans-serif; font-size:32px; font-weight:800; color:var(--blue-light); margin-top:2px;">:</span>
+      <div style="text-align:center;"><span id="cd2-hours" style="font-family:'Sora',sans-serif; font-size:32px; font-weight:800; color:var(--white);">00</span><div style="font-size:9px; color:var(--gray); letter-spacing:2px; text-transform:uppercase; margin-top:3px;">ore</div></div>
+      <span style="font-family:'Sora',sans-serif; font-size:32px; font-weight:800; color:var(--blue-light); margin-top:2px;">:</span>
+      <div style="text-align:center;"><span id="cd2-mins" style="font-family:'Sora',sans-serif; font-size:32px; font-weight:800; color:var(--white);">00</span><div style="font-size:9px; color:var(--gray); letter-spacing:2px; text-transform:uppercase; margin-top:3px;">minuti</div></div>
+      <span style="font-family:'Sora',sans-serif; font-size:32px; font-weight:800; color:var(--blue-light); margin-top:2px;">:</span>
+      <div style="text-align:center;"><span id="cd2-secs" style="font-family:'Sora',sans-serif; font-size:32px; font-weight:800; color:var(--white);">00</span><div style="font-size:9px; color:var(--gray); letter-spacing:2px; text-transform:uppercase; margin-top:3px;">secondi</div></div>
+    </div>
+  </div>
+  <div style="text-align:center;">
+    <div style="font-size:13px; color:var(--gray); margin-bottom:14px;">Offerta valida solo per <strong style="color:var(--white); font-size:1.1em;">Luglio</strong> — poi €429</div>
+    <a href="https://tapesportivo.it/shop/bestseller/airleg-take-sport/" target="_blank" style="display:inline-block; background:var(--blue-light); color:#000; font-family:'Sora',sans-serif; font-weight:700; font-size:14px; letter-spacing:1px; padding:12px 32px; text-decoration:none;">Preordina a prezzo di lancio →</a>
+    <a href="https://wa.me/393717944845" target="_blank" class="btn-whatsapp">Chiedi all'esperto</a>
+    <div class="promo-note center"><span class="promo-l1">Preordina ora e riserva i tuoi gambali in anteprima.</span><span class="promo-l2">⚡ Promozione valida fino ad esaurimento scorte</span></div>
+    <a href="#form-email" style="display:inline-block; margin-top:10px; border:1px solid rgba(0,180,216,0.5); color:var(--blue-light); font-family:'Sora',sans-serif; font-weight:600; font-size:13px; letter-spacing:1px; padding:10px 24px; text-decoration:none;">Ricevi aggiornamenti →</a>
+  </div>
+</div>
+
+<!-- IMAGE CAROUSEL -->
+<section class="carousel-section">
+  <h2 class="carousel-title">Gli atleti che hanno scelto Take Sport</h2>
+  <div class="carousel-track-wrap">
+    <div class="carousel-track" id="carouselTrack"></div>
   </div>
 </section>
 
@@ -1355,6 +1445,7 @@
   startCountdown(dl, 'cd-');
   startCountdown(dl, 'cd2-');
   startCountdown(dl, 'cd3-');
+  startCountdown(dl, 'cd-top-');
 
   document.getElementById('brevo-form') && document.getElementById('brevo-form').addEventListener('submit', function(e) {
     e.preventDefault();
