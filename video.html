@@ -110,7 +110,8 @@
       text-transform: uppercase; padding: 9px 22px; cursor: pointer; text-decoration: none;
       display: inline-block; transition: all 0.2s;
     }
-    .vf-btn:hover, .vf-btn.vf-active { background: var(--blue-light); border-color: var(--blue-light); color: #000; }
+    .vf-btn:hover { border-color: var(--blue-light); color: var(--blue-light); background: rgba(0,180,216,0.08); }
+    .vf-btn.vf-active { background: var(--blue-light); border-color: var(--blue-light); color: #000; }
 
     /* CATEGORY SECTIONS */
     .cat-section { padding: 56px 6% 20px; scroll-margin-top: 110px; }
@@ -161,6 +162,46 @@
     .vc-title { font-family: 'Sora', sans-serif; font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 6px; line-height: 1.3; }
     .vc-desc { font-size: 12px; color: var(--gray); line-height: 1.5; }
 
+    /* RED URGENCY TIMER */
+    .red-timer-wrap {
+      background: linear-gradient(180deg, #1a0505 0%, #0d0a0f 100%);
+      border-top: 1px solid rgba(255, 50, 50, 0.35);
+      border-bottom: 1px solid rgba(255, 50, 50, 0.35);
+      padding: 26px 6% 28px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .red-timer-wrap::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 80%; height: 2px;
+      background: linear-gradient(90deg, transparent, #ff2a2a, transparent);
+      box-shadow: 0 0 40px rgba(255, 42, 42, 0.8);
+    }
+    .red-timer-label {
+      font-family: 'Sora', sans-serif;
+      font-size: 12px; font-weight: 800; letter-spacing: 2.5px;
+      text-transform: uppercase; color: #ff2a2a; margin-bottom: 12px;
+      text-shadow: 0 0 18px rgba(255, 42, 42, 0.6);
+    }
+    .red-timer-grid { display: flex; align-items: flex-start; justify-content: center; gap: 8px; flex-wrap: nowrap; }
+    .red-timer-unit { text-align: center; min-width: 48px; }
+    .red-timer-unit .num {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(28px, 4.5vw, 44px); font-weight: 800; color: #ff2a2a; line-height: 1;
+      text-shadow: 0 0 24px rgba(255, 42, 42, 0.45);
+    }
+    .red-timer-unit .lbl {
+      font-size: 9px; color: #ff9999; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 6px;
+    }
+    .red-timer-sep {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(28px, 4.5vw, 44px); font-weight: 800; color: #ff2a2a; line-height: 1;
+      margin-top: 2px; text-shadow: 0 0 14px rgba(255, 42, 42, 0.5);
+    }
+
     /* CTA */
     .video-cta {
       background: var(--card-bg);
@@ -191,6 +232,11 @@
       clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%); transition: all 0.2s; margin-left: 12px;
     }
     .btn-whatsapp:hover { background: var(--blue-light); color: var(--black); transform: translateY(-2px); }
+    .promo-note {
+      display: flex; flex-direction: column; gap: 6px; align-items: center;
+      margin-top: 24px; font-size: 12px; color: var(--gray); line-height: 1.6;
+    }
+    .promo-note span:last-child { color: var(--blue-light); font-weight: 600; }
 
     /* FOOTER */
     footer {
@@ -234,6 +280,13 @@
       .vc-desc { font-size: 11px; }
       .vc-tag { font-size: 8px; padding: 2px 6px; margin-bottom: 6px; }
       .vc-play { font-size: 26px; }
+      .red-timer-wrap { padding: 18px 4% 20px; }
+      .red-timer-label { font-size: 10px; letter-spacing: 1.5px; margin-bottom: 10px; }
+      .red-timer-grid { gap: 5px; }
+      .red-timer-unit { min-width: 40px; }
+      .red-timer-unit .num, .red-timer-sep { font-size: 28px; }
+      .red-timer-unit .lbl { font-size: 8px; letter-spacing: 1px; }
+      .video-cta { padding: 48px 5%; }
       .btn-whatsapp { margin-left: 0; margin-top: 12px; }
       footer { justify-content: center; text-align: center; }
       .footer-right { text-align: center; }
@@ -260,11 +313,6 @@
   <div class="head-eyebrow">Video · Recensioni · Feedback</div>
   <h1 class="head-title">AIRLEG funziona.<br>Lo dicono <span class="accent">loro.</span></h1>
   <p class="head-lead">Tutte le reazioni, le recensioni e le storie di chi ha già provato AIRLEG Take Sport. Nessuno script, nessun attore: solo feedback reali.</p>
-  <div class="head-stats">
-    <div class="head-stat"><span class="val" id="stat-total">0</span><span class="desc">video</span></div>
-    <div class="head-stat"><span class="val">100%</span><span class="desc">reazioni reali</span></div>
-    <div class="head-stat"><span class="val">240</span><span class="desc">mmHg di pressione</span></div>
-  </div>
 </header>
 
 <!-- CATEGORY NAV -->
@@ -417,6 +465,20 @@
   </div>
 </section>
 
+<!-- RED URGENCY TIMER -->
+<div class="red-timer-wrap">
+  <div class="red-timer-label">L'OFFERTA TERMINA VENERDÌ</div>
+  <div class="red-timer-grid">
+    <div class="red-timer-unit"><span id="cdv-days" class="num">00</span><div class="lbl">giorni</div></div>
+    <span class="red-timer-sep">:</span>
+    <div class="red-timer-unit"><span id="cdv-hours" class="num">00</span><div class="lbl">ore</div></div>
+    <span class="red-timer-sep">:</span>
+    <div class="red-timer-unit"><span id="cdv-mins" class="num">00</span><div class="lbl">minuti</div></div>
+    <span class="red-timer-sep">:</span>
+    <div class="red-timer-unit"><span id="cdv-secs" class="num">00</span><div class="lbl">secondi</div></div>
+  </div>
+</div>
+
 <!-- CTA -->
 <section class="video-cta reveal">
   <h2>Convinto da quello<br>che hai visto?</h2>
@@ -425,9 +487,13 @@
     <span class="price-promo">€319</span>
     <span class="price-full">€429</span>
   </div>
-  <div class="price-note">Offerta valida per il mese di Luglio — consegna da agosto.</div>
+  <div class="price-note">Offerta valida per il mese di Luglio — consegna da agosto. Poi torna a €429.</div>
   <a href="https://tapesportivo.it/shop/bestseller/airleg-take-sport/" target="_blank" rel="noopener" class="btn-primary">Preordina ORA</a>
   <a href="https://wa.me/393717944845" target="_blank" rel="noopener" class="btn-whatsapp">Chiedi all'esperto</a>
+  <div class="promo-note">
+    <span>Preordina ora e riserva i tuoi gambali in anteprima.</span>
+    <span>⚡ Promozione valida fino ad esaurimento scorte</span>
+  </div>
 </section>
 
 <!-- FOOTER -->
@@ -459,23 +525,35 @@
     thumbEl.onclick = null;
   }
 
-  document.getElementById('stat-total').textContent = document.querySelectorAll('.vc-card').length;
-
   document.querySelectorAll('.cat-count').forEach(function(el) {
     var n = document.querySelectorAll('.vc-card[data-cat="' + el.dataset.countFor + '"]').length;
     el.textContent = n + ' video';
   });
 
   var navBtns = document.querySelectorAll('.vf-btn');
-  var spy = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (!e.isIntersecting) return;
-      navBtns.forEach(function(b) {
-        b.classList.toggle('vf-active', b.dataset.target === e.target.id);
-      });
+  var catSections = document.querySelectorAll('.cat-section');
+  var spyTicking = false;
+
+  function updateSpy() {
+    spyTicking = false;
+    var line = window.innerHeight * 0.35;
+    var current = null;
+    catSections.forEach(function(s) {
+      if (s.getBoundingClientRect().top <= line) current = s.id;
     });
-  }, { rootMargin: '-30% 0px -60% 0px' });
-  document.querySelectorAll('.cat-section').forEach(function(s) { spy.observe(s); });
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 2) {
+      current = catSections[catSections.length - 1].id;
+    }
+    navBtns.forEach(function(b) {
+      b.classList.toggle('vf-active', b.dataset.target === current);
+    });
+  }
+
+  window.addEventListener('scroll', function() {
+    if (!spyTicking) { spyTicking = true; requestAnimationFrame(updateSpy); }
+  }, { passive: true });
+  window.addEventListener('resize', updateSpy);
+  updateSpy();
 
   var observer = new IntersectionObserver(function(entries) {
     entries.forEach(function(e) {
@@ -483,6 +561,27 @@
     });
   }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(function(r) { observer.observe(r); });
+
+  // Countdown: 1 Aug 2026 00:00 UTC+2 = 2026-07-31T22:00:00Z
+  var dl = Date.UTC(2026, 6, 31, 22, 0, 0);
+  function startCountdown(deadline, prefix) {
+    function pad(n) { return String(n).padStart(2, '0'); }
+    function update() {
+      var diff = deadline - Date.now();
+      if (diff < 0) diff = 0;
+      var d = Math.floor(diff / 86400000);
+      var h = Math.floor((diff % 86400000) / 3600000);
+      var m = Math.floor((diff % 3600000) / 60000);
+      var s = Math.floor((diff % 60000) / 1000);
+      ['days', 'hours', 'mins', 'secs'].forEach(function(k, i) {
+        var el = document.getElementById(prefix + k);
+        if (el) el.textContent = pad([d, h, m, s][i]);
+      });
+    }
+    update();
+    setInterval(update, 1000);
+  }
+  startCountdown(dl, 'cdv-');
 </script>
 
 </body>
