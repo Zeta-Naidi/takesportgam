@@ -224,78 +224,6 @@
       .stat-item .desc { font-size: 9px; letter-spacing: 0; }
     }
 
-    /* RED URGENCY TIMER */
-    .red-timer-wrap {
-      background: linear-gradient(180deg, #1a0505 0%, #0d0a0f 100%);
-      border-top: 1px solid rgba(255, 50, 50, 0.35);
-      border-bottom: 1px solid rgba(255, 50, 50, 0.35);
-      padding: 26px 6% 28px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .red-timer-wrap::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 50%; transform: translateX(-50%);
-      width: 80%; height: 2px;
-      background: linear-gradient(90deg, transparent, #ff2a2a, transparent);
-      box-shadow: 0 0 40px rgba(255, 42, 42, 0.8);
-    }
-    .red-timer-label {
-      font-family: 'Sora', sans-serif;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: #ff2a2a;
-      margin-bottom: 12px;
-      text-shadow: 0 0 18px rgba(255, 42, 42, 0.6);
-    }
-    .red-timer-grid {
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      gap: 8px;
-      flex-wrap: nowrap;
-    }
-    .red-timer-unit {
-      text-align: center;
-      min-width: 48px;
-    }
-    .red-timer-unit .num {
-      font-family: 'Sora', sans-serif;
-      font-size: clamp(28px, 4.5vw, 44px);
-      font-weight: 800;
-      color: #ff2a2a;
-      line-height: 1;
-      text-shadow: 0 0 24px rgba(255, 42, 42, 0.45);
-    }
-    .red-timer-unit .lbl {
-      font-size: 9px;
-      color: #ff9999;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      margin-top: 6px;
-    }
-    .red-timer-sep {
-      font-family: 'Sora', sans-serif;
-      font-size: clamp(28px, 4.5vw, 44px);
-      font-weight: 800;
-      color: #ff2a2a;
-      line-height: 1;
-      margin-top: 2px;
-      text-shadow: 0 0 14px rgba(255, 42, 42, 0.5);
-    }
-    @media (max-width: 600px) {
-      .red-timer-wrap { padding: 18px 4% 20px; }
-      .red-timer-label { font-size: 10px; letter-spacing: 1.5px; margin-bottom: 10px; }
-      .red-timer-grid { gap: 5px; }
-      .red-timer-unit { min-width: 40px; }
-      .red-timer-unit .num, .red-timer-sep { font-size: 28px; }
-      .red-timer-unit .lbl { font-size: 8px; letter-spacing: 1px; }
-    }
-
     /* SECTIONS */
     section { padding: 100px 6%; }
     .section-eyebrow {
@@ -529,7 +457,6 @@
     .cta-label { font-family: 'Sora', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--blue-light); margin-bottom: 20px; }
     .cta-price-big { font-family: 'Sora', sans-serif; font-size: 72px; font-weight: 800; line-height: 1; color: var(--white); margin-bottom: 4px; }
     .cta-price-big span { color: var(--blue-light); }
-    .cta-was { font-size: 17px; color: var(--gray); text-decoration: line-through; margin-bottom: 18px; }
     .cta-deadline { font-size: 13px; color: var(--gray-light); margin-bottom: 32px; }
     .cta-deadline strong { color: var(--blue-light); }
     .cta-include { font-size: 13px; color: var(--gray); margin-top: 20px; }
@@ -652,7 +579,7 @@
   <div class="nav-logo">
     <img src="LOGO  VETTORIALE BIANCO.svg" alt="Take Sport AIRLEG" style="height:36px;width:auto;">
   </div>
-  <a href="https://tapesportivo.it/shop/bestseller/airleg-take-sport/" target="_blank" class="nav-cta">Preordina ORA</a>
+  <a href="https://tapesportivo.it/shop/bestseller/airleg-take-sport/" target="_blank" class="nav-cta">Acquista ORA</a>
 </nav>
 
 <!-- HERO -->
@@ -667,11 +594,11 @@
       <strong>240 mmHg</strong> <br>— il range più ampio della categoria. — <br>Senza cavi. Senza apparecchi esterni.
     </p>
     <div class="hero-cta">
-      <a href="https://tapesportivo.it/shop/bestseller/airleg-take-sport/" target="_blank" class="btn-primary">Preordina ORA</a>
+      <a href="https://tapesportivo.it/shop/bestseller/airleg-take-sport/" target="_blank" class="btn-primary">Acquista ORA</a>
       <a href="https://wa.me/393717944845" target="_blank" class="btn-whatsapp">Chiedi all'esperto</a>
       <a href="#form-email" class="btn-secondary" style="display:inline-block; margin-top:12px; border:1px solid var(--blue-light); color:var(--blue-light); font-family:'Sora',sans-serif; font-weight:600; font-size:14px; letter-spacing:1px; padding:13px 28px; text-decoration:none;">Ricevi aggiornamenti →</a>
     </div>
-    <div class="promo-note"><span class="promo-l1">Preordina ora e riserva i tuoi gambali in anteprima.</span><span class="promo-l2">⚡ Promozione valida fino ad esaurimento scorte</span></div>
+    <div class="promo-note"><span class="promo-l1">Ordina ora e ricevi AIRLEG direttamente a casa tua.</span><span class="promo-l2">🚚 Spedizione rapida in tutta Italia</span></div>
   </div>
   <div class="hero-visual">
     <div class="hero-video-wrap">
@@ -691,19 +618,6 @@
   <div class="stat-item"><span class="val">5</span><span class="desc">programmi preimpostati</span></div>
 </div>
 
-<!-- RED URGENCY TIMER -->
-<div class="red-timer-wrap">
-  <div class="red-timer-label">L'OFFERTA TERMINA VENERDÌ</div>
-  <div class="red-timer-grid">
-    <div class="red-timer-unit"><span id="cd-top-days" class="num">00</span><div class="lbl">giorni</div></div>
-    <span class="red-timer-sep">:</span>
-    <div class="red-timer-unit"><span id="cd-top-hours" class="num">00</span><div class="lbl">ore</div></div>
-    <span class="red-timer-sep">:</span>
-    <div class="red-timer-unit"><span id="cd-top-mins" class="num">00</span><div class="lbl">minuti</div></div>
-    <span class="red-timer-sep">:</span>
-    <div class="red-timer-unit"><span id="cd-top-secs" class="num">00</span><div class="lbl">secondi</div></div>
-  </div>
-</div>
 
 <!-- VIDEO REACTIONS -->
 <section class="reveal" style="background:var(--black); padding:60px 6%;">
@@ -916,22 +830,10 @@
 <!-- PROMO STRIP -->
 <div style="background:var(--card-bg); border-top:1px solid rgba(0,180,216,0.15); border-bottom:1px solid rgba(0,180,216,0.15); padding:32px 6%; display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:32px;">
   <div style="text-align:center;">
-    <div style="font-family:'Sora',sans-serif; font-size:10px; font-weight:600; letter-spacing:4px; color:var(--blue-light); text-transform:uppercase; margin-bottom:8px;">Offerta termina tra</div>
-    <div style="display:flex; align-items:flex-start; gap:10px; justify-content:center;">
-      <div style="text-align:center;"><span id="cd2-days" style="font-family:'Sora',sans-serif; font-size:32px; font-weight:800; color:var(--white);">00</span><div style="font-size:9px; color:var(--gray); letter-spacing:2px; text-transform:uppercase; margin-top:3px;">giorni</div></div>
-      <span style="font-family:'Sora',sans-serif; font-size:32px; font-weight:800; color:var(--blue-light); margin-top:2px;">:</span>
-      <div style="text-align:center;"><span id="cd2-hours" style="font-family:'Sora',sans-serif; font-size:32px; font-weight:800; color:var(--white);">00</span><div style="font-size:9px; color:var(--gray); letter-spacing:2px; text-transform:uppercase; margin-top:3px;">ore</div></div>
-      <span style="font-family:'Sora',sans-serif; font-size:32px; font-weight:800; color:var(--blue-light); margin-top:2px;">:</span>
-      <div style="text-align:center;"><span id="cd2-mins" style="font-family:'Sora',sans-serif; font-size:32px; font-weight:800; color:var(--white);">00</span><div style="font-size:9px; color:var(--gray); letter-spacing:2px; text-transform:uppercase; margin-top:3px;">minuti</div></div>
-      <span style="font-family:'Sora',sans-serif; font-size:32px; font-weight:800; color:var(--blue-light); margin-top:2px;">:</span>
-      <div style="text-align:center;"><span id="cd2-secs" style="font-family:'Sora',sans-serif; font-size:32px; font-weight:800; color:var(--white);">00</span><div style="font-size:9px; color:var(--gray); letter-spacing:2px; text-transform:uppercase; margin-top:3px;">secondi</div></div>
-    </div>
-  </div>
-  <div style="text-align:center;">
-    <div style="font-size:13px; color:var(--gray); margin-bottom:14px;">Offerta valida solo per <strong style="color:var(--white); font-size:1.1em;">Luglio</strong> — poi €429</div>
-    <a href="https://tapesportivo.it/shop/bestseller/airleg-take-sport/" target="_blank" style="display:inline-block; background:var(--blue-light); color:#000; font-family:'Sora',sans-serif; font-weight:700; font-size:14px; letter-spacing:1px; padding:12px 32px; text-decoration:none;">Preordina a prezzo di lancio →</a>
+    <div style="font-size:13px; color:var(--gray); margin-bottom:14px;">AIRLEG Take Sport è disponibile ora a <strong style="color:var(--white); font-size:1.1em;">€429</strong></div>
+    <a href="https://tapesportivo.it/shop/bestseller/airleg-take-sport/" target="_blank" style="display:inline-block; background:var(--blue-light); color:#000; font-family:'Sora',sans-serif; font-weight:700; font-size:14px; letter-spacing:1px; padding:12px 32px; text-decoration:none;">Acquista ora →</a>
     <a href="https://wa.me/393717944845" target="_blank" class="btn-whatsapp">Chiedi all'esperto</a>
-    <div class="promo-note center"><span class="promo-l1">Preordina ora e riserva i tuoi gambali in anteprima.</span><span class="promo-l2">⚡ Promozione valida fino ad esaurimento scorte</span></div>
+    <div class="promo-note center"><span class="promo-l1">Ordina ora e ricevi AIRLEG direttamente a casa tua.</span><span class="promo-l2">🚚 Spedizione rapida in tutta Italia</span></div>
     <a href="#form-email" style="display:inline-block; margin-top:10px; border:1px solid rgba(0,180,216,0.5); color:var(--blue-light); font-family:'Sora',sans-serif; font-weight:600; font-size:13px; letter-spacing:1px; padding:10px 24px; text-decoration:none;">Ricevi aggiornamenti →</a>
   </div>
 </div>
@@ -1030,15 +932,13 @@
 
 <!-- MID CTA STRIP -->
 <div style="background:var(--card-bg); border-top:1px solid rgba(0,180,216,0.12); border-bottom:1px solid rgba(0,180,216,0.12); padding:40px 6%; display:flex; flex-direction:column; align-items:center; gap:14px; text-align:center;">
-  <div style="font-family:'Sora',sans-serif; font-size:11px; font-weight:600; letter-spacing:4px; text-transform:uppercase; color:var(--blue-light);">⬡ Preordina a prezzo di lancio</div>
   <div style="display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; justify-content:center;">
-    <span style="font-family:'Sora',sans-serif; font-size:52px; font-weight:800; color:var(--blue-light); line-height:1;">€319</span>
-    <span style="font-family:'Sora',sans-serif; font-size:20px; font-weight:400; color:var(--gray); text-decoration:line-through;">€429</span>
+    <span style="font-family:'Sora',sans-serif; font-size:52px; font-weight:800; color:var(--blue-light); line-height:1;">€429</span>
   </div>
-  <div style="font-size:13px; color:var(--gray);">Offerta valida per il mese di <strong style="color:var(--white);">Luglio</strong> — consegna da agosto.</div>
-  <a href="https://tapesportivo.it/shop/bestseller/airleg-take-sport/" target="_blank" class="btn-primary" style="font-size:15px; padding:16px 44px;">Preordina ORA</a>
+  <div style="font-size:13px; color:var(--gray);">Disponibile ora — spedizione rapida in tutta Italia.</div>
+  <a href="https://tapesportivo.it/shop/bestseller/airleg-take-sport/" target="_blank" class="btn-primary" style="font-size:15px; padding:16px 44px;">Acquista ORA</a>
   <a href="https://wa.me/393717944845" target="_blank" class="btn-whatsapp">Chiedi all'esperto</a>
-  <div class="promo-note center"><span class="promo-l1">Preordina ora e riserva i tuoi gambali in anteprima.</span><span class="promo-l2">⚡ Promozione valida fino ad esaurimento scorte</span></div>
+  <div class="promo-note center"><span class="promo-l1">Ordina ora e ricevi AIRLEG direttamente a casa tua.</span><span class="promo-l2">🚚 Spedizione rapida in tutta Italia</span></div>
 </div>
 
 <!-- BENEFITS -->
@@ -1082,28 +982,17 @@
 
 <!-- MID-PAGE CTA -->
 <section class="cta-section reveal" style="background:var(--card-bg); border-top:1px solid rgba(0,180,216,0.12); border-bottom:1px solid rgba(0,180,216,0.12);">
-  <div class="section-eyebrow" style="justify-content:center;">Preordine luglio 2025</div>
-  <h2 class="section-title">Non aspettare<br>che finisca l'offerta</h2>
-  <p class="section-lead" style="margin:0 auto; max-width:520px; text-align:center;">Disponibile da agosto a €429. Per tutto luglio, preordina a €319 e risparmi €100.</p>
+  <div class="section-eyebrow" style="justify-content:center;">Disponibile ora</div>
+  <h2 class="section-title">Il recupero che<br>stavi aspettando</h2>
+  <p class="section-lead" style="margin:0 auto; max-width:520px; text-align:center;">AIRLEG Take Sport è disponibile ora a €429, con spedizione rapida in tutta Italia.</p>
   <div style="display:flex; justify-content:center;">
   <div class="cta-box">
-    <div class="cta-label">⬡ Preordina a prezzo di lancio</div>
-    <div class="cta-price-big">€<span>319</span></div>
-    <div class="cta-was">Prezzo di listino: €429</div>
-    <div class="cta-deadline">Offerta valida per il mese di <strong style="font-size:1.15em; color:var(--blue-light);">Luglio</strong>.<br>Consegna a partire da agosto.</div>
-    <a href="https://tapesportivo.it/shop/bestseller/airleg-take-sport/" target="_blank" class="btn-primary" style="display:block; text-align:center; font-size:16px; padding:18px 40px;">Preordina ORA</a>
+    <div class="cta-price-big">€<span>429</span></div>
+    <div class="cta-deadline">Spedizione rapida in tutta Italia.</div>
+    <a href="https://tapesportivo.it/shop/bestseller/airleg-take-sport/" target="_blank" class="btn-primary" style="display:block; text-align:center; font-size:16px; padding:18px 40px;">Acquista ORA</a>
     <a href="https://wa.me/393717944845" target="_blank" class="btn-whatsapp" style="display:block;">Chiedi all'esperto</a>
-    <div class="promo-note center"><span class="promo-l1">Preordina ora e riserva i tuoi gambali in anteprima.</span><span class="promo-l2">⚡ Promozione valida fino ad esaurimento scorte</span></div>
+    <div class="promo-note center"><span class="promo-l1">Ordina ora e ricevi AIRLEG direttamente a casa tua.</span><span class="promo-l2">🚚 Spedizione rapida in tutta Italia</span></div>
     <a href="#form-email" style="display:block; margin-top:12px; text-align:center; border:1px solid rgba(0,180,216,0.4); color:var(--blue-light); font-family:'Sora',sans-serif; font-weight:600; font-size:13px; letter-spacing:1px; padding:11px 24px; text-decoration:none;">Ricevi aggiornamenti →</a>
-    <div style="display:flex; justify-content:center; gap:16px; margin-top:24px; padding-top:20px; border-top:1px solid rgba(0,180,216,0.15);">
-      <div style="text-align:center;"><span id="cd3-days" style="font-family:'Sora',sans-serif; font-size:28px; font-weight:800; color:var(--blue-light);">00</span><div style="font-size:10px; color:var(--gray); letter-spacing:2px; text-transform:uppercase; margin-top:4px;">giorni</div></div>
-      <div style="font-family:'Sora',sans-serif; font-size:28px; font-weight:800; color:var(--blue-light); align-self:flex-start; margin-top:2px;">:</div>
-      <div style="text-align:center;"><span id="cd3-hours" style="font-family:'Sora',sans-serif; font-size:28px; font-weight:800; color:var(--blue-light);">00</span><div style="font-size:10px; color:var(--gray); letter-spacing:2px; text-transform:uppercase; margin-top:4px;">ore</div></div>
-      <div style="font-family:'Sora',sans-serif; font-size:28px; font-weight:800; color:var(--blue-light); align-self:flex-start; margin-top:2px;">:</div>
-      <div style="text-align:center;"><span id="cd3-mins" style="font-family:'Sora',sans-serif; font-size:28px; font-weight:800; color:var(--blue-light);">00</span><div style="font-size:10px; color:var(--gray); letter-spacing:2px; text-transform:uppercase; margin-top:4px;">minuti</div></div>
-      <div style="font-family:'Sora',sans-serif; font-size:28px; font-weight:800; color:var(--blue-light); align-self:flex-start; margin-top:2px;">:</div>
-      <div style="text-align:center;"><span id="cd3-secs" style="font-family:'Sora',sans-serif; font-size:28px; font-weight:800; color:var(--blue-light);">00</span><div style="font-size:10px; color:var(--gray); letter-spacing:2px; text-transform:uppercase; margin-top:4px;">secondi</div></div>
-    </div>
   </div>
   </div>
 </section>
@@ -1358,20 +1247,18 @@
 
 <!-- CTA FINAL -->
 <section id="preordine" class="cta-section reveal">
-  <div class="section-eyebrow" style="justify-content:center;">Preordine luglio 2025</div>
-  <h2 class="section-title">Prenota il tuo AIRLEG<br>prima che arrivi sul mercato</h2>
-  <p class="section-lead" style="margin: 0 auto; max-width:520px; text-align:center;">Disponibile da agosto a €429. Per tutto luglio, preordina a €319 e risparmi €100.</p>
+  <div class="section-eyebrow" style="justify-content:center;">Disponibile ora</div>
+  <h2 class="section-title">Acquista il tuo AIRLEG<br>oggi stesso</h2>
+  <p class="section-lead" style="margin: 0 auto; max-width:520px; text-align:center;">AIRLEG Take Sport è disponibile ora a €429, con spedizione rapida in tutta Italia.</p>
   <div style="display:flex; justify-content:center;">
     <div class="cta-box">
-      <div class="cta-label">⬡ Preordina a prezzo di lancio</div>
-      <div class="cta-price-big">€<span>319</span></div>
-      <div class="cta-was">Prezzo di listino: €429</div>
-      <div class="cta-deadline">Offerta valida per il mese di <strong style="font-size:1.15em; color:var(--blue-light);">Luglio</strong>.<br>Consegna a partire da agosto.</div>
-      <a href="https://tapesportivo.it/shop/bestseller/airleg-take-sport/" target="_blank" class="btn-primary" style="display:block; text-align:center; font-size:16px; padding:18px 40px;">Preordina ORA</a>
+      <div class="cta-price-big">€<span>429</span></div>
+      <div class="cta-deadline">Spedizione rapida in tutta Italia.</div>
+      <a href="https://tapesportivo.it/shop/bestseller/airleg-take-sport/" target="_blank" class="btn-primary" style="display:block; text-align:center; font-size:16px; padding:18px 40px;">Acquista ORA</a>
       <a href="https://wa.me/393717944845" target="_blank" class="btn-whatsapp" style="display:block;">Chiedi all'esperto</a>
-      <div class="promo-note center"><span class="promo-l1">Preordina ora e riserva i tuoi gambali in anteprima.</span><span class="promo-l2">⚡ Promozione valida fino ad esaurimento scorte</span></div>
+      <div class="promo-note center"><span class="promo-l1">Ordina ora e ricevi AIRLEG direttamente a casa tua.</span><span class="promo-l2">🚚 Spedizione rapida in tutta Italia</span></div>
       <div id="form-email" style="margin-top:24px; padding-top:20px; border-top:1px solid rgba(0,180,216,0.15);">
-        <p style="font-family:'Sora',sans-serif; font-size:clamp(22px,3.5vw,30px); font-weight:800; color:var(--white); margin-bottom:10px; line-height:1.2;">Scopri <strong>AIRLEG Take Sport</strong><br>prima di tutti.</p>
+        <p style="font-family:'Sora',sans-serif; font-size:clamp(22px,3.5vw,30px); font-weight:800; color:var(--white); margin-bottom:10px; line-height:1.2;">Resta aggiornato su <strong>AIRLEG Take Sport</strong>.</p>
         <p style="font-size:13px; color:var(--gray); margin-bottom:18px; line-height:1.5;">Nessuno spam. Solo aggiornamenti su <strong style="color:var(--white);">AIRLEG Take Sport</strong>.<br>Potrai cancellarti in qualsiasi momento.</p>
         <form id="brevo-form" style="display:flex; flex-direction:column; gap:10px;">
           <label style="font-family:'Sora',sans-serif; font-size:13px; font-weight:700; color:var(--white);">Inserisci il tuo indirizzo email per iscriverti</label>
@@ -1387,15 +1274,6 @@
       <p class="cta-include" style="margin-top:20px;">
         <strong>Incluso:</strong> gambali AIRLEG + zaino premium + cavo di ricarica + manuale d'uso.
       </p>
-      <div id="countdown" style="display:flex; justify-content:center; gap:16px; margin-top:24px; padding-top:20px; border-top:1px solid rgba(0,180,216,0.15);">
-        <div style="text-align:center;"><span id="cd-days" style="font-family:'Sora',sans-serif; font-size:28px; font-weight:800; color:var(--blue-light);">00</span><div style="font-size:10px; color:var(--gray); letter-spacing:2px; text-transform:uppercase; margin-top:4px;">giorni</div></div>
-        <div style="font-family:'Sora',sans-serif; font-size:28px; font-weight:800; color:var(--blue-light); align-self:flex-start; margin-top:2px;">:</div>
-        <div style="text-align:center;"><span id="cd-hours" style="font-family:'Sora',sans-serif; font-size:28px; font-weight:800; color:var(--blue-light);">00</span><div style="font-size:10px; color:var(--gray); letter-spacing:2px; text-transform:uppercase; margin-top:4px;">ore</div></div>
-        <div style="font-family:'Sora',sans-serif; font-size:28px; font-weight:800; color:var(--blue-light); align-self:flex-start; margin-top:2px;">:</div>
-        <div style="text-align:center;"><span id="cd-mins" style="font-family:'Sora',sans-serif; font-size:28px; font-weight:800; color:var(--blue-light);">00</span><div style="font-size:10px; color:var(--gray); letter-spacing:2px; text-transform:uppercase; margin-top:4px;">minuti</div></div>
-        <div style="font-family:'Sora',sans-serif; font-size:28px; font-weight:800; color:var(--blue-light); align-self:flex-start; margin-top:2px;">:</div>
-        <div style="text-align:center;"><span id="cd-secs" style="font-family:'Sora',sans-serif; font-size:28px; font-weight:800; color:var(--blue-light);">00</span><div style="font-size:10px; color:var(--gray); letter-spacing:2px; text-transform:uppercase; margin-top:4px;">secondi</div></div>
-      </div>
       <a href="#form-email" style="display:block; margin-top:16px; text-align:center; border:1px solid rgba(0,180,216,0.4); color:var(--blue-light); font-family:'Sora',sans-serif; font-weight:600; font-size:13px; letter-spacing:1px; padding:11px 24px; text-decoration:none;">Ricevi aggiornamenti →</a>
     </div>
   </div>
@@ -1422,30 +1300,6 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
   }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
   reveals.forEach(r => observer.observe(r));
-
-  // Countdown: 1 Aug 2026 00:00 UTC+2 = 2026-07-31T22:00:00Z
-  var dl = Date.UTC(2026, 6, 31, 22, 0, 0);
-  function startCountdown(deadline, prefix) {
-    function pad(n) { return String(n).padStart(2,'0'); }
-    function update() {
-      var diff = deadline - Date.now();
-      if (diff < 0) diff = 0;
-      var d = Math.floor(diff / 86400000);
-      var h = Math.floor((diff % 86400000) / 3600000);
-      var m = Math.floor((diff % 3600000) / 60000);
-      var s = Math.floor((diff % 60000) / 1000);
-      ['days','hours','mins','secs'].forEach(function(k, i) {
-        var el = document.getElementById(prefix + k);
-        if (el) el.textContent = pad([d,h,m,s][i]);
-      });
-    }
-    update();
-    setInterval(update, 1000);
-  }
-  startCountdown(dl, 'cd-');
-  startCountdown(dl, 'cd2-');
-  startCountdown(dl, 'cd3-');
-  startCountdown(dl, 'cd-top-');
 
   document.getElementById('brevo-form') && document.getElementById('brevo-form').addEventListener('submit', function(e) {
     e.preventDefault();
