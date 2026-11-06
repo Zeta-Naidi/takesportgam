@@ -1,42 +1,55 @@
 ﻿<!DOCTYPE html>
 <html lang="it">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-84M5ZG3FVB"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-84M5ZG3FVB');
-  </script>
-  <!-- Microsoft Clarity -->
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "x7vonflpzb");
-  </script>
   <meta charset="UTF-8" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://airleg.takesport.it/" />
-  <!-- Meta Pixel Code -->
+  <!-- Consenso cookie: Google Analytics e Clarity (statistiche) e Meta Pixel (marketing) partono solo dopo il consenso -->
   <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '2085537332043078');
-  fbq('track', 'PageView');
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    (function () {
+      var KEY = 'airleg_consenso_v1', MAX = 180 * 24 * 3600 * 1000;
+      var loaded = { stat: false, mkt: false };
+      function read() {
+        try { var c = JSON.parse(localStorage.getItem(KEY) || 'null'); if (c && (Date.now() - c.ts) < MAX) return c; } catch (e) {}
+        return null;
+      }
+      function loadStat() {
+        if (loaded.stat) return; loaded.stat = true;
+        var g = document.createElement('script'); g.async = true; g.src = 'https://www.googletagmanager.com/gtag/js?id=G-84M5ZG3FVB';
+        document.head.appendChild(g);
+        gtag('js', new Date()); gtag('config', 'G-84M5ZG3FVB');
+        (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "x7vonflpzb");
+      }
+      function loadMkt() {
+        if (loaded.mkt) return; loaded.mkt = true;
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '654082966207949');
+        fbq('track', 'PageView');
+      }
+      function apply(c) { if (c && c.stat) loadStat(); if (c && c.mkt) loadMkt(); }
+      window.airlegConsent = {
+        get: read,
+        save: function (stat, mkt) {
+          var c = { stat: !!stat, mkt: !!mkt, ts: Date.now() };
+          try { localStorage.setItem(KEY, JSON.stringify(c)); } catch (e) {}
+          apply(c);
+          return c;
+        }
+      };
+      apply(read());
+    })();
   </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=2085537332043078&ev=PageView&noscript=1"
-  /></noscript>
-  <!-- End Meta Pixel Code -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AIRLEG — TAKE SPORT | Recupero Sportivo Avanzato</title>
 
@@ -1268,6 +1281,7 @@
             Entra nella lista →
           </button>
           <div id="brevo-msg" style="font-size:12px; text-align:center; min-height:18px;"></div>
+          <p style="font-size:11px; color:var(--gray); line-height:1.5; margin:0;">Iscrivendoti ricevi via email gli aggiornamenti su AIRLEG. Puoi cancellarti in qualsiasi momento. <a href="/privacy" style="color:var(--blue-light);">Informativa privacy</a></p>
         </form>
       </div>
       <p class="cta-include" style="margin-top:20px;">
@@ -1287,8 +1301,8 @@
     AIRLEG è un gambale a pressione graduale per il recupero sportivo e il benessere degli arti inferiori. Non è un dispositivo medico e non sostituisce il parere di un professionista della salute. Consultare il manuale per le controindicazioni.
   </p>
   <div class="footer-right">
-    <div>© 2026 Take Sport</div>
-    <div>Tutti i diritti riservati</div>
+    <div>© 2026 Take Sport — FCOM S.r.l. P.IVA 04325470245</div>
+    <div><a href="/privacy" style="color:inherit;">Privacy</a> · <a href="/cookie" style="color:inherit;">Cookie</a> · <a href="#" onclick="window.airlegBanner && window.airlegBanner(true); return false;" style="color:inherit;">Preferenze cookie</a></div>
   </div>
 </footer>
 
@@ -1495,6 +1509,47 @@ fetch('/.netlify/functions/subscribe', {
         loadVideo();
       }
     }
+  })();
+</script>
+<!-- Banner cookie -->
+<div id="cookie-banner" role="dialog" aria-live="polite" aria-label="Preferenze cookie" style="display:none; position:fixed; left:16px; right:16px; bottom:16px; z-index:9999; max-width:720px; margin:0 auto; background:#0d0d16; border:1px solid rgba(0,180,216,0.35); box-shadow:0 10px 40px rgba(0,0,0,0.6); padding:20px; font-family:'Inter',sans-serif; color:#fff;">
+  <button type="button" data-ck="rifiuta" aria-label="Chiudi senza accettare" style="position:absolute; top:8px; right:12px; background:none; border:none; color:#8A8A9A; font-size:22px; cursor:pointer;">&times;</button>
+  <p style="font-family:'Sora',sans-serif; font-weight:700; font-size:15px; margin:0 0 8px;">Cookie</p>
+  <p style="font-size:13px; color:#c9c9d3; line-height:1.55; margin:0 0 14px;">Usiamo cookie tecnici necessari al funzionamento della pagina e, solo con il tuo consenso, cookie di <strong>statistica</strong> (Google Analytics, Microsoft Clarity) e di <strong>marketing</strong> (Meta Pixel) per misurare le visite e le nostre pubblicità. Puoi cambiare idea in qualsiasi momento da "Preferenze cookie" in fondo alla pagina. <a href="/cookie" style="color:#00B4D8;">Cookie policy</a> · <a href="/privacy" style="color:#00B4D8;">Privacy</a></p>
+  <div id="cookie-prefs" style="display:none; margin:0 0 14px; font-size:13px; line-height:1.6;">
+    <label style="display:block;"><input type="checkbox" checked disabled> Tecnici (sempre attivi)</label>
+    <label style="display:block;"><input type="checkbox" id="ck-stat"> Statistiche (Google Analytics, Microsoft Clarity)</label>
+    <label style="display:block;"><input type="checkbox" id="ck-mkt"> Marketing (Meta Pixel)</label>
+  </div>
+  <div style="display:flex; flex-wrap:wrap; gap:10px;">
+    <button type="button" data-ck="rifiuta" style="flex:1 1 140px; background:transparent; border:1px solid #00B4D8; color:#00B4D8; font-family:'Sora',sans-serif; font-weight:700; font-size:13px; padding:11px 16px; cursor:pointer;">Rifiuta</button>
+    <button type="button" data-ck="personalizza" style="flex:1 1 140px; background:transparent; border:1px solid #8A8A9A; color:#fff; font-family:'Sora',sans-serif; font-weight:700; font-size:13px; padding:11px 16px; cursor:pointer;">Personalizza</button>
+    <button type="button" data-ck="accetta" style="flex:1 1 140px; background:#00B4D8; border:1px solid #00B4D8; color:#000; font-family:'Sora',sans-serif; font-weight:700; font-size:13px; padding:11px 16px; cursor:pointer;">Accetta</button>
+  </div>
+</div>
+<script>
+  (function () {
+    var b = document.getElementById('cookie-banner'), prefs = document.getElementById('cookie-prefs');
+    var st = document.getElementById('ck-stat'), mk = document.getElementById('ck-mkt');
+    function show(open) {
+      var c = window.airlegConsent && window.airlegConsent.get();
+      st.checked = !!(c && c.stat); mk.checked = !!(c && c.mkt);
+      prefs.style.display = open ? 'block' : 'none';
+      b.style.display = 'block';
+    }
+    window.airlegBanner = show;
+    b.addEventListener('click', function (e) {
+      var a = e.target.getAttribute && e.target.getAttribute('data-ck'); if (!a) return;
+      if (a === 'personalizza') {
+        if (prefs.style.display === 'block') { window.airlegConsent.save(st.checked, mk.checked); b.style.display = 'none'; }
+        else { prefs.style.display = 'block'; e.target.textContent = 'Salva scelte'; }
+        return;
+      }
+      if (a === 'accetta') window.airlegConsent.save(true, true);
+      if (a === 'rifiuta') window.airlegConsent.save(false, false);
+      b.style.display = 'none';
+    });
+    if (!(window.airlegConsent && window.airlegConsent.get())) show(false);
   })();
 </script>
 </body>
