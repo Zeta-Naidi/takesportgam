@@ -1511,6 +1511,48 @@ fetch('/.netlify/functions/subscribe', {
     }
   })();
 </script>
+<script>
+  /* Blocco 2: evento unico "InteresseAIRLEG" per Meta (una volta per visita).
+     Parte alla prima di queste azioni: 45 s di permanenza con pagina visibile, scorrimento al 50%,
+     clic su Acquista, clic su WhatsApp, audio del video attivato, iscrizione newsletter.
+     Inviato solo se il pixel e' attivo (consenso marketing); se il consenso arriva dopo, parte allora. */
+  (function () {
+    var KEY = 'airleg_interesse', inviato = false, motivo = null, secondi = 0;
+    try { if (sessionStorage.getItem(KEY)) inviato = true; } catch (e) {}
+    function invia() {
+      if (inviato || !motivo || !window.fbq) return;
+      inviato = true;
+      try { sessionStorage.setItem(KEY, motivo); } catch (e) {}
+      try { fbq('trackCustom', 'InteresseAIRLEG', { motivo: motivo }); } catch (e) {}
+      try { if (window.gtag) gtag('event', 'interesse_airleg', { motivo: motivo }); } catch (e) {}
+    }
+    function segna(m) { if (!motivo) motivo = m; invia(); }
+    window.airlegInteresse = segna;
+    var timer = setInterval(function () {
+      if (document.visibilityState === 'visible') secondi++;
+      if (secondi >= 45) { clearInterval(timer); segna('tempo_45s'); }
+    }, 1000);
+    function onScroll() {
+      var tot = document.documentElement.scrollHeight - window.innerHeight;
+      if (tot > 0 && window.scrollY / tot >= 0.5) { window.removeEventListener('scroll', onScroll); segna('scroll_50'); }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    document.addEventListener('click', function (e) {
+      var el = e.target && e.target.closest ? e.target.closest('a,button') : null;
+      if (!el) return;
+      var href = el.getAttribute('href') || '';
+      if (href.indexOf('tapesportivo.it') !== -1) segna('click_acquista');
+      else if (href.indexOf('wa.me') !== -1) segna('click_whatsapp');
+      else if (el.id === 'feedback-unmute') segna('video_audio');
+    }, true);
+    var form = document.getElementById('brevo-form');
+    if (form) form.addEventListener('submit', function () { segna('newsletter'); });
+    if (window.airlegConsent && typeof window.airlegConsent.save === 'function') {
+      var salva = window.airlegConsent.save;
+      window.airlegConsent.save = function () { var r = salva.apply(this, arguments); invia(); return r; };
+    }
+  })();
+</script>
 <!-- Banner cookie -->
 <div id="cookie-banner" role="dialog" aria-live="polite" aria-label="Preferenze cookie" style="display:none; position:fixed; left:16px; right:16px; bottom:16px; z-index:9999; max-width:720px; margin:0 auto; background:#0d0d16; border:1px solid rgba(0,180,216,0.35); box-shadow:0 10px 40px rgba(0,0,0,0.6); padding:20px; font-family:'Inter',sans-serif; color:#fff;">
   <button type="button" data-ck="rifiuta" aria-label="Chiudi senza accettare" style="position:absolute; top:8px; right:12px; background:none; border:none; color:#8A8A9A; font-size:22px; cursor:pointer;">&times;</button>
